@@ -1,0 +1,42 @@
+.input-control,
+.modal-cards-input-control {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: static;
+}
+
+.input-control label.text {
+  font-size: .9rem;
+  color: #020411;
+  font-weight: 600;
+  position: relative;
+  top: 0.8rem;
+  margin: 0 0 0 7px;
+  padding: 0 5px;
+  background: #ffffff;
+  width: fit-content;
+}
+
+.input-control input[type=text].input,
+.input-control input[type=password].input,
+.modal-cards-input-control textarea.modal-cards-textarea,
+.modal-cards-input,
+.modal-cards-select {
+  padding: 12px 10px;
+  font-size: 1rem;
+  border: 2px #020411 solid;
+  border-radius: 5px;
+  background: #ffffff;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-control input[type=text].input:focus,
+.input-control input[type=password].input:focus,
+.modal-cards-input-control textarea.modal-cards-textarea:focus,
+.modal-cards-input:focus,
+.modal-cards-select:focus {
+  outline: none;
+  border-color: #020411;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}

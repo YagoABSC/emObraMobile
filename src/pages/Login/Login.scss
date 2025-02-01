@@ -1,0 +1,180 @@
+.main-login-cad {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px auto;
+    max-width: 720px;
+    min-height: 100vh;
+  }
+  
+  .banner-login {
+    width: fit-content;
+    max-width: 350px;
+    padding: 0 10px;
+  
+    h1 {
+      width: fit-content;
+      margin: auto;
+
+      & img{
+        width: 40%;
+      }
+    }
+  
+    h3 {
+      font-size: 1.3em;
+    }
+  }
+  
+  .login-container {
+    width: 100%;
+    max-width: 350px;
+  
+    background-color: white;
+    border-radius: 5px;
+    /* box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); */
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .form-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0;
+  
+    h1 {
+      font-size: 1.5em;
+    }
+  
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      gap: 10px;
+    }
+  }
+  
+  .input-control-login,
+  .modal-cards-input-control {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: static;
+    /* margin-bottom: 15px;  */
+  }
+  
+  .input-control-login label.text {
+    font-size: .9rem;
+    color: #020411;
+    font-weight: 600;
+    position: relative;
+    top: 0.8rem;
+    margin: 0 0 0 7px;
+    padding: 0 5px;
+    background: #ffffff;
+    width: fit-content;
+  }
+  
+  .input-control-login input[type=text].input,
+  .input-control-login input[type=password].input,
+  .modal-cards-input-control textarea.modal-cards-textarea,
+  .modal-cards-input,
+  .modal-cards-select {
+    padding: 12px 10px;
+    font-size: 1rem;
+    border: 2px #020411 solid;
+    border-radius: 5px;
+    background: #ffffff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .input-control-login input[type=text].input:focus,
+  .input-control-login input[type=password].input:focus,
+  .modal-cards-input-control textarea.modal-cards-textarea:focus,
+  .modal-cards-input:focus,
+  .modal-cards-select:focus {
+    outline: none;
+    border-color: #020411;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  }
+  
+  .manter-conectado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    gap: 30px;
+  
+    a {
+      font-size: .9em;
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: none;
+      color: #020411;
+    }
+  }
+  
+  .manter-conectado div {
+    display: flex;
+    align-items: center;
+  
+    label {
+      font-size: .9em;
+      margin: 0;
+      font-weight: 600;
+    }
+  }
+  
+  .manter-conectado input {
+    margin-right: 5px;
+  }
+  
+  .botao-entrar,
+  .modal-cards-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #FE8813;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .botao-entrar:hover {
+    background-color: #ff8c00;
+  }
+  
+  .outras-acoes-login {
+    display: block;
+    margin-top: 15px;
+    text-decoration: underline;
+    font-size: 14px;
+    font-weight: 600;
+    color: #FE8813;
+  }
+  
+  .pedreiro-login,
+  .contratante-login {
+    position: absolute;
+    height: 70%;
+    bottom: 0;
+    object-fit: cover;
+    display: none;
+  }
+  
+  .pedreiro-login {
+    left: 0;
+  }
+  
+  .contratante-login {
+    right: 0px;
+  }

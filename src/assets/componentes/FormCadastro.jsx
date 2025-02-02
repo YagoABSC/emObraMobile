@@ -37,16 +37,18 @@ function FormCadastro() {
                         </InputControl>
 
                         <InputControl>
-                            <label for="senha" class="text">Senha:</label>
-                            <input type="password" name="senha" required class="input" />
-                        </InputControl>
-
-                        <InputControl>
                             <label for="cep" class="text">CEP:</label>
                             <input type="text" name="cep" required class="input" />
                         </InputControl>
 
+                        <InputControl>
+                            <label for="senha" class="text">Senha:</label>
+                            <input type="password" name="senha" required class="input" />
+                        </InputControl>
+
                         <button class="avancar-cadastro-pedreiro botao-entrar" onClick={() => setFormPart('pt2')}> Avançar</button>
+
+
 
                     </div>
 
@@ -74,13 +76,17 @@ function FormCadastro() {
 
                         <div class="manter-conectado cadastro-tipo-servico">
                             <div>
-                                <input type="checkbox" id="conectado" name="conectado"/>
-                                    <label for="conectado">Aceitar termos</label>
+                                <input type="checkbox" id="conectado" name="conectado" />
+                                <label for="conectado">Aceitar termos</label>
                             </div>
 
                         </div>
 
-                        <button type="submit" class="botao-entrar cadastro-tipo-servico">Cadastrar</button>
+                        <div className="container-buttons">
+                            <button type="submit" class="botao-entrar cadastro-tipo-servico" onClick={() => setFormPart('pt1')}>Voltar</button>
+                            
+                            <button type="submit" class="botao-entrar cadastro-tipo-servico">Cadastrar</button>
+                        </div>
                     </div>
                 }
 

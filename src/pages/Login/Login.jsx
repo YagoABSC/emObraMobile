@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import './Login.scss';
 import Containerform from '../../assets/componentes/Containerform';
+import InputControl from "../../assets/componentes/InputControl";
 
 
 function Login() {
     return (
         <>
-            {/* <div className="main-login-cad"> */}
 
             <Containerform>
                 <h1>Entrar</h1>
@@ -42,7 +42,6 @@ function Login() {
                 </div>
             </Containerform>
 
-            {/* </div> */}
         </>
 
 

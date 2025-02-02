@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import './Login.scss';
 import Containerform from '../../assets/componentes/Containerform';
-import InputControl from '../../assets/componentes/InputControl';
+
 
 function Login() {
     return (

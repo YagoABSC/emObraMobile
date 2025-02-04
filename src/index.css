@@ -32,12 +32,13 @@ h2 {
 .botao-entrar,
 .modal-cards-btn {
   width: 100%;
-  padding: 10px;
+  padding: 15px;
   background-color: #FE8813;
   color: white;
   border: none;
   border-radius: 2px;
-  font-size: 14px;
+  font-size: 1em;
+  font-weight: 700;
   cursor: pointer;
   transition: background-color 0.3s;
   margin-top: 20px;

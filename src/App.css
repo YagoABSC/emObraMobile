@@ -7,7 +7,7 @@
     display: flex;
     padding: 40px 35px;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 .begin-btns{

@@ -10,15 +10,18 @@ function App() {
     <>
       <div className="begin-container">
         <div className="banner-logo">
-          {/* <h1><a href="/"><img src="https://i.ibb.co/KVZRVhw/logov4-preto.png" alt="logo-em-obra"
-            className="logo-header" /></a></h1> */}
-          <h3 style={{ fontSize: "1.3em", color: "white" }}>Facilitando conexões, construindo sonhos.</h3>
-      </div>
+          <h1><a href="/"><img src="https://i.ibb.co/KVZRVhw/logov4-preto.png" alt="logo-em-obra"
+            className="logo-header"  style={{width: "50%"}} /></a></h1>
+        </div>
+
 
         <div className="begin-btns">
+          <div className="banner-logo">
+            <h3 style={{ fontSize: "1.2em", color: "white" }}>Facilitando conexões, construindo sonhos.</h3>
+          </div>
           <Link to="/cadastro"><button className='botao-entrar' >Criar uma conta</button></Link>
 
-          <Link to="/login"><button className='botao-entrar' style={{ backgroundColor: "white", color: "#FE8813" }}>Já possuo conta. Entrar</button></Link>
+          <Link to="/login"><button className='botao-entrar' style={{ backgroundColor: "white", color: "#FE8813" }}>Já possuo conta</button></Link>
         </div>
 
       </div>

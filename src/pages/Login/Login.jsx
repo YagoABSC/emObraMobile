@@ -1,29 +1,57 @@
-import React from "react";
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
+import { autenticarUsuario } from '../../service/api.js';
+
 import './Login.scss';
 import Containerform from '../../assets/componentes/Containerform';
 import InputControl from "../../assets/componentes/InputControl";
 
 
-function Login() {
+
+const Login = () => {
+
+    const [identificador, setIdentificador] = useState('');
+    const [senha, setSenha] = useState('');
+    const [message, setMessage] = useState('');
+    const navigate = useNavigate('');
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+            const { token, tipo } = await autenticarUsuario(identificador, senha);
+
+            localStorage.setItem('token', token);
+            localStorage.setItem('tipoUsuario', tipo);
+
+            if (tipo === 'contratante') {
+                navigate('/contratante');
+            } else if (tipo === 'pedreiro') {
+                navigate('/perfil');
+            }
+            setMessage(response.message);
+        } catch (error) {
+            setMessage(error.response?.data?.message || 'Erro ao fazer login')
+        }
+    };
+
     return (
         <>
 
             <Containerform>
                 <h1>Entrar</h1>
                 {/* <div id="message" className="alert alert-info" style="display: none;"></div> */}
-                <form action="" id="loginForm">
+                <form onSubmit={handleLogin} id="loginForm">
 
                     <InputControl>
                         <label htmlFor="identifier" className="text">CPF ou Email</label>
                         <input type="text" id="identifier" name="identifier" placeholder="Digite seu email ou CPF"
-                            required className="input" />
+                            required className="input" value={identificador} onChange={(e) => setIdentificador(e.target.value)} />
                     </InputControl>
 
                     <InputControl>
                         <label htmlFor="senha" className="text">Senha</label>
                         <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required
-                            className="input" />
+                            className="input" value={senha} onChange={(e) => setSenha(e.target.value)} />
                     </InputControl>
 
                     <div className="manter-conectado">
@@ -34,6 +62,7 @@ function Login() {
                     </div>
 
                     <button type="submit" className="botao-entrar">Entrar</button>
+                    {message && <p>{message}</p>}
 
                 </form>
                 <div>

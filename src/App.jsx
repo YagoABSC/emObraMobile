@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import { Outlet, Link } from 'react-router-dom';
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 
@@ -10,29 +8,20 @@ function App() {
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="begin-container">
+        <div className="banner-logo">
+          {/* <h1><a href="/"><img src="https://i.ibb.co/KVZRVhw/logov4-preto.png" alt="logo-em-obra"
+            className="logo-header" /></a></h1> */}
+          <h3 style={{ fontSize: "1.3em", color: "white" }}>Facilitando conexões, construindo sonhos.</h3>
       </div>
-      <h1>Intro App</h1>
-      <button>
-        <Link to="/login">Login</Link>
-      </button>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+        <div className="begin-btns">
+          <Link to="/cadastro"><button className='botao-entrar' >Criar uma conta</button></Link>
+
+          <Link to="/login"><button className='botao-entrar' style={{ backgroundColor: "white", color: "#FE8813" }}>Já possuo conta. Entrar</button></Link>
+        </div>
+
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
       {/* <Outlet /> */}
     </>
   )

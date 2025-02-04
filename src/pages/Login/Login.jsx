@@ -20,9 +20,11 @@ const Login = () => {
         try {
             const { token, tipo } = await autenticarUsuario(identificador, senha);
 
+            // Salva o token no localStorage (ou em um estado global, como Context API)
             localStorage.setItem('token', token);
             localStorage.setItem('tipoUsuario', tipo);
 
+            // Redireciona com base no tipo de usuário
             if (tipo === 'contratante') {
                 navigate('/contratante');
             } else if (tipo === 'pedreiro') {

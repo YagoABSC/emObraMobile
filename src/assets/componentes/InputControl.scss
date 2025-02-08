@@ -4,6 +4,7 @@
   flex-direction: column;
   width: 100%;
   position: static;
+  margin-bottom: 15px;
 }
 
 .input-control label.text {
@@ -23,7 +24,7 @@
 .modal-cards-input-control textarea.modal-cards-textarea,
 .modal-cards-input,
 .modal-cards-select {
-  padding: 12px 10px;
+  padding: 10px;
   font-size: 1rem;
   border: 2px #020411 solid;
   border-radius: 5px;

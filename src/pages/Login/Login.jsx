@@ -40,7 +40,7 @@ const Login = () => {
         <>
 
             <Containerform>
-                <h1>Entrar</h1>
+                <h2>Entrar</h2>
                 {/* <div id="message" className="alert alert-info" style="display: none;"></div> */}
                 <form onSubmit={handleLogin} id="loginForm">
 
@@ -67,7 +67,7 @@ const Login = () => {
                     {message && <p>{message}</p>}
 
                 </form>
-                <div>
+                <div >
                     <Link to="/cadastro" className="outras-acoes-login">Cadastre-se</Link>
                     <Link to="/esqueceu-senha" className="outras-acoes-login">Esqueceu sua senha?</Link>
                 </div>

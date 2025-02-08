@@ -10,7 +10,7 @@ axios.interceptors.request.use((config) => {
     return config;
   });
 
-
+//Login
 export const autenticarUsuario = async (identificador, senha) => {
     try {
         const response = await axios.post("http://localhost:3000/user/login", { identificador, senha });
@@ -19,4 +19,16 @@ export const autenticarUsuario = async (identificador, senha) => {
         console.error('Erro:', error.response?.data || error.message);
         throw error;
     }
+}
+
+
+//Cadastrar novo Pedreiro
+export const cadastrarPedreiro = async(nome, telefone, cpf, email, senha, cep) => {
+  try {
+    const response = await axios.post("http://localhost:3000/add/pedreiro",{nome, telefone, cpf, email, senha, cep});
+    return response.data;
+  } catch (error) {
+    console.error('Erro:', error.response?.data || error.message);
+    throw error;
+  }
 }

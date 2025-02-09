@@ -11,7 +11,7 @@ function App() {
       <div className="begin-container">
         <div className="banner-logo">
           <h1><a href="/"><img src="https://i.ibb.co/KVZRVhw/logov4-preto.png" alt="logo-em-obra"
-            className="logo-header"  style={{width: "50%"}} /></a></h1>
+            className="logo-header" /></a></h1>
         </div>
 
 

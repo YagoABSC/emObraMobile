@@ -14,7 +14,10 @@ axios.interceptors.request.use((config) => {
 export const autenticarUsuario = async (identificador, senha) => {
     try {
         const response = await axios.post("http://localhost:3000/user/login", { identificador, senha });
-        return response.data;
+        return {
+          token: response.data.token,
+          id: response.data.user.id
+        };
     } catch (error) {
         console.error('Erro:', error.response?.data || error.message);
         throw error;
@@ -26,6 +29,16 @@ export const autenticarUsuario = async (identificador, senha) => {
 export const cadastrarPedreiro = async(nome, telefone, cpf, email, senha, cep) => {
   try {
     const response = await axios.post("http://localhost:3000/add/pedreiro",{nome, telefone, cpf, email, senha, cep});
+    return response.data;
+  } catch (error) {
+    console.error('Erro:', error.response?.data || error.message);
+    throw error;
+  }
+}
+
+export const listarServicos = async() =>{
+  try {
+    const response = await axios.get("http://localhost:3000/tipos/servicos");
     return response.data;
   } catch (error) {
     console.error('Erro:', error.response?.data || error.message);

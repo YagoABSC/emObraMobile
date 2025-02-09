@@ -127,22 +127,6 @@ const Cadastro = () => {
                         }
                     </div>
 
-                    {/* <h3>Agora, escolha os tipos de serviços que deseja oferecer <br /><span>(Máx. 3 serviços)</span></h3>
-                        <div class="cadastro-pedreiro-checkbox">
-
-                            <input type="checkbox" id="nome-servico" name="tipos_servicos" value="id-servico" />
-                            <label for="nome-servico">
-                                <div class="icone-servico">
-                                    <img src="../img-fixas/acordo.png" alt="nome-servico" />
-                                </div>
-                                <div class="info-servicos-cadastro">
-                                    <span>nome servico</span>
-                                    <p>desc servico</p>
-                                </div>
-                            </label>
-                        </div> */}
-
-
                 </form>
 
                 <Link to="/login" className="outras-acoes-login">Já tenho conta</Link>

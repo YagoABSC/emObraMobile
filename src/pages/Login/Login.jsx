@@ -18,19 +18,15 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const { token, tipo } = await autenticarUsuario(identificador, senha);
+            const { token, id } = await autenticarUsuario(identificador, senha);
 
             // Salva o token no localStorage (ou em um estado global, como Context API)
             localStorage.setItem('token', token);
-            localStorage.setItem('tipoUsuario', tipo);
+            localStorage.setItem('userId', id);
 
             // Redireciona com base no tipo de usuário
-            if (tipo === 'contratante') {
-                navigate('/contratante');
-            } else if (tipo === 'pedreiro') {
-                navigate('/perfil');
-            }
-            setMessage(response.message);
+            navigate('/perfil');
+            
         } catch (error) {
             setMessage(error.response?.data?.message || 'Erro ao fazer login')
         }

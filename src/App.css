@@ -1,5 +1,5 @@
 .begin-container{
-    background-image: url('./assets/imgs-fixas/background-inicio.jpg');
+    background-image: url('/imgs-fixas/background-inicio.jpg');
     background-position: center;
     background-repeat: repeat;
     background-size: cover;

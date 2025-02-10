@@ -18,17 +18,27 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const { token, id } = await autenticarUsuario(identificador, senha);
-
-            // Salva o token no localStorage (ou em um estado global, como Context API)
+            const response = await autenticarUsuario(identificador, senha);
+            console.log("Resposta da API:", response); // Verifica o retorno
+    
+            const { token, id, tipo } = response;
+    
+            if (tipo !== 'pedreiro') {
+                setMessage("Este aplicativo é exclusivo para pedreiros!");
+                return;
+            }
+    
+            // Salva no localStorage
             localStorage.setItem('token', token);
             localStorage.setItem('userId', id);
-
-            // Redireciona com base no tipo de usuário
+            localStorage.setItem('tipoUsuario', tipo);
+    
+            // Redireciona
             navigate('/perfil');
-            
+    
         } catch (error) {
-            setMessage(error.response?.data?.message || 'Erro ao fazer login')
+            console.error("Erro no login:", error);
+            setMessage(error.response?.data?.message || 'Erro ao fazer login');
         }
     };
 

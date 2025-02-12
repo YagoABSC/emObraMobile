@@ -51,11 +51,20 @@
     scrollbar-width: 10px;
     scrollbar-color: #020411 #fff;
   }
+
+  .formServicos{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-around;
+    padding: 0 10px;
+    gap: 20px
+  }
   
   .cadastro-pedreiro-checkbox {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    // width: 160px;
   }
   
   .cadastro-pedreiro-checkbox input[type="checkbox"] {
@@ -65,10 +74,9 @@
   
   .cadastro-pedreiro-checkbox label {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    /* padding: 10px 20px; */
-    width: 100%;
-    height: 100px;
+    height: 180px;
     background-color: #f0f0f0;
     border: 2px solid #020411;
     border-radius: 10px;

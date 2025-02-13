@@ -20,6 +20,7 @@ const Login = () => {
             console.log("Resposta da API:", response); // Verifica o retorno
 
             const { token, id, tipo } = response;
+            console.log("ID recebido da API:", id);
 
             if (tipo !== 'pedreiro') {
                 setMessage("Este aplicativo é exclusivo para pedreiros!");
@@ -29,6 +30,8 @@ const Login = () => {
             localStorage.setItem('token', token);
             localStorage.setItem('userId', id);
             localStorage.setItem('tipoUsuario', tipo);
+
+            console.log("ID do pedreiro salvo:", localStorage.getItem("userId"));
 
             setTimeout(() => {
                 navigate('/perfil');

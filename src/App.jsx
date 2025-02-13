@@ -17,7 +17,7 @@ function App() {
 
         <div className="begin-btns">
           <div className="banner-logo">
-            <h3 style={{ fontSize: "1.2em", color: "white" }}>Facilitando conexões, construindo sonhos.</h3>
+            <h3 style={{color: "white" }}>Facilitando conexões, construindo sonhos.</h3>
           </div>
           <Link to="/cadastro"><button className='botao-entrar' >Criar uma conta</button></Link>
 

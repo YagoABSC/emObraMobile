@@ -3,44 +3,45 @@ import Servicos from "../../assets/componentes/Servicos";
 import { servicosPedreiro } from "../../service/api.js";
 import './Perfil.scss';
 
-const Perfil = ({ pedreiro_id }) => {
+const Perfil = ({ usuario }) => {
     const [loading, setLoading] = useState(true);
-    const [hasServicos, setHasServicos] = useState(null);
+    const [temServicos, setTemServicos] = useState(true);
 
     useEffect(() => {
-        const fetchData = async () => {
-            console.log("Iniciando busca..."); // Log para saber se o useEffect está rodando
 
-            setLoading(true);
+        const pedreiro_id = localStorage.getItem("userId"); // Alterado para "userId"
+
+        console.log("ID do pedreiro recuperado:", pedreiro_id);
+
+        if (!pedreiro_id) {
+            console.error("ID do pedreiro não encontrado!");
+            setLoading(false);
+            return;
+        }
+
+        const verificarServicos = async () => {
             try {
                 const data = await servicosPedreiro(pedreiro_id);
-                console.log("Resposta da API:", data); // Log para ver o que a API retorna
-
-                if (data.servicos && data.servicos.length > 0) {
-                    setHasServicos(true);
-                } else {
-                    setHasServicos(false);
-                }
+                setTemServicos(data.servicos.length > 0); // Verifica se há serviços vinculados
             } catch (error) {
-                console.error("Erro ao buscar serviços:", error);
-                setHasServicos(false);
+                console.error("Erro ao verificar serviços:", error);
             } finally {
                 setLoading(false);
-                console.log("Finalizou a busca!"); // Log para saber se chegou no fim
             }
         };
 
-        if (pedreiro_id) {
-            fetchData();
-        }
-    }, [pedreiro_id]);
+        verificarServicos();
+    }, []);
 
-
+    if (loading) {
+        return <p>Carregando...</p>;
+    }
 
     return (
         <div>
-            {hasServicos ? (
-                <h1>Parabéns, você está logado</h1>
+            <h1>Bem-vindo ao seu perfil</h1>
+            {temServicos ? (
+                <p>Você já possui serviços cadastrados.</p>
             ) : (
                 <Servicos />
             )}

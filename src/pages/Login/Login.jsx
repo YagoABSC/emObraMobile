@@ -6,8 +6,6 @@ import './Login.scss';
 import Containerform from '../../assets/componentes/Containerform';
 import InputControl from "../../assets/componentes/InputControl";
 
-
-
 const Login = () => {
 
     const [identificador, setIdentificador] = useState('');
@@ -20,22 +18,22 @@ const Login = () => {
         try {
             const response = await autenticarUsuario(identificador, senha);
             console.log("Resposta da API:", response); // Verifica o retorno
-    
+
             const { token, id, tipo } = response;
-    
+
             if (tipo !== 'pedreiro') {
                 setMessage("Este aplicativo é exclusivo para pedreiros!");
                 return;
             }
-    
-            // Salva no localStorage
+
             localStorage.setItem('token', token);
             localStorage.setItem('userId', id);
             localStorage.setItem('tipoUsuario', tipo);
-    
-            // Redireciona
-            navigate('/perfil');
-    
+
+            setTimeout(() => {
+                navigate('/perfil');
+            }, 100); // Dá tempo para o token ser salvo
+
         } catch (error) {
             console.error("Erro no login:", error);
             setMessage(error.response?.data?.message || 'Erro ao fazer login');

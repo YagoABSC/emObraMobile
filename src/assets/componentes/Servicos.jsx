@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { listarServicos } from "../../service/api";
 
-import ContainerForm from "./Containerform";
-
 const Servicos = () => {
 
     const [servicos, setServicos] = useState([]);
@@ -20,10 +18,14 @@ const Servicos = () => {
         allServicos();
     }, []);
 
+    const [exibirServicos, setExibirServicos] = useState('pt1');
+
 
     return (
+
+
             <div>
-                <h3>Agora, escolha os tipos de serviços que deseja oferecer</h3>
+                <h3 className>Agora, escolha os tipos de serviços que deseja oferecer</h3>
                 <form className="formServicos">
                     
                     {servicos.length > 0 ? (

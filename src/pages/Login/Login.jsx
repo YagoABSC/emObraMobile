@@ -32,6 +32,7 @@ const Login = () => {
             localStorage.setItem('tipoUsuario', tipo);
 
             console.log("ID do pedreiro salvo:", localStorage.getItem("userId"));
+            console.log("Token salvo no localStorage:", localStorage.getItem('token'));
 
             setTimeout(() => {
                 navigate('/perfil');

@@ -5,6 +5,7 @@ const API_URL = "https://apiobra.vercel.app";
 // Configura o axios para incluir o token no cabeçalho das requisições
 axios.interceptors.request.use((config) => {
     const token = localStorage.getItem('token');
+    console.log("Token no interceptor:", token);
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -44,12 +45,16 @@ export const listarServicos = async() =>{
   }
 }
 
-export const servicosPedreiro = async(pedreiro_id) =>{
+export const servicosPedreiro = async (pedreiro_id) => {
   try {
-    const response = await axios.get(`${API_URL}/buscar/servicos/${pedreiro_id}`);
+    const response = await axios.post(`${API_URL}/pedreiro/servicos-prestados`, {
+      pedreiro_id
+    });
+
     return response.data;
   } catch (error) {
-    console.error('Erro:', error.response?.data || error.message)
+    console.error("Erro:", error.response?.data || error.message);
     throw error;
   }
-}
+};
+

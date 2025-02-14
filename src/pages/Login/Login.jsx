@@ -17,10 +17,8 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await autenticarUsuario(identificador, senha);
-            console.log("Resposta da API:", response); // Verifica o retorno
 
             const { token, id, tipo } = response;
-            console.log("ID recebido da API:", id);
 
             if (tipo !== 'pedreiro') {
                 setMessage("Este aplicativo é exclusivo para pedreiros!");
@@ -30,9 +28,6 @@ const Login = () => {
             localStorage.setItem('token', token);
             localStorage.setItem('userId', id);
             localStorage.setItem('tipoUsuario', tipo);
-
-            console.log("ID do pedreiro salvo:", localStorage.getItem("userId"));
-            console.log("Token salvo no localStorage:", localStorage.getItem('token'));
 
             setTimeout(() => {
                 navigate('/perfil');

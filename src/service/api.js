@@ -7,10 +7,10 @@ axios.interceptors.request.use((config) => {
     const token = localStorage.getItem('token');
     console.log("Token no interceptor:", token);
     if (token) {
-      config.headers.Authorization = token;
+      config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
-  });
+});
 
 //Login
 export const autenticarUsuario = async (identificador, senha) => {
@@ -47,9 +47,7 @@ export const listarServicos = async() =>{
 
 export const servicosPedreiro = async (pedreiro_id) => {
   try {
-    const response = await axios.post("https://apiobra.vercel.app/pedreiro/servicos-prestados", {
-      pedreiro_id
-    });
+    const response = await axios.get(`https://apiobra.vercel.app/pedreiro/tipos-servicos/${pedreiro_id}`);
 
     return response.data;
   } catch (error) {
@@ -57,4 +55,14 @@ export const servicosPedreiro = async (pedreiro_id) => {
     throw error;
   }
 };
+
+export const vincularServicos = async ({pedreiro_id, tipo_servicos}) =>{
+  try {
+    const response = await axios.post("https://apiobra.vercel.app/vincular/servicos", {pedreiro_id, tipo_servicos});
+    return response.data
+  } catch (error) {
+    console.error("Erro:",  error.response?.data || error.message)
+    throw error;
+  }
+}
 

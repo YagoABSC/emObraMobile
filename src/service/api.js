@@ -56,7 +56,7 @@ export const servicosPedreiro = async (pedreiro_id) => {
   }
 };
 
-export const vincularServicos = async ({pedreiro_id, tipo_servicos}) =>{
+export const vincularServicos = async (pedreiro_id, tipo_servicos) =>{
   try {
     const response = await axios.post("https://apiobra.vercel.app/vincular/servicos", {pedreiro_id, tipo_servicos});
     return response.data

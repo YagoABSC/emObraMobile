@@ -63,26 +63,26 @@ const Cadastro = () => {
                 <form id="registrationForm" onSubmit={handleSignUp}>
 
 
-                    <div id="cadastroInicio" class="avancar-cadastro-pedreiro">
+                    <div id="cadastroInicio" className="avancar-cadastro-pedreiro">
                         {formPart === 'pt1' &&
 
                             <div>
                                 <InputControl>
-                                    <label for="nome" class="text">Nome:</label>
-                                    <input type="text" name="nome" required class="input" value={nome} onChange={(e) => setNome(e.target.value)}/>
+                                    <label htmlFor="nome" className="text">Nome:</label>
+                                    <input type="text" name="nome" required className="input" value={nome} onChange={(e) => setNome(e.target.value)}/>
                                 </InputControl>
                                 
                                 <InputControl>
-                                    <label for="cpf" class="text">CPF:</label>
-                                    <input type="text" name="cpf" required class="input" value={cpf} onChange={(e) => setCpf(e.target.value)}/>
+                                    <label htmlFor="cpf" className="text">CPF:</label>
+                                    <input type="text" name="cpf" required className="input" value={cpf} onChange={(e) => setCpf(e.target.value)}/>
                                 </InputControl>
 
                                 <InputControl>
-                                    <label for="cep" class="text">CEP:</label>
-                                    <input type="text" name="cep" required class="input" value={cep} onChange={(e) => setCep(e.target.value)}/>
+                                    <label htmlFor="cep" className="text">CEP:</label>
+                                    <input type="text" name="cep" required className="input" value={cep} onChange={(e) => setCep(e.target.value)}/>
                                 </InputControl>
 
-                                <button class="avancar-cadastro-pedreiro botao-entrar" onClick={() => setFormPart('pt2')}> Avançar</button>
+                                <button className="avancar-cadastro-pedreiro botao-entrar" onClick={() => setFormPart('pt2')}> Avançar</button>
                             </div>
 
                         }
@@ -92,24 +92,24 @@ const Cadastro = () => {
 
                             <div>
                                 <InputControl>
-                                    <label for="telefone" class="text">Telefone:</label>
-                                    <input type="text" name="telefone" class="input" value={telefone} onChange={(e) => setTelefone(e.target.value)}/>
+                                    <label for="telefone" className="text">Telefone:</label>
+                                    <input type="text" name="telefone" className="input" value={telefone} onChange={(e) => setTelefone(e.target.value)}/>
                                 </InputControl>
                                 <InputControl>
-                                    <label for="email" class="text">Email:</label>
-                                    <input type="text" name="email" required class="input" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                                    <label for="email" className="text">Email:</label>
+                                    <input type="text" name="email" required className="input" value={email} onChange={(e) => setEmail(e.target.value)}/>
                                 </InputControl>
                                 <InputControl>
-                                    <label for="senha" class="text">Senha:</label>
-                                    <input type="password" name="senha" required class="input" value={senha} onChange={(e)=> setSenha(e.target.value)}/>
+                                    <label for="senha" className="text">Senha:</label>
+                                    <input type="password" name="senha" required className="input" value={senha} onChange={(e)=> setSenha(e.target.value)}/>
                                 </InputControl>
 
                                 <InputControl>
-                                    <label for="confirmarSenha" class="text">Confirmar senha:</label>
-                                    <input type="password" name="confirmarSenha" required class="input" value={confirmarSenha} onChange={(e)=> setConfirmarSenha(e.target.value)}/>
+                                    <label for="confirmarSenha" className="text">Confirmar senha:</label>
+                                    <input type="password" name="confirmarSenha" required className="input" value={confirmarSenha} onChange={(e)=> setConfirmarSenha(e.target.value)}/>
                                 </InputControl>
 
-                                <div class="manter-conectado cadastro-tipo-servico">
+                                <div className="manter-conectado cadastro-tipo-servico">
                                     <div>
                                         <input type="checkbox" id="conectado" name="conectado" />
                                         <label for="conectado">Aceitar termos e condições de uso de dados </label>
@@ -117,9 +117,9 @@ const Cadastro = () => {
 
                                 </div>
                                 <div className="container-buttons">
-                                    <button type="submit" class="botao-entrar cadastro-tipo-servico" onClick={() => setFormPart('pt1')} style={{ backgroundColor: "white", color: "#FE8813", border: "2px solid #FE8813" }}>Voltar</button>
+                                    <button type="submit" className="botao-entrar cadastro-tipo-servico" onClick={() => setFormPart('pt1')} style={{ backgroundColor: "white", color: "#FE8813", border: "2px solid #FE8813" }}>Voltar</button>
 
-                                    <button type="submit" class="botao-entrar cadastro-tipo-servico">Cadastrar</button>
+                                    <button type="submit" className="botao-entrar cadastro-tipo-servico">Cadastrar</button>
                                 </div>
                             </div>
 

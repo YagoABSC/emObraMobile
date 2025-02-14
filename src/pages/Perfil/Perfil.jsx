@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Servicos from "../../assets/componentes/Servicos";
+import BuscardorServico from "../../assets/componentes/BuscadorServico.jsx";
 import { servicosPedreiro } from "../../service/api.js";
 import { useNavigate } from "react-router-dom";
 import './Perfil.scss';
@@ -13,7 +14,7 @@ const Perfil = () => {
         navigate("/login"); // Redireciona sem recarregar a página
     };
 
-    const pedreiro_id = localStorage.getItem('userId');
+    const pedreiro_id = localStorage.getItem('pedreiro_id');
     const [servicos, setServicos] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -42,7 +43,11 @@ const Perfil = () => {
     return (
         <div>
             <button onClick={logout}>Sair</button>
-            {servicos.length === 0 ? <Servicos pedreiro_id={pedreiro_id} /> : <h1>Bem vindo</h1>}
+            {servicos.length === 0 ? <Servicos pedreiro_id={pedreiro_id} /> : 
+            <div>
+                <h1>Bem vindo</h1>
+                <BuscardorServico />
+            </div>}
         </div>
     );
 };

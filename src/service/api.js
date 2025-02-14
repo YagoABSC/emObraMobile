@@ -66,3 +66,17 @@ export const vincularServicos = async (pedreiro_id, tipo_servicos) =>{
   }
 }
 
+export const buscarServicos = async (pedreiro_id) =>{
+  try {
+
+    if (!pedreiro_id) {
+      throw new Error("ID do pedreiro não foi fornecido.");
+    }
+
+    const response = await axios.get(`https://apiobra.vercel.app/buscar/servicos/${pedreiro_id}`);
+    return response.data
+  } catch (error) {
+    console.error("Erro ao buscar serviços:", error.response?.data?.message || error.message);
+    throw error;
+  }
+}

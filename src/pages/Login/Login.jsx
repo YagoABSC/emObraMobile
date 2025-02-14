@@ -26,7 +26,7 @@ const Login = () => {
             }
 
             localStorage.setItem('token', token);
-            localStorage.setItem('userId', id);
+            localStorage.setItem('pedreiro_id', id);
             localStorage.setItem('tipoUsuario', tipo);
 
             setTimeout(() => {

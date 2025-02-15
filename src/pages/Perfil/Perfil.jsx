@@ -3,6 +3,7 @@ import Servicos from "../../assets/componentes/Servicos";
 import BuscardorServico from "../../assets/componentes/BuscadorServico.jsx";
 import { servicosPedreiro } from "../../service/api.js";
 import { useNavigate } from "react-router-dom";
+import ServicosPrestados from "../../assets/componentes/ServicosPrestados";
 import './Perfil.scss';
 
 const Perfil = () => {
@@ -47,6 +48,7 @@ const Perfil = () => {
             <div>
                 <h1>Bem vindo</h1>
                 <BuscardorServico />
+                <ServicosPrestados />
             </div>}
         </div>
     );

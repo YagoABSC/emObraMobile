@@ -29,9 +29,7 @@ const Login = () => {
             localStorage.setItem('pedreiro_id', id);
             localStorage.setItem('tipoUsuario', tipo);
 
-            setTimeout(() => {
-                navigate('/perfil');
-            }, 100); // Dá tempo para o token ser salvo
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    navigate('/perfil');
 
         } catch (error) {
             console.error("Erro no login:", error);

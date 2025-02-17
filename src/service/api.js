@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL = "https://apiobra.vercel.app";
+// const API_URL = "https://apiobra.vercel.app";
+const API_URL = "http://localhost:3000";
 
 // Configura o axios para incluir o token no cabeçalho das requisições
 axios.interceptors.request.use((config) => {
@@ -15,7 +16,7 @@ axios.interceptors.request.use((config) => {
 //Login
 export const autenticarUsuario = async (identificador, senha) => {
   try {
-    const response = await axios.post("https://apiobra.vercel.app/user/login", { identificador, senha });
+    const response = await axios.post(`${API_URL}/user/login`, { identificador, senha });
     return response.data;
   } catch (error) {
     console.error('Erro:', error.response?.data || error.message);
@@ -27,7 +28,7 @@ export const autenticarUsuario = async (identificador, senha) => {
 //Cadastrar novo Pedreiro
 export const cadastrarPedreiro = async (nome, telefone, cpf, email, senha, cep) => {
   try {
-    const response = await axios.post("https://apiobra.vercel.app/add/pedreiro", { nome, telefone, cpf, email, senha, cep });
+    const response = await axios.post(`${API_URL}/add/pedreiro`, { nome, telefone, cpf, email, senha, cep });
     return response.data;
   } catch (error) {
     console.error('Erro:', error.response?.data || error.message);
@@ -37,7 +38,7 @@ export const cadastrarPedreiro = async (nome, telefone, cpf, email, senha, cep) 
 
 export const listarServicos = async () => {
   try {
-    const response = await axios.get("https://apiobra.vercel.app/tipos/servicos");
+    const response = await axios.get(`${API_URL}/tipos/servicos`);
     return response.data;
   } catch (error) {
     console.error('Erro:', error.response?.data || error.message);
@@ -47,7 +48,7 @@ export const listarServicos = async () => {
 
 export const servicosPedreiro = async (pedreiro_id) => {
   try {
-    const response = await axios.get(`https://apiobra.vercel.app/pedreiro/tipos-servicos/${pedreiro_id}`);
+    const response = await axios.get(`${API_URL}/pedreiro/tipos-servicos/${pedreiro_id}`);
 
     return response.data;
   } catch (error) {
@@ -58,7 +59,7 @@ export const servicosPedreiro = async (pedreiro_id) => {
 
 export const vincularServicos = async (pedreiro_id, tipo_servicos) => {
   try {
-    const response = await axios.post("https://apiobra.vercel.app/vincular/servicos", { pedreiro_id, tipo_servicos });
+    const response = await axios.post(`${API_URL}/vincular/servicos`, { pedreiro_id, tipo_servicos });
     return response.data
   } catch (error) {
     console.error("Erro:", error.response?.data || error.message)
@@ -73,7 +74,7 @@ export const buscarServicos = async (pedreiro_id) => {
       throw new Error("ID do pedreiro não foi fornecido.");
     }
 
-    const response = await axios.get(`https://apiobra.vercel.app/buscar/servicos/${pedreiro_id}`);
+    const response = await axios.get(`${API_URL}/buscar/servicos/${pedreiro_id}`);
     return response.data
   } catch (error) {
     console.error("Erro ao buscar serviços:", error.response?.data?.message || error.message);
@@ -81,17 +82,38 @@ export const buscarServicos = async (pedreiro_id) => {
   }
 }
 
+// 
 export const servicosPrestados = async (pedreiro_id) => {
   try {
     if(!pedreiro_id){
       throw new Error("Pedreiro não encontrado")
     }
 
-    const response = await axios.get(`https://apiobra.vercel.app/pedreiro/servicos-prestados/${pedreiro_id}`);
+    const response = await axios.get(`${API_URL}/pedreiro/servicos-prestados/${pedreiro_id}`);
     return response.data;
 
   } catch (error) {
     console.error("Erro ao exibir serviços prestados: ", error.response?.data?.message || error.message);
+    throw error;
+  }
+}
+
+export const aceitarServico = async (servico_id, pedreiro_id) =>{
+  try {
+    const response = await axios.post(`${API_URL}/servicos/aceitar`, {servico_id, pedreiro_id});
+    return response.data;
+  } catch (error) {
+    console.error("Erro: ", error.response?.data || error.message);
+    throw error;
+  }
+}
+
+export const finalizarServico = async (servico_id) => {
+  try {
+    const response = await axios.post(`${API_URL}/servicos/finalizar`, {servico_id});
+    return response.data;
+  } catch (error) {
+    console.error("Erro: ", error.response?.data || error.message);
     throw error;
   }
 }

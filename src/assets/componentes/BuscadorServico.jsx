@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { buscarServicos } from "../../service/api.js";
+import { buscarServicos, aceitarServico } from "../../service/api.js";
 
 const BuscardorServico = () => {
 
     const [servicos, setServicos] = useState([]);
     const [loading, setLoading] = useState(true);
+    const pedreiro_id = localStorage.getItem("pedreiro_id");
 
-
+    
     useEffect(() => {
-        const pedreiro_id = localStorage.getItem("pedreiro_id");
+        
         console.log("Id do pedreiro: ",pedreiro_id)
 
         if (!pedreiro_id) {
@@ -16,7 +17,8 @@ const BuscardorServico = () => {
             setLoading(false);
             return;
         }
-
+        
+        // Carrega os serviços que correspondam ao id do pedreiro e serviços que ele cadastrou
         const fetchServicos = async () => {
             try {
                 const response = await buscarServicos(pedreiro_id);
@@ -29,7 +31,29 @@ const BuscardorServico = () => {
         };
 
         fetchServicos();
-    }, [])
+    }, []);
+
+    // Mudar status para aceito
+    const handleAceitarServico = async (servico_id) => {
+        if(!pedreiro_id){
+            console.error("ID do pedreiro não encontrado.");
+            return;
+        }
+
+        try {
+            const response = await aceitarServico(servico_id, pedreiro_id);
+            alert(response.message);
+
+            // Atualiza os serviços disponíveis (remove o aceito)
+            setServicos(servicos.filter(servico => servico.id !== servico_id));
+
+            // Atualiza os serviços prestados chamando a função que busca eles
+            fetchServicosPrestados(); 
+        } catch (error) {
+            console.error("Erro ao aceitar o serviço: ", error);
+            alert("Erro ao aceitar serviço.");
+        }
+    }
 
     if (loading) return <p>Carregando...</p>;
 
@@ -45,6 +69,7 @@ const BuscardorServico = () => {
                                 <p>Descrição: {servico.descricao}</p>
                                 <p>Prazo: {servico.prazo}</p>
                                 <p>Distancia de você: {servico.distancia_km}km</p>
+                                <button onClick={() => handleAceitarServico(servico.id)}>Aceitar</button>
                             </div>
                         ))}
 

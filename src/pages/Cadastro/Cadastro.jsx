@@ -92,27 +92,27 @@ const Cadastro = () => {
 
                             <div>
                                 <InputControl>
-                                    <label for="telefone" className="text">Telefone:</label>
+                                    <label htmlFor="telefone" className="text">Telefone:</label>
                                     <input type="text" name="telefone" className="input" value={telefone} onChange={(e) => setTelefone(e.target.value)}/>
                                 </InputControl>
                                 <InputControl>
-                                    <label for="email" className="text">Email:</label>
+                                    <label htmlFor="email" className="text">Email:</label>
                                     <input type="text" name="email" required className="input" value={email} onChange={(e) => setEmail(e.target.value)}/>
                                 </InputControl>
                                 <InputControl>
-                                    <label for="senha" className="text">Senha:</label>
+                                    <label htmlFor="senha" className="text">Senha:</label>
                                     <input type="password" name="senha" required className="input" value={senha} onChange={(e)=> setSenha(e.target.value)}/>
                                 </InputControl>
 
                                 <InputControl>
-                                    <label for="confirmarSenha" className="text">Confirmar senha:</label>
+                                    <label htmlFor="confirmarSenha" className="text">Confirmar senha:</label>
                                     <input type="password" name="confirmarSenha" required className="input" value={confirmarSenha} onChange={(e)=> setConfirmarSenha(e.target.value)}/>
                                 </InputControl>
 
                                 <div className="manter-conectado cadastro-tipo-servico">
                                     <div>
                                         <input type="checkbox" id="conectado" name="conectado" />
-                                        <label for="conectado">Aceitar termos e condições de uso de dados </label>
+                                        <label htmlFor="conectado">Aceitar termos e condições de uso de dados </label>
                                     </div>
 
                                 </div>

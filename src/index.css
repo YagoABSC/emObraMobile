@@ -16,6 +16,7 @@ body {
   min-height: 100vh;
   height: fit-content;
   margin: 0;
+  padding: 15px 10px;
 }
 
 header {

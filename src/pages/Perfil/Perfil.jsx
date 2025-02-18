@@ -35,7 +35,7 @@ const Perfil = () => {
                 setLoading(false);
             }
         };
-    
+
         fetchServicos();
     }, [pedreiro_id]);
 
@@ -43,13 +43,20 @@ const Perfil = () => {
 
     return (
         <div>
-            <button onClick={logout}>Sair</button>
-            {servicos.length === 0 ? <Servicos pedreiro_id={pedreiro_id} /> : 
-            <div>
-                <h1>Bem vindo</h1>
-                <BuscardorServico />
-                <ServicosPrestados />
-            </div>}
+            <div className="cabeçalho-logado">
+                <a href="/perfil"><img src="https://i.ibb.co/KVZRVhw/logov4-preto.png" alt="logo-em-obra"
+                    className="logo-header" />
+                </a>
+                <button onClick={logout}>Sair</button>
+            </div>
+            {servicos.length === 0 ? <Servicos pedreiro_id={pedreiro_id} /> :
+                <div>
+                    <div className="Perfil">
+                        <h1>Bem vindo</h1>
+                    </div>
+                    <BuscardorServico />
+                    <ServicosPrestados />
+                </div>}
         </div>
     );
 };

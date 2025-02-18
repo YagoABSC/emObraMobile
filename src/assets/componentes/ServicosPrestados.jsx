@@ -50,12 +50,14 @@ const ServicosPrestados = () => {
 
     if (loading) return <p>Carregando...</p>;
 
+    const servicosPendentes = servPrestados.filter(servico => servico.status === "pendente");
+
     return (
         <div>
             <h3>Serviços em andamento</h3>
-            {servPrestados.length > 0 ? (
+            {servicosPendentes.length > 0 && servicosPendentes.filter(servico => servico.status === "pendente") ? (
                 <div>
-                    {servPrestados.map(servico => (
+                    {servicosPendentes.map(servico => (
                         <div key={servico.id}>
                             <p>Descrição: {servico.descricao}</p>
                             <p>Prazo: {servico.prazo}</p>

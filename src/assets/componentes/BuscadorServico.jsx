@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { buscarServicos, aceitarServico } from "../../service/api.js";
+import ServicosPrestados from "./ServicosPrestados.jsx";
 
 const BuscardorServico = () => {
 
@@ -31,6 +32,7 @@ const BuscardorServico = () => {
         };
 
         fetchServicos();
+        // carregarServicos();
     }, []);
 
     // Mudar status para aceito

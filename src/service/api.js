@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const API_URL = "https://apiobra.vercel.app";
-const API_URL = "http://localhost:3000";
+const API_URL = "https://apiobra.vercel.app";
+// const API_URL = "http://localhost:3000";
 
 // Configura o axios para incluir o token no cabeçalho das requisições
 axios.interceptors.request.use((config) => {
@@ -77,7 +77,7 @@ export const buscarServicos = async (pedreiro_id) => {
     const response = await axios.get(`${API_URL}/buscar/servicos/${pedreiro_id}`);
     return response.data
   } catch (error) {
-    console.error("Erro ao buscar serviços:", error.response?.data?.message || error.message);
+    console.error("Erro ao buscar serviços: 124124124", error.response?.data?.message || error.message);
     throw error;
   }
 }

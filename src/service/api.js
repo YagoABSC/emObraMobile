@@ -13,7 +13,8 @@ axios.interceptors.request.use((config) => {
   return config;
 });
 
-//Login
+
+// FLUXO DO PEDREIRO
 export const autenticarUsuario = async (identificador, senha) => {
   try {
     const response = await axios.post(`${API_URL}/user/login`, { identificador, senha });
@@ -35,6 +36,8 @@ export const cadastrarPedreiro = async (nome, telefone, cpf, email, senha, cep) 
     throw error;
   }
 }
+
+// MANIPUTALAÇÃO DE SERVIÇOS
 
 export const listarServicos = async () => {
   try {
@@ -114,6 +117,35 @@ export const finalizarServico = async (servico_id) => {
     return response.data;
   } catch (error) {
     console.error("Erro: ", error.response?.data || error.message);
+    throw error;
+  }
+}
+
+// REDEFINIÇÃO DE SENHA
+
+export const solicitarCodigo = async(identificador) =>{
+  try {
+    const response = await axios.post(`${API_URL}/solicitar-codigo`, {identificador});
+    return response.data;
+  } catch (error) {
+    console.error("Erro: ", error.response?.data || error.message);
+  }
+}
+
+export const validarCodigo = async(codigo) =>{
+  try {
+    const response = await axios.post(`${API_URL}/validar-codigo`, {codigo});
+    return response.data;
+  } catch (error) {
+    console.error("Erro: ", error.response?.data || error.message);
+  }
+}
+
+export const redefinirSenha = async(codigo, novaSenha) =>{
+  try {
+    const response = await axios.put(`${API_URL}/redefinir-senha`, {codigo, novaSenha});
+    return response.data;
+  } catch (error) {
     throw error;
   }
 }

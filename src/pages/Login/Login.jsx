@@ -70,7 +70,7 @@ const Login = () => {
                 </form>
                 <div >
                     <Link to="/cadastro" className="outras-acoes-login">Cadastre-se</Link>
-                    <Link to="/esqueceu-senha" className="outras-acoes-login">Esqueceu sua senha?</Link>
+                    <Link to="/redefinir-senha" className="outras-acoes-login">Esqueceu sua senha?</Link>
                 </div>
             </Containerform>
 

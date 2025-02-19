@@ -149,3 +149,15 @@ export const redefinirSenha = async(codigo, novaSenha) =>{
     throw error;
   }
 }
+
+// Perfil Pedreiro
+
+export const listarPedreiro = async (id) => {
+  try {
+    const response = await axios.get(`${API_URL}/pedreiro/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro: ", error.response?.data || error.message)
+    throw error;
+  }
+}

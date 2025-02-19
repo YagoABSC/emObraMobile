@@ -50,21 +50,22 @@ const ServicosPrestados = () => {
 
     if (loading) return <p>Carregando...</p>;
 
-    const servicosPendentes = servPrestados.filter(servico => servico.status === "pendente");
+    const servicosEmAndamento = servPrestados.filter(servico => servico.status === "aceito" || servico.status === "aguardando confirmacao");
+
 
     return (
         <div>
             <h3>Serviços em andamento</h3>
-            {servicosPendentes.length > 0 && servicosPendentes.filter(servico => servico.status === "pendente") ? (
+            {servicosEmAndamento.length > 0 ? (
                 <div>
-                    {servicosPendentes.map(servico => (
+                    {servicosEmAndamento.map(servico => (
                         <div key={servico.id}>
                             <p>Descrição: {servico.descricao}</p>
                             <p>Prazo: {servico.prazo}</p>
                             <p>Valor: {servico.valor}</p>
                             <p>Status: {servico.status}</p>
                             <button onClick={() => handleFinalizarServico(servico.id)} disabled={servico.status !== "aceito"}>
-                                Finalizar Serviço
+                                {servico.status === "aguardando confirmacao" ? "Aguardando confirmação" : "Finalizar Serviço"}
                             </button>
                         </div>
                     ))}
@@ -72,6 +73,7 @@ const ServicosPrestados = () => {
             ) : (
                 <p>Sem serviços em andamento</p>
             )}
+
         </div>
     )
 }

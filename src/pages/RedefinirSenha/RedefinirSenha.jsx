@@ -33,36 +33,11 @@ const RedefinirSenha = () => {
         }
     }
 
-    // Validar código
-    const handleValidarCodigo = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await validarCodigo(codigo);
-            window.alert(response.message);
-
-            // Salva o código no localStorage para usar na etapa 3
-            localStorage.setItem('codigo_verificacao', codigo);
-
-            setErro('');
-            setFormPart('pt3');
-        } catch (error) {
-            setErro(error.response?.data?.message || error.message)
-        }
-    }
-
     // Redefinir senha
     const handleRedefinirSenha = async (e) => {
         e.preventDefault();
 
-        const codigoSalvo = localStorage.getItem('codigo_verificacao');
-        console.log(codigoSalvo)
-
-        if (!codigoSalvo) {
-            alert("Código de verificação não encontrado. Tente novamente.");
-            return;
-        }
-
-        if (!novaSenha || !confirmarSenha) {
+        if (!codigo || !novaSenha || !confirmarSenha) {
             alert("Preencha todos os campos.");
             return;
         }
@@ -73,27 +48,14 @@ const RedefinirSenha = () => {
         }
 
         try {
-            const response = await redefinirSenha(codigoSalvo, novaSenha);
+            const response = await redefinirSenha(codigo, novaSenha);
             window.alert(response.message);
             setErro('');
-
-            localStorage.removeItem('codigo_verificacao');
-
             navigate("/login");
         } catch (error) {
             setErro(error.response?.data?.message || error.message)
         }
     }
-
-    useEffect(() => {
-        if (formPart === "pt3") {
-            const codigoSalvo = localStorage.getItem("codigo_verificacao");
-            if (!codigoSalvo) {
-                alert("Código de verificação não encontrado. Tente novamente.");
-                setFormPart("pt1"); // Retorna para a primeira etapa
-            }
-        }
-    }, [formPart]);
 
     return (
         <>
@@ -114,32 +76,24 @@ const RedefinirSenha = () => {
 
                 )}
 
+                
+
                 {formPart === 'pt2' && (
-
-                    <form style={{ width: '100%' }} onSubmit={handleValidarCodigo}>
-                        <InputControl>
-                            <label htmlFor="codigo" className="text">Código:</label>
-                            <input type="text" name="codigo" required className="input" placeholder="Informe o código" value={codigo} onChange={(e) => setCodigo(e.target.value)} />
-                        </InputControl>
-
-                        <button type="submit" className="botao-entrar">Validar código</button>
-                        {erro && <p style={{ color: 'red' }}>{erro}</p>}
-                    </form>
-
-                )}
-
-                {formPart === 'pt3' && (
                     <form style={{ width: '100%' }} onSubmit={handleRedefinirSenha}>
                         <InputControl>
-                            <label htmlFor="senha" className="text">Nova senha:</label>
-                            <input type="password" name="senha" required className="input" placeholder="Digite a nova senha" value={novaSenha} onChange={(e) => setNovaSenha(e.target.value)} />
+                            <label htmlFor="codigo" className="text">Codigo:</label>
+                            <input type="text" name="codigo" required className="input" placeholder="Código de recuperação" value={codigo} onChange={(e) => setCodigo(e.target.value)} />
+                        </InputControl>
+                        <InputControl>
+                            <label htmlFor="novaSenha" className="text">Nova senha:</label>
+                            <input type="password" name="novaSenha" required className="input" placeholder="Digite a nova senha" value={novaSenha} onChange={(e) => setNovaSenha(e.target.value)} />
                         </InputControl>
                         <InputControl>
                             <label htmlFor="confirmarSenha" className="text">Confirmar nova senha:</label>
                             <input type="password" name="confirmarSenha" required className="input" placeholder="Confirmar nova senha" value={confirmarSenha} onChange={(e) => setConfirmarSenha(e.target.value)} />
                         </InputControl>
 
-                        <button className="botao-entrar">Salvar nova senha</button>
+                        <button type="submit" className="botao-entrar">Salvar nova senha</button>
                         {erro && <p style={{ color: 'red' }}>{erro}</p>}
                     </form>
                     

@@ -88,7 +88,7 @@ export const buscarServicos = async (pedreiro_id) => {
 // 
 export const servicosPrestados = async (pedreiro_id) => {
   try {
-    if(!pedreiro_id){
+    if (!pedreiro_id) {
       throw new Error("Pedreiro não encontrado")
     }
 
@@ -101,9 +101,9 @@ export const servicosPrestados = async (pedreiro_id) => {
   }
 }
 
-export const aceitarServico = async (servico_id, pedreiro_id) =>{
+export const aceitarServico = async (servico_id, pedreiro_id) => {
   try {
-    const response = await axios.post(`${API_URL}/servicos/aceitar`, {servico_id, pedreiro_id});
+    const response = await axios.post(`${API_URL}/servicos/aceitar`, { servico_id, pedreiro_id });
     return response.data;
   } catch (error) {
     console.error("Erro: ", error.response?.data || error.message);
@@ -113,7 +113,7 @@ export const aceitarServico = async (servico_id, pedreiro_id) =>{
 
 export const finalizarServico = async (servico_id) => {
   try {
-    const response = await axios.post(`${API_URL}/servicos/finalizar`, {servico_id});
+    const response = await axios.post(`${API_URL}/servicos/finalizar`, { servico_id });
     return response.data;
   } catch (error) {
     console.error("Erro: ", error.response?.data || error.message);
@@ -123,27 +123,27 @@ export const finalizarServico = async (servico_id) => {
 
 // REDEFINIÇÃO DE SENHA
 
-export const solicitarCodigo = async(identificador) =>{
+export const solicitarCodigo = async (identificador) => {
   try {
-    const response = await axios.post(`${API_URL}/solicitar-codigo`, {identificador});
+    const response = await axios.post(`${API_URL}/solicitar-codigo`, { identificador });
     return response.data;
   } catch (error) {
     console.error("Erro: ", error.response?.data || error.message);
   }
 }
 
-export const validarCodigo = async(codigo) =>{
+export const validarCodigo = async (codigo) => {
   try {
-    const response = await axios.post(`${API_URL}/validar-codigo`, {codigo});
+    const response = await axios.post(`${API_URL}/validar-codigo`, { codigo });
     return response.data;
   } catch (error) {
     console.error("Erro: ", error.response?.data || error.message);
   }
 }
 
-export const redefinirSenha = async(codigo, novaSenha) =>{
+export const redefinirSenha = async (codigo, novaSenha) => {
   try {
-    const response = await axios.put(`${API_URL}/redefinir-senha`, {codigo, novaSenha});
+    const response = await axios.put(`${API_URL}/redefinir-senha`, { codigo, novaSenha });
     return response.data;
   } catch (error) {
     throw error;
@@ -158,6 +158,27 @@ export const listarPedreiro = async (id) => {
     return response.data;
   } catch (error) {
     console.error("Erro: ", error.response?.data || error.message)
+    throw error;
+  }
+}
+
+// Avaliação Pedreiro
+export const listarAvaliacoes = async (id) => {
+  try {
+    const response = await axios.get(`${API_URL}/avaliacoes/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro: ", error.response?.data || error.message)
+    throw error;
+  }
+}
+
+export const historicoServicos = async (id) => {
+  try {
+    const response = await axios.get(`${API_URL}/historico-servicos/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro: ", error.response?.data || error.message);
     throw error;
   }
 }

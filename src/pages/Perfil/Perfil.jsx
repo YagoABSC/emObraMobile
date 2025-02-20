@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Servicos from "../../assets/componentes/Servicos";
 import BuscardorServico from "../../assets/componentes/BuscadorServico.jsx";
+import Avaliacoes from "../../assets/componentes/Avaliacoes.jsx";
 import { servicosPedreiro, listarPedreiro } from "../../service/api.js";
 import { useNavigate } from "react-router-dom";
 import ServicosPrestados from "../../assets/componentes/ServicosPrestados";
 import './Perfil.scss';
+import { FaSearch } from "react-icons/fa";
+import { LuBrickWall } from "react-icons/lu";
+import { MdOutlineWorkHistory } from "react-icons/md";
+import { IoMdMore } from "react-icons/io";
+
 
 const Perfil = () => {
 
@@ -21,7 +27,7 @@ const Perfil = () => {
         navigate("/login"); // Redireciona sem recarregar a página
     };
 
-
+    // Mostrar serviços caso não tenha cadastrado
     useEffect(() => {
 
         if (!pedreiro_id) {
@@ -44,6 +50,7 @@ const Perfil = () => {
         fetchServicos();
     }, [pedreiro_id]);
 
+    // Informações do Pedreiro
     useEffect(() => {
         if (!pedreiro_id) {
             return;
@@ -72,7 +79,7 @@ const Perfil = () => {
                     <img src="https://i.ibb.co/KVZRVhw/logov4-preto.png" alt="logo-em-obra"
                         className="logo-header" />
                 </a>
-                <button onClick={logout}>Sair</button>
+                <button onClick={logout} style={{color: "#FE8813"}}>Sair</button>
             </div>
 
             {servicos.length === 0 ? (
@@ -81,32 +88,48 @@ const Perfil = () => {
 
 
                 <div>
-                    <div className="Perfil">
-                        <h1>Bem-vindo</h1>
-                    </div>
-
+                    
                     {/* Somente exibir as informações do pedreiro se ele já tiver serviços cadastrados */}
                     {!loadingPedreiro && pedreiro && (
                         <div className="perfil-detalhes">
-                            <img src={`/imgs-fixas/${pedreiro.img}`} alt={pedreiro.nome} />
-                            <h2>Bem-vindo, {pedreiro.nome}!</h2>
-                            <div className="info-especiais">
+
+                            <div className="info-pessoais">
+                                <img src={`/imgs-fixas/${pedreiro.img}`} alt={pedreiro.nome} />
                                 <div>
-                                    <h5>Avaliação</h5>
-                                    <span>4.0/5.0</span>
-                                </div>
-                                <div>
-                                    <h5>Servicos concluídos</h5>
-                                    <span>45</span>
+                                    <p>Bem-vindo,</p>
+                                    <h2>{pedreiro.nome}!</h2>
+                                    <span>Editar perfil</span>
                                 </div>
                             </div>
+
+                            <Avaliacoes pedreiro_id={pedreiro_id} />
+
                         </div>
                     )}
                     <div className="categorias-perfil">
-                        <div className="categorias">Perfil</div>
-                        <div className="categorias">Minhas Obras</div>
-                        <div className="categorias">Histórico</div>
-                        <div className="categorias">Mais</div>
+                        <div className="categorias">
+                            <div>
+                                <FaSearch />
+                            </div>
+                            <span>Buscar<br />Obra</span>
+                        </div>
+
+                        <div className="categorias">
+                            <div>
+                                <LuBrickWall />
+                            </div>
+                            <span>Minhas<br />Obras</span>
+                        </div>
+
+                        <div className="categorias">
+                            <div><MdOutlineWorkHistory /></div>
+                            <span>Histórico</span>
+                        </div>
+
+                        <div className="categorias">
+                            <div><IoMdMore /></div>
+                            <span>Mais</span>
+                        </div>
                     </div>
                     <BuscardorServico />
                     <ServicosPrestados />

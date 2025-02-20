@@ -66,7 +66,7 @@ const Perfil = () => {
     if (loadingServicos) return <p>Carregando...</p>;
 
     return (
-        <div>
+        <div className="container-geral">
             <div className="cabeçalho-logado">
                 <a href="/perfil">
                     <img src="https://i.ibb.co/KVZRVhw/logov4-preto.png" alt="logo-em-obra"
@@ -84,17 +84,30 @@ const Perfil = () => {
                     <div className="Perfil">
                         <h1>Bem-vindo</h1>
                     </div>
-                    
+
                     {/* Somente exibir as informações do pedreiro se ele já tiver serviços cadastrados */}
                     {!loadingPedreiro && pedreiro && (
                         <div className="perfil-detalhes">
+                            <img src={`/imgs-fixas/${pedreiro.img}`} alt={pedreiro.nome} />
                             <h2>Bem-vindo, {pedreiro.nome}!</h2>
-                            <p><strong>Email:</strong> {pedreiro.email}</p>
-                            <p><strong>CPF:</strong> {pedreiro.cpf}</p>
-                            <p><strong>Telefone:</strong> {pedreiro.telefone}</p>
-                            <p><strong>CEP:</strong> {pedreiro.cep}</p>
+                            <div className="info-especiais">
+                                <div>
+                                    <h5>Avaliação</h5>
+                                    <span>4.0/5.0</span>
+                                </div>
+                                <div>
+                                    <h5>Servicos concluídos</h5>
+                                    <span>45</span>
+                                </div>
+                            </div>
                         </div>
                     )}
+                    <div className="categorias-perfil">
+                        <div className="categorias">Perfil</div>
+                        <div className="categorias">Minhas Obras</div>
+                        <div className="categorias">Histórico</div>
+                        <div className="categorias">Mais</div>
+                    </div>
                     <BuscardorServico />
                     <ServicosPrestados />
                 </div>

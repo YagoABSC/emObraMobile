@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { listarAvaliacoes } from "../../service/api";
+import { FaStar } from "react-icons/fa";
 
 const Avaliacoes = ({ pedreiro_id }) => {
 
@@ -29,7 +30,10 @@ const Avaliacoes = ({ pedreiro_id }) => {
         <div className="info-especiais">
             <div>
                 <h5>Avaliação</h5>
-                <span>{loading ? "Carregando..." : `${avaliacao}/5.0`}</span>
+                <div className="info-avaliacao">
+                    <span>{loading ? "Carregando..." : `${avaliacao}/5.0`} </span>
+                    <FaStar style={{color: "yellow", fontSize: "16px"}} />
+                </div>
             </div>
             <div>
                 <h5>Servicos concluídos</h5>

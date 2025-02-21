@@ -6,9 +6,9 @@ import { servicosPedreiro, listarPedreiro } from "../../service/api.js";
 import { useNavigate } from "react-router-dom";
 import ServicosPrestados from "../../assets/componentes/ServicosPrestados";
 import './Perfil.scss';
-import { FaSearch } from "react-icons/fa";
-import { LuBrickWall } from "react-icons/lu";
-import { MdOutlineWorkHistory } from "react-icons/md";
+import { IoMdSearch } from "react-icons/io";
+import { MdMapsHomeWork } from "react-icons/md";
+import { MdWorkHistory } from "react-icons/md";
 import { IoMdMore } from "react-icons/io";
 
 
@@ -20,6 +20,7 @@ const Perfil = () => {
     const [servicos, setServicos] = useState([]);
     const [loadingServicos, setLoadingServicos] = useState(true);
     const [loadingPedreiro, setLoadingPedreiro] = useState(true);
+    const [categoria, setCategoria] = useState('minhaObra')
 
     // Fazer Logout
     const logout = () => {
@@ -79,7 +80,7 @@ const Perfil = () => {
                     <img src="https://i.ibb.co/KVZRVhw/logov4-preto.png" alt="logo-em-obra"
                         className="logo-header" />
                 </a>
-                <button onClick={logout} style={{color: "#FE8813"}}>Sair</button>
+                <button onClick={logout} style={{ color: "#FE8813" }}>Sair</button>
             </div>
 
             {servicos.length === 0 ? (
@@ -88,7 +89,7 @@ const Perfil = () => {
 
 
                 <div>
-                    
+
                     {/* Somente exibir as informações do pedreiro se ele já tiver serviços cadastrados */}
                     {!loadingPedreiro && pedreiro && (
                         <div className="perfil-detalhes">
@@ -107,32 +108,45 @@ const Perfil = () => {
                         </div>
                     )}
                     <div className="categorias-perfil">
-                        <div className="categorias">
-                            <div>
-                                <FaSearch />
-                            </div>
-                            <span>Buscar<br />Obra</span>
-                        </div>
 
-                        <div className="categorias">
-                            <div>
-                                <LuBrickWall />
+                        <div className={`categorias ${categoria === "minhaObra" ? "ativa" : ""}`}
+                            onClick={() => setCategoria("minhaObra")}>
+                            <div style={{ backgroundColor: categoria === "minhaObra" ? "#FE8813" : "#020411" }}>
+                                <MdMapsHomeWork />
                             </div>
                             <span>Minhas<br />Obras</span>
                         </div>
 
-                        <div className="categorias">
-                            <div><MdOutlineWorkHistory /></div>
+                        <div className={`categorias ${categoria === "buscarObra" ? "ativa" : ""}`}
+                            onClick={() => setCategoria("buscarObra")}>
+                            <div style={{ backgroundColor: categoria === "buscarObra" ? "#FE8813" : "#020411" }}>
+                                <IoMdSearch />
+                            </div>
+                            <span>Buscar<br />Obra</span>
+                        </div>
+
+                        <div className={`categorias ${categoria === "historico" ? "ativa" : ""}`}
+                            onClick={() => setCategoria("historico")}>
+                            <div style={{ backgroundColor: categoria === "historico" ? "#FE8813" : "#020411" }}>
+                                <MdWorkHistory />
+                            </div>
                             <span>Histórico</span>
                         </div>
 
-                        <div className="categorias">
-                            <div><IoMdMore /></div>
+                        <div className={`categorias ${categoria === "mais" ? "ativa" : ""}`}
+                            onClick={() => setCategoria("mais")}>
+                            <div style={{ backgroundColor: categoria === "mais" ? "#FE8813" : "#020411" }}>
+                                <IoMdMore />
+                            </div>
                             <span>Mais</span>
                         </div>
                     </div>
-                    <BuscardorServico />
-                    <ServicosPrestados />
+                    <div className="conteudo-categoria">
+                        {categoria === "minhaObra" && <ServicosPrestados />}
+                        {categoria === "buscarObra" && <BuscardorServico />}
+                        {categoria === "historico" && <p>Histórico de serviços (em breve)</p>}
+                        {categoria === "mais" && <p>Mais opções (em breve)</p>}
+                    </div>
                 </div>
             )}
         </div>

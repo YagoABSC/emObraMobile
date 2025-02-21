@@ -59,10 +59,12 @@ const ServicosPrestados = () => {
             {servicosEmAndamento.length > 0 ? (
                 <div>
                     {servicosEmAndamento.map(servico => (
-                        <div key={servico.id}>
-                            <p>Descrição: {servico.descricao}</p>
-                            <p>Prazo: {servico.prazo}</p>
-                            <p>Valor: {servico.valor}</p>
+                        <div key={servico.id} className="servico-ativo">
+                            <h4>Descrição: {servico.descricao}</h4>
+                            <div>
+                                <p>Prazo: {servico.prazo}</p>
+                                <p>Valor: {servico.valor}</p>
+                            </div>
                             <p>Status: {servico.status}</p>
                             <button onClick={() => handleFinalizarServico(servico.id)} disabled={servico.status !== "aceito"}>
                                 {servico.status === "aguardando confirmacao" ? "Aguardando confirmação" : "Finalizar Serviço"}

@@ -50,7 +50,7 @@ const BuscardorServico = () => {
             setServicos(servicos.filter(servico => servico.id !== servico_id));
 
             // Atualiza os serviços prestados chamando a função que busca eles
-            // fetchServicosPrestados(); 
+            ServicosPrestados(); 
         } catch (error) {
             console.error("Erro ao aceitar o serviço: ", error);
             alert("Erro ao aceitar serviço.");

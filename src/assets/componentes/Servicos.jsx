@@ -38,12 +38,12 @@ const Servicos = ({ pedreiro_id }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        
+
         if (!pedreiro_id) {
             alert("Erro: ID do pedreiro não encontrado.");
             return;
         }
-        
+
         if (servicosSelecionados.length === 0) {
             alert("Selecione pelo menos um serviço!");
             return;
@@ -53,7 +53,7 @@ const Servicos = ({ pedreiro_id }) => {
             pedreiro_id,
             tipo_servicos: servicosSelecionados
         };
-    
+
         console.log("Enviando para API:", payload);
 
         try {
@@ -71,36 +71,37 @@ const Servicos = ({ pedreiro_id }) => {
             <h3>Agora, escolha os tipos de serviços que deseja oferecer</h3>
             <form className="formServicos" onSubmit={handleSubmit}>
 
-                {servicos.length > 0 ? (
-                    servicos.map((servico) => (
-                        <div className="cadastro-pedreiro-checkbox" key={servico.id}>
-                            <input
-                                type="checkbox"
-                                id={servico.nome_servico}
-                                name="tipo_servicos"
-                                value={servico.id}
-                                onChange={handleCheckboxChange}
-                                checked={servicosSelecionados.includes(servico.id)}
-                                disabled={!servicosSelecionados.includes(servico.id) && servicosSelecionados.length >= 3}
-                            />
-                            <label htmlFor={servico.nome_servico}>
-                                <div className="icone-servico">
-                                    <img src={`/imgs-fixas/${servico.img_servico}`} alt={servico.nome_servico} />
-                                </div>
-                                <div className="info-servicos-cadastro">
-                                    <span>{servico.nome_servico}</span>
-                                    <p>{servico.desc_servico}</p>
-                                </div>
-                            </label>
-                        </div>
-                    ))
-                ) : (
-                    <p>Carregando...</p>
-                )}
 
-                <button disabled={!pedreiro_id} onClick={handleSubmit}>
-                    Cadastrar Serviços
-                </button>
+                    {servicos.length > 0 ? (
+                        servicos.map((servico) => (
+                            <div className="cadastro-pedreiro-checkbox" key={servico.id}>
+                                <input
+                                    type="checkbox"
+                                    id={servico.nome_servico}
+                                    name="tipo_servicos"
+                                    value={servico.id}
+                                    onChange={handleCheckboxChange}
+                                    checked={servicosSelecionados.includes(servico.id)}
+                                    disabled={!servicosSelecionados.includes(servico.id) && servicosSelecionados.length >= 3}
+                                />
+                                <label htmlFor={servico.nome_servico}>
+                                    <div className="icone-servico">
+                                        <img src={`/imgs-fixas/${servico.img_servico}`} alt={servico.nome_servico} />
+                                    </div>
+                                    <div className="info-servicos-cadastro">
+                                        <span>{servico.nome_servico}</span>
+                                        <p>{servico.desc_servico}</p>
+                                    </div>
+                                </label>
+                            </div>
+                        ))
+                    ) : (
+                        <p>Carregando...</p>
+                    )}
+
+                    <button disabled={!pedreiro_id} onClick={handleSubmit}>
+                        Cadastrar Serviços
+                    </button>
             </form>
         </div>
 

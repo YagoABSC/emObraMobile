@@ -85,7 +85,6 @@ export const buscarServicos = async (pedreiro_id) => {
   }
 }
 
-// 
 export const servicosPrestados = async (pedreiro_id) => {
   try {
     if (!pedreiro_id) {
@@ -155,6 +154,16 @@ export const redefinirSenha = async (codigo, novaSenha) => {
 export const listarPedreiro = async (id) => {
   try {
     const response = await axios.get(`${API_URL}/pedreiro/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro: ", error.response?.data || error.message)
+    throw error;
+  }
+}
+
+export const atualizarPedreiro = async (id, nome, telefone, email, cep, tipos_servicos) => {
+  try {
+    const response = await axios.put(`${API_URL}/atualizarPedreiro/${id}`, {nome, telefone, email, cep, tipos_servicos});
     return response.data;
   } catch (error) {
     console.error("Erro: ", error.response?.data || error.message)

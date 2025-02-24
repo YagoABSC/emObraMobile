@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Servicos from "../../assets/componentes/Servicos";
 import BuscardorServico from "../../assets/componentes/BuscadorServico.jsx";
 import Avaliacoes from "../../assets/componentes/Avaliacoes.jsx";
+import useAuth from '../../assets/hooks/UseAuth';
 import { servicosPedreiro, listarPedreiro } from "../../service/api.js";
 import { useNavigate } from "react-router-dom";
 import ServicosPrestados from "../../assets/componentes/ServicosPrestados";
@@ -13,6 +14,8 @@ import { IoMdMore } from "react-icons/io";
 
 
 const Perfil = () => {
+
+    useAuth();
 
     const navigate = useNavigate();
     const pedreiro_id = localStorage.getItem('pedreiro_id');
@@ -27,6 +30,11 @@ const Perfil = () => {
         localStorage.removeItem("token");
         navigate("/login"); // Redireciona sem recarregar a página
     };
+
+    // Editar Perfil
+    const editar = () => {
+        navigate("/editar-perfil");
+    }
 
     // Mostrar serviços caso não tenha cadastrado
     useEffect(() => {
@@ -99,7 +107,7 @@ const Perfil = () => {
                                 <div>
                                     <p>Bem-vindo,</p>
                                     <h2>{pedreiro.nome}!</h2>
-                                    <span>Editar perfil</span>
+                                    <span onClick={editar}>Editar perfil</span>
                                 </div>
                             </div>
 
@@ -114,7 +122,7 @@ const Perfil = () => {
                             <div style={{ backgroundColor: categoria === "minhaObra" ? "#FE8813" : "#020411" }}>
                                 <MdMapsHomeWork />
                             </div>
-                            <span>Minhas<br />Obras</span>
+                            {/* <span>Minhas<br />Obras</span> */}
                         </div>
 
                         <div className={`categorias ${categoria === "buscarObra" ? "ativa" : ""}`}
@@ -122,7 +130,7 @@ const Perfil = () => {
                             <div style={{ backgroundColor: categoria === "buscarObra" ? "#FE8813" : "#020411" }}>
                                 <IoMdSearch />
                             </div>
-                            <span>Buscar<br />Obra</span>
+                            {/* <span>Buscar<br />Obra</span> */}
                         </div>
 
                         <div className={`categorias ${categoria === "historico" ? "ativa" : ""}`}
@@ -130,7 +138,7 @@ const Perfil = () => {
                             <div style={{ backgroundColor: categoria === "historico" ? "#FE8813" : "#020411" }}>
                                 <MdWorkHistory />
                             </div>
-                            <span>Histórico</span>
+                            {/* <span>Histórico</span> */}
                         </div>
 
                         <div className={`categorias ${categoria === "mais" ? "ativa" : ""}`}
@@ -138,7 +146,7 @@ const Perfil = () => {
                             <div style={{ backgroundColor: categoria === "mais" ? "#FE8813" : "#020411" }}>
                                 <IoMdMore />
                             </div>
-                            <span>Mais</span>
+                            {/* <span>Mais</span> */}
                         </div>
                     </div>
                     <div className="conteudo-categoria">

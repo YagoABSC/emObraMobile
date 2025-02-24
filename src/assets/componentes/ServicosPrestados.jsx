@@ -66,6 +66,7 @@ const ServicosPrestados = () => {
                                 <p>Valor: {servico.valor}</p>
                             </div>
                             <p>Status: {servico.status}</p>
+                            <p>Endereço: </p>
                             <button onClick={() => handleFinalizarServico(servico.id)} disabled={servico.status !== "aceito"}>
                                 {servico.status === "aguardando confirmacao" ? "Aguardando confirmação" : "Finalizar Serviço"}
                             </button>

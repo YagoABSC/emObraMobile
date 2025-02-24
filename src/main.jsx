@@ -7,6 +7,7 @@ import Login from './pages/Login/Login.jsx'
 import Cadastro from './pages/Cadastro/Cadastro.jsx'
 import Perfil from './pages/Perfil/Perfil.jsx'
 import RedefinirSenha from './pages/RedefinirSenha/RedefinirSenha.jsx'
+import EditarPerfil from './pages/EditarPerfil/EditarPerfil.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -16,7 +17,8 @@ createRoot(document.getElementById('root')).render(
         <Route path='login' element={<Login />}/>
         <Route path='cadastro' element={<Cadastro />}/>
         <Route path='perfil' element={<Perfil />}/>
-        <Route path= 'redefinir-senha' element={<RedefinirSenha/>}/>
+        <Route path='redefinir-senha' element={<RedefinirSenha />}/>
+        <Route path='editar-perfil' element={<EditarPerfil />}/>
       </Routes>
     </Router>
   </StrictMode>,

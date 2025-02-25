@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { listarPedreiro, atualizarPedreiro, listarServicos, servicosPedreiro } from '../../service/api'
 import useAuth from '../../assets/hooks/UseAuth';
 import './Editar.scss';
+import InputControl from '../../assets/componentes/InputControl'
 
 const EditarPerfil = () => {
 
@@ -94,7 +95,6 @@ const EditarPerfil = () => {
     }
   };
 
-
   // Cancela o edição de perfil
   const handleCancel = () => {
     if (JSON.stringify(dados) !== JSON.stringify(originalData)) {
@@ -103,7 +103,6 @@ const EditarPerfil = () => {
     }
     navigate("/perfil");
   };
-
 
   // Deixa selecionado os serviços já vinculados
   const handleCheckboxChange = (event) => {
@@ -129,18 +128,30 @@ const EditarPerfil = () => {
   return (
     <div className="editar-perfil">
       <h2>Editar Perfil</h2>
+
+      <img src={`/imgs-fixas/${dados.img}`} alt={dados.nome} />
       <form onSubmit={handleSubmit}>
-        <label>Nome:</label>
-        <input type="text" name="nome" value={dados.nome} onChange={handleChange} required />
+        
 
-        <label>Telefone:</label>
-        <input type="text" name="telefone" value={dados.telefone} onChange={handleChange} required />
+        <InputControl>
+          <label className="text">Nome:</label>
+          <input className="input" type="text" name="nome" value={dados.nome} onChange={handleChange} required />
+        </InputControl>
 
-        <label>Email:</label>
-        <input type="email" name="email" value={dados.email} onChange={handleChange} required />
+        <InputControl>
+          <label className='text'>Telefone:</label>
+          <input className='input' type="text" name="telefone" value={dados.telefone} onChange={handleChange} required />
+        </InputControl>
 
-        <label>CEP:</label>
-        <input type="text" name="cep" value={dados.cep} onChange={handleChange} required />
+        <InputControl>
+          <label className='text'>Email:</label>
+          <input className='input' type="text" name="email" value={dados.email} onChange={handleChange} required />
+        </InputControl>
+
+        <InputControl>
+          <label className='text'>CEP:</label>
+          <input className='input' type="text" name="cep" value={dados.cep} onChange={handleChange} required />
+        </InputControl>
 
         <div className="radio-inputs">
           {servicos.length > 0 ? (

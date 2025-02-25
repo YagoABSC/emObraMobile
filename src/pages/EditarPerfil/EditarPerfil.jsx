@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { listarPedreiro, atualizarPedreiro, listarServicos, servicosPedreiro } from '../../service/api'
+import { listarPedreiro, atualizarPedreiro, listarServicos, servicosPedreiro, atualizarFotoPedreiro } from '../../service/api'
 import useAuth from '../../assets/hooks/UseAuth';
 import './Editar.scss';
 import InputControl from '../../assets/componentes/InputControl'
@@ -122,6 +122,22 @@ const EditarPerfil = () => {
     setServicosSelecionados(novosSelecionados);
   };
 
+  const handleUpload = async (e) => {
+    const arquivo = e.target.files[0]; // Pega o arquivo selecionado
+
+    if (arquivo) {
+      try {
+        const result = await atualizarFotoPedreiro(pedreiro_id, arquivo); // Atualiza o perfil com a imagem
+        alert("Foto de perfil atualizada!");
+        // Você pode fazer algo com a resposta, por exemplo, atualizar a foto exibida
+        setDados((prev) => ({ ...prev, img: `${result.imgUrl}?t=${new Date().getTime()}` }));
+
+      } catch (error) {
+        alert("Erro ao atualizar a foto.");
+      }
+    }
+  };
+
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>{error}</p>;
 
@@ -129,9 +145,20 @@ const EditarPerfil = () => {
     <div className="editar-perfil">
       <h2>Editar Perfil</h2>
 
-      <img src={`/imgs-fixas/${dados.img}`} alt={dados.nome} />
+      <div className='editar-img'>
+        <img src={dados.img || "/imgs-fixas/default-avatar.jpg"} alt={dados.nome} />
+
+        <label htmlFor="upload-img" className="botao-overlay">Editar foto</label>
+        <input
+          type="file"
+          id="upload-img"
+          accept="image/*"
+          style={{ display: 'none' }}
+          onChange={handleUpload} // A função que trata o upload
+        />
+      </div>
+
       <form onSubmit={handleSubmit}>
-        
 
         <InputControl>
           <label className="text">Nome:</label>
@@ -180,8 +207,8 @@ const EditarPerfil = () => {
         </div>
 
 
-        <button type="submit">Salvar Alterações</button>
-        <button type="button" onClick={handleCancel} className="cancelar">Cancelar</button>
+        <button type="submit" className="avancar-cadastro-pedreiro botao-entrar">Salvar Alterações</button>
+        <button type="button" onClick={handleCancel} className="cancelar avancar-cadastro-pedreiro botao-entrar">Cancelar</button>
       </form>
     </div>
   );

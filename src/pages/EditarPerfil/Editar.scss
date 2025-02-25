@@ -3,4 +3,39 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    
+}
+
+.editar-img {
+    position: relative;
+    // display: inline-block;;
+    display: flex;
+
+    & img {
+        border-radius: 20px;
+        width: 200px;
+        object-fit: cover;
+    }
+
+    & .botao-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        // opacity: 0;
+        transition: opacity 0.3s;
+        border-radius: 20px;
+    }
+
+    // &:hover .botao-overlay {
+    //     opacity: 1;
+    // }
 }

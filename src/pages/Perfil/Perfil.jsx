@@ -103,7 +103,7 @@ const Perfil = () => {
                         <div className="perfil-detalhes">
 
                             <div className="info-pessoais">
-                                <img src={`/imgs-fixas/${pedreiro.img}`} alt={pedreiro.nome} />
+                                <img src={`/imgs-pedreiro/${pedreiro.img}`} alt={pedreiro.nome} />
                                 <div>
                                     <p>Bem-vindo,</p>
                                     <h2>{pedreiro.nome}!</h2>

@@ -53,11 +53,8 @@ h2 {
 
 /* From Uiverse.io by Yaya12085 */ 
 .radio-inputs {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  align-items: center;
-  /* max-width: 350px; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -71,29 +68,19 @@ h2 {
 .radio-input:checked + .radio-tile {
   box-shadow: 0 5px 10px rgba(219, 157, 64, 0.651);
   background-color: #FE8813;
-  /* color: #FE8813; */
 }
 
 .radio-input:checked + .radio-tile:before {
   transform: scale(1);
   opacity: 1;
   background-color: #fff;
-  /* border-color: #FE8813; */
 }
-
-/* .radio-input:checked + .radio-tile .radio-icon svg {
-  fill: #FE8813;
-} */
 
 .radio-input:checked + .radio-tile .radio-label {
   transform: scale(1);
   font-weight: bold;
 }
 
-.radio-input:focus + .radio-tile {
-  /* border-color: #FE8813; */
-  /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), 0 0 0 4px #b5c9fc; */
-}
 
 .radio-input:focus + .radio-tile:before {
   transform: scale(1);
@@ -105,10 +92,9 @@ h2 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 110px;
+  width: 90px;
   min-height: 90px;
   border-radius: 0.5rem;
-  /* border: 2px solid #b5bfd9; */
   background-color: #020411;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   transition: 0.15s ease;
@@ -123,8 +109,6 @@ h2 {
   display: block;
   width: 0.75rem;
   height: 0.75rem;
-  /* border: 2px solid #b5bfd9; */
-  /* background-color: #FE8813; */
   border-radius: 50%;
   top: 0.25rem;
   left: 0.25rem;
@@ -133,19 +117,10 @@ h2 {
   transition: 0.25s ease;
 }
 
-/* .radio-tile:hover {
-  border-color: none;
-}
-
-.radio-tile:hover:before {
-  transform: scale(1);
-  opacity: 1;
-} */
 
 .radio-icon img {
   width: 2rem;
   height: 2rem;
-  /* fill: #494949; */
 }
 
 .radio-label {

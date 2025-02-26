@@ -1,9 +1,9 @@
-.editar-perfil{
+.editar-perfil {
     padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
 }
 
 .editar-img {
@@ -35,7 +35,58 @@
         border-radius: 20px;
     }
 
-    // &:hover .botao-overlay {
-    //     opacity: 1;
-    // }
+}
+
+
+// Editar foto
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.modal {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.modal-botoes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn.cancelar {
+    background: red;
+    color: white;
+}
+
+.btn.salvar {
+    background: green;
+    color: white;
 }

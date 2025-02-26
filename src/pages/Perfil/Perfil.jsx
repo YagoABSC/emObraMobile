@@ -11,6 +11,7 @@ import { IoMdSearch } from "react-icons/io";
 import { MdMapsHomeWork } from "react-icons/md";
 import { MdWorkHistory } from "react-icons/md";
 import { IoMdMore } from "react-icons/io";
+import { API_URL } from "../../service/api";
 
 
 const Perfil = () => {
@@ -103,7 +104,7 @@ const Perfil = () => {
                         <div className="perfil-detalhes">
 
                             <div className="info-pessoais">
-                                <img src={`/imgs-pedreiro/${pedreiro.img}`} alt={pedreiro.nome} />
+                                <img src={`${API_URL}/imgs-pedreiro/${pedreiro.img}`} alt={pedreiro.nome} />
                                 <div>
                                     <p>Bem-vindo,</p>
                                     <h2>{pedreiro.nome}!</h2>

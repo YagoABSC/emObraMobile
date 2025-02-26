@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_URL = "https://apiobra.vercel.app";
-// const API_URL = "http://localhost:3000";
+// export const API_URL = "http://localhost:3000";
 
 // Configura o axios para incluir o token no cabeçalho das requisições
 axios.interceptors.request.use((config) => {
@@ -163,7 +163,8 @@ export const listarPedreiro = async (id) => {
 
 export const atualizarPedreiro = async (id, nome, telefone, email, cep, tipos_servicos) => {
   try {
-    const response = await axios.put(`${API_URL}/atualizarPedreiro/${id}`, {nome, telefone, email, cep, tipos_servicos});
+    console.log("Dados enviados para a API:", { nome, telefone, email, cep, tipos_servicos });
+    const response = await axios.put(`${API_URL}/atualizarPedreiro/${id}`, { nome, telefone, email, cep, tipos_servicos });
     return response.data;
   } catch (error) {
     console.error("Erro: ", error.response?.data || error.message);
@@ -171,18 +172,16 @@ export const atualizarPedreiro = async (id, nome, telefone, email, cep, tipos_se
   }
 }
 
-export const atualizarFotoPedreiro = async (id, fileName) => {
+export const atualizarFotoPedreiro = async (id, formData) => {
   try {
-    const response = await axios.put(`${API_URL}/atualizarFotoPerfil/${id}`, {
-      img_perfil: fileName,
-    });
-
-    return response.data;
+      const response = await axios.put(`${API_URL}/atualizarFotoPerfil/${id}`, formData);
+      return response.data;
   } catch (error) {
-    console.error("Erro: ", error.response?.data || error.message);
-    throw error;
+      console.error("❌ Erro ao atualizar a foto:", error.response?.data || error.message);
+      throw error;
   }
 };
+
 
 // Avaliação Pedreiro
 export const listarAvaliacoes = async (id) => {

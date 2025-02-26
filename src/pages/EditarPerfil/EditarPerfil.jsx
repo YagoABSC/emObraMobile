@@ -4,6 +4,8 @@ import { listarPedreiro, atualizarPedreiro, listarServicos, servicosPedreiro, at
 import useAuth from '../../assets/hooks/UseAuth';
 import './Editar.scss';
 import InputControl from '../../assets/componentes/InputControl'
+import EditarFoto from './EditarFoto';
+
 
 const EditarPerfil = () => {
 
@@ -41,6 +43,7 @@ const EditarPerfil = () => {
         }
 
         const pedreiro = await listarPedreiro(pedreiro_id); // Passa o ID armazenado
+        console.log("Dados do pedreiro carregados:", pedreiro);
         setDados(pedreiro);
         setOriginalData(pedreiro);
         setLoading(false);
@@ -83,6 +86,11 @@ const EditarPerfil = () => {
       return;
     }
 
+    if (servicosSelecionados.length === 0) {
+      alert("Por favor, selecione pelo menos um serviço.");
+      return;
+    }
+
     // Verifique se o array está no formato correto antes do envio
     console.log("Serviços enviados:", servicosSelecionados);
 
@@ -91,6 +99,7 @@ const EditarPerfil = () => {
       alert("Perfil atualizado com sucesso!");
       navigate("/perfil");
     } catch (error) {
+      console.error("Erro ao atualizar os dados:", error);
       alert("Erro ao atualizar os dados.");
     }
   };
@@ -103,43 +112,6 @@ const EditarPerfil = () => {
     }
     navigate("/perfil");
   };
-
-  const handleUpload = async (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    const userId = localStorage.getItem("pedreiro_id");
-    if (!userId) {
-      console.error("Erro: ID do usuário não encontrado");
-      return;
-    }
-
-    // Define o nome do arquivo
-    const fileName = `${Date.now()}-${file.name}`;
-    const filePath = `/imgs-pedreiro/${fileName}`;
-
-    try {
-      // Cria um link temporário e salva a imagem no public/imgs-pedreiro
-      const reader = new FileReader();
-      reader.onload = async () => {
-        const dataUrl = reader.result;
-
-        // Criar um blob e salvar localmente na pasta public (simulação)
-        const blob = new Blob([dataUrl], { type: file.type });
-        const fileURL = `${window.location.origin}${filePath}`;
-
-        // Enviar APENAS o nome do arquivo para o backend
-        await atualizarFotoPedreiro(userId, fileName);
-
-        alert("Foto atualizada com sucesso!");
-      };
-      reader.readAsDataURL(file);
-    } catch (error) {
-      console.error("Erro ao salvar a foto:", error);
-    }
-  };
-
-
 
   // Deixa selecionado os serviços já vinculados
   const handleCheckboxChange = (event) => {
@@ -159,8 +131,6 @@ const EditarPerfil = () => {
     setServicosSelecionados(novosSelecionados);
   };
 
-
-
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>{error}</p>;
 
@@ -168,40 +138,28 @@ const EditarPerfil = () => {
     <div className="editar-perfil">
       <h2>Editar Perfil</h2>
 
-      <div className='editar-img'>
-        <img src={`/imgs-pedreiro/${dados.img}`} alt={dados.nome} />
-
-        <label htmlFor="upload-img" className="botao-overlay">Editar foto</label>
-        <input
-          type="file"
-          id="upload-img"
-          accept="image/*"
-          style={{ display: 'none' }}
-          onChange={handleUpload}
-        />
-      </div>
+      <EditarFoto imgAtual={dados.img} nome={dados.nome} />
 
       <form onSubmit={handleSubmit}>
 
-        <InputControl>
-          <label className="text">Nome:</label>
-          <input className="input" type="text" name="nome" value={dados.nome} onChange={handleChange} required />
-        </InputControl>
-
-        <InputControl>
-          <label className='text'>Telefone:</label>
-          <input className='input' type="text" name="telefone" value={dados.telefone} onChange={handleChange} required />
-        </InputControl>
-
-        <InputControl>
-          <label className='text'>Email:</label>
-          <input className='input' type="text" name="email" value={dados.email} onChange={handleChange} required />
-        </InputControl>
-
-        <InputControl>
-          <label className='text'>CEP:</label>
-          <input className='input' type="text" name="cep" value={dados.cep} onChange={handleChange} required />
-        </InputControl>
+        <div>
+          <InputControl>
+            <label className="text">Nome:</label>
+            <input className="input" type="text" name="nome" value={dados.nome} onChange={handleChange} required />
+          </InputControl>
+          <InputControl>
+            <label className='text'>Telefone:</label>
+            <input className='input' type="text" name="telefone" value={dados.telefone} onChange={handleChange} required />
+          </InputControl>
+          <InputControl>
+            <label className='text'>Email:</label>
+            <input className='input' type="text" name="email" value={dados.email} onChange={handleChange} required />
+          </InputControl>
+          <InputControl>
+            <label className='text'>CEP:</label>
+            <input className='input' type="text" name="cep" value={dados.cep} onChange={handleChange} required />
+          </InputControl>
+        </div>
 
         <div className="radio-inputs">
           {servicos.length > 0 ? (

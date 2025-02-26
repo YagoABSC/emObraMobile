@@ -171,16 +171,10 @@ export const atualizarPedreiro = async (id, nome, telefone, email, cep, tipos_se
   }
 }
 
-export const atualizarFotoPedreiro = async (id, arquivo) => {
+export const atualizarFotoPedreiro = async (id, fileName) => {
   try {
-    const formData = new FormData();
-    formData.append('img', arquivo); // 'img' é o nome do campo que você usará no backend
-
-    const response = await axios.put(`${API_URL}/atualizarFotoPerfil/${id}`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data', // Defina o tipo de conteúdo como multipart
-        Authorization: `Bearer ${localStorage.getItem("token")}`, // Se necessário, adicione o token JWT
-      },
+    const response = await axios.put(`${API_URL}/atualizarFotoPerfil/${id}`, {
+      img_perfil: fileName,
     });
 
     return response.data;

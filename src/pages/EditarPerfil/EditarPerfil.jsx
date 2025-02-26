@@ -104,6 +104,43 @@ const EditarPerfil = () => {
     navigate("/perfil");
   };
 
+  const handleUpload = async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const userId = localStorage.getItem("pedreiro_id");
+    if (!userId) {
+      console.error("Erro: ID do usuário não encontrado");
+      return;
+    }
+
+    // Define o nome do arquivo
+    const fileName = `${Date.now()}-${file.name}`;
+    const filePath = `/imgs-pedreiro/${fileName}`;
+
+    try {
+      // Cria um link temporário e salva a imagem no public/imgs-pedreiro
+      const reader = new FileReader();
+      reader.onload = async () => {
+        const dataUrl = reader.result;
+
+        // Criar um blob e salvar localmente na pasta public (simulação)
+        const blob = new Blob([dataUrl], { type: file.type });
+        const fileURL = `${window.location.origin}${filePath}`;
+
+        // Enviar APENAS o nome do arquivo para o backend
+        await atualizarFotoPedreiro(userId, fileName);
+
+        alert("Foto atualizada com sucesso!");
+      };
+      reader.readAsDataURL(file);
+    } catch (error) {
+      console.error("Erro ao salvar a foto:", error);
+    }
+  };
+
+
+
   // Deixa selecionado os serviços já vinculados
   const handleCheckboxChange = (event) => {
     const { value, checked } = event.target;
@@ -122,21 +159,7 @@ const EditarPerfil = () => {
     setServicosSelecionados(novosSelecionados);
   };
 
-  const handleUpload = async (e) => {
-    const arquivo = e.target.files[0]; // Pega o arquivo selecionado
 
-    if (arquivo) {
-      try {
-        const result = await atualizarFotoPedreiro(pedreiro_id, arquivo); // Atualiza o perfil com a imagem
-        alert("Foto de perfil atualizada!");
-        // Você pode fazer algo com a resposta, por exemplo, atualizar a foto exibida
-        setDados((prev) => ({ ...prev, img: `${result.imgUrl}?t=${new Date().getTime()}` }));
-
-      } catch (error) {
-        alert("Erro ao atualizar a foto.");
-      }
-    }
-  };
 
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>{error}</p>;
@@ -146,7 +169,7 @@ const EditarPerfil = () => {
       <h2>Editar Perfil</h2>
 
       <div className='editar-img'>
-        <img src={dados.img || "/imgs-fixas/default-avatar.jpg"} alt={dados.nome} />
+        <img src={`/imgs-pedreiro/${dados.img}`} alt={dados.nome} />
 
         <label htmlFor="upload-img" className="botao-overlay">Editar foto</label>
         <input
@@ -154,7 +177,7 @@ const EditarPerfil = () => {
           id="upload-img"
           accept="image/*"
           style={{ display: 'none' }}
-          onChange={handleUpload} // A função que trata o upload
+          onChange={handleUpload}
         />
       </div>
 

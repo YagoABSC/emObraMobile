@@ -174,7 +174,7 @@ export const atualizarPedreiro = async (id, nome, telefone, email, cep, tipos_se
 
 export const atualizarFotoPedreiro = async (id, formData) => {
   try {
-    const resposta = await axios.put(`http://localhost:3000/atualizarFotoPerfil/${id}`, formData, {
+    const resposta = await axios.put(`${API_URL}/atualizarFotoPerfil/${id}`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -191,6 +191,16 @@ export const atualizarFotoPedreiro = async (id, formData) => {
 export const listarAvaliacoes = async (id) => {
   try {
     const response = await axios.get(`${API_URL}/avaliacoes/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro: ", error.response?.data || error.message)
+    throw error;
+  }
+}
+
+export const totalServicosFinalizados = async(id) => {
+  try {
+    const response = await axios.get(`${API_URL}/total-servicos-finalizados/${id}`);
     return response.data;
   } catch (error) {
     console.error("Erro: ", error.response?.data || error.message)

@@ -104,7 +104,7 @@ const Perfil = () => {
                         <div className="perfil-detalhes">
 
                             <div className="info-pessoais">
-                                <img src={`${API_URL}/imgs-pedreiro/${pedreiro.img}`} alt={pedreiro.nome} />
+                                <img src={pedreiro.img} alt={pedreiro.nome} />
                                 <div>
                                     <p>Bem-vindo,</p>
                                     <h2>{pedreiro.nome}!</h2>

@@ -71,6 +71,7 @@ const BuscardorServico = () => {
                                 <p>Descrição: {servico.descricao}</p>
                                 <p>Prazo: {servico.prazo}</p>
                                 <p>Distancia de você: {servico.distancia_km}km</p>
+                                <p>Distancia de você: {servico.bairro}</p>
                                 <button onClick={() => handleAceitarServico(servico.id)}>Aceitar</button>
                             </div>
                         ))}

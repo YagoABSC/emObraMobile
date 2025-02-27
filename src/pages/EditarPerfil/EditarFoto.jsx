@@ -48,13 +48,7 @@ const EditarFoto = ({ imgAtual, nome }) => {
         <div className="editar-img">
             {loading ? (
                 // Exibir loading enquanto a foto estiver sendo enviada
-                <div className="spinnerContainer">
-                    <h1>
-                        <a href="/">
-                            <img src="https://i.ibb.co/KVZRVhw/logov4-preto.png" alt="logo-em-obra" className="logo-header" />
-                        </a>
-                    </h1>
-                </div>
+                <div className="spinner"></div>
             ) : (
                 <>
                     <img src={preview} alt={nome} />

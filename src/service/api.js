@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://apiobra.vercel.app";
+export const API_URL = "https://apiobra.vercel.app";
 // export const API_URL = "http://localhost:3000";
 
 // Configura o axios para incluir o token no cabeçalho das requisições
@@ -177,7 +177,7 @@ export const atualizarFotoPedreiro = async (id, formData) => {
       const response = await axios.put(`${API_URL}/atualizarFotoPerfil/${id}`, formData);
       return response.data;
   } catch (error) {
-      console.error("❌ Erro ao atualizar a foto:", error.response?.data || error.message);
+      console.error("Erro ao atualizar a foto:", error.response?.data || error.message);
       throw error;
   }
 };
@@ -187,6 +187,16 @@ export const atualizarFotoPedreiro = async (id, formData) => {
 export const listarAvaliacoes = async (id) => {
   try {
     const response = await axios.get(`${API_URL}/avaliacoes/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro: ", error.response?.data || error.message)
+    throw error;
+  }
+}
+
+export const totalServicosFinalizados = async(id) => {
+  try {
+    const response = await axios.get(`${API_URL}/total-servicos-finalizados/${id}`);
     return response.data;
   } catch (error) {
     console.error("Erro: ", error.response?.data || error.message)

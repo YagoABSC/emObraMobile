@@ -155,9 +155,11 @@
     }
 
     & img {
-      width: 80px;
+      min-width: 80px;
+      height: 80px;
       border-radius: 50%;
       border: solid #FE8813 3px;
+      object-fit: cover;
     }
 
   }

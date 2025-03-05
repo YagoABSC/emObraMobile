@@ -29,7 +29,7 @@ const Login = () => {
             localStorage.setItem('pedreiro_id', id);
             localStorage.setItem('tipoUsuario', tipo);
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    navigate('/perfil');
+            navigate('/perfil');
 
         } catch (error) {
             console.error("Erro no login:", error);

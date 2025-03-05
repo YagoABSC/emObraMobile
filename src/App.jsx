@@ -1,26 +1,27 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./App.css";
+import { verificarToken } from "./service/api";
 
 function App() {
   const [showContent, setShowContent] = useState(false);
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    // Define o tempo de delay para corresponder à animação do loader
-    const timeout = setTimeout(() => {
-      setShowContent(true);
+    const verificarAutenticacao = async () => {
+      const tokenValido = await verificarToken(); // Verifica se o token ainda é válido
 
-      // Após a intro, verifica se há um token e navega para o perfil
-      if (token) {
-        navigate("/perfil");
-        console.log(token);
-      }
-    }, 8000); // Ajuste conforme necessário
+      setTimeout(() => {
+        setShowContent(true);
 
-    return () => clearTimeout(timeout);
-  }, [token, navigate]); // Adicione token e navigate como dependências
+        if (tokenValido) {
+          navigate("/perfil"); // Se o token for válido, redireciona para o perfil
+        }
+      }, 8000); // Tempo da animação
+    };
+
+    verificarAutenticacao();
+  }, [navigate]);
 
   if (!showContent) {
     return (
@@ -47,7 +48,6 @@ function App() {
             <span className="word">o seu sonho!</span>
           </div>
         </div>
-        <div className="spinner"></div>
       </div>
     );
   }

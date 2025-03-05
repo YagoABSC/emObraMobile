@@ -84,13 +84,6 @@ const Perfil = () => {
 
     return (
         <div className="container-geral">
-            <div className="cabeçalho-logado">
-                <a href="/perfil">
-                    <img src="https://i.ibb.co/KVZRVhw/logov4-preto.png" alt="logo-em-obra"
-                        className="logo-header" />
-                </a>
-                <button onClick={logout} style={{ color: "#FE8813" }}>Sair</button>
-            </div>
 
             {servicos.length === 0 ? (
                 <Servicos pedreiro_id={pedreiro_id} />
@@ -103,19 +96,28 @@ const Perfil = () => {
                     {!loadingPedreiro && pedreiro && (
                         <div className="perfil-detalhes">
 
-                            <div className="info-pessoais">
-                                <img
-                                    src={pedreiro.img || "/img-perfil/avatar-pedreiro.png"}
-                                    alt={pedreiro.nome}
-                                />
-                                <div>
-                                    <p>Bem-vindo,</p>
-                                    <h2>{pedreiro.nome}!</h2>
-                                    <span onClick={editar}>Editar perfil</span>
-                                </div>
-                            </div>
+                            {/* <div className="cabeçalho-logado">
+                                <a href="/perfil">
+                                    <img src="https://i.ibb.co/KVZRVhw/logov4-preto.png" alt="logo-em-obra"
+                                        className="logo-header" />
+                                </a>
+                                <button onClick={logout} style={{ color: "#FE8813", background: "none" }}>Sair</button>
+                            </div> */}
 
-                            <Avaliacoes pedreiro_id={pedreiro_id} />
+
+                            <div className="info-container">
+                                <div className="info-pessoais">
+                                    <img
+                                        src={pedreiro.img || "/img-perfil/avatar-pedreiro.png"}
+                                        alt={pedreiro.nome}
+                                    />
+                                    <div>
+                                        <h2>{pedreiro.nome}</h2>
+                                        {/* <span onClick={editar}>Editar perfil</span> */}
+                                    </div>
+                                </div>
+                                <Avaliacoes pedreiro_id={pedreiro_id} />
+                            </div>
 
                         </div>
                     )}
@@ -153,6 +155,7 @@ const Perfil = () => {
                             {/* <span>Mais</span> */}
                         </div>
                     </div>
+
                     <div className="conteudo-categoria">
                         {categoria === "minhaObra" && <ServicosPrestados />}
                         {categoria === "buscarObra" && <BuscardorServico />}

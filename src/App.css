@@ -28,25 +28,17 @@
 
 /* From Uiverse.io by Chriskoziol */
 .spinnerContainer {
-    /* background-image: url('/imgs-fixas/background-inicio.jpg');
-    background-position: center;
-    background-repeat: repeat;
-    background-size: cover; */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: fixed;
-    /* Fixa na tela */
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    /* Ocupa toda a tela */
     background-color: #ffffff;
-    /* Cor de fundo opcional */
     z-index: 9999;
-    /* Garante que fique acima do conteúdo */
 }
 
 
@@ -54,6 +46,7 @@
     width: 56px;
     height: 56px;
     display: grid;
+    margin: auto;
     border: 4px solid #0000;
     border-radius: 50%;
     border-right-color: #FE8813;

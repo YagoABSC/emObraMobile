@@ -94,14 +94,15 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 15px;
-  & a{
+
+  & a {
     display: flex;
 
     & img {
       width: 100px;
     }
   }
-  
+
 
   & button {
     background-color: white;
@@ -116,32 +117,36 @@
   display: flex;
   width: 100%;
   flex-direction: column;
-  align-items: center;
+  // align-items: center;
   justify-content: center;
-  background-color: #020411;
-  border-radius: 10px;
-  padding: 20px 20px;
-  margin-top: 20px;
+  // background-color: #020411;
+  background: url(/public/imgs-fixas/background-perfil.jpg) center/cover;
+  // background-size: cover;
+  // background-position: center;
+  // border-radius: 0 0 10px 10px;
+  padding: 50px 10px;
+  
 
   & .info-pessoais {
     color: white;
     display: flex;
     width: 100%;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
+    flex-direction: column;
 
-    & div{
+    & div {
       display: flex;
       flex-direction: column;
-      width: 100%;
 
-      & span{
+      & span {
         margin-top: 10px;
       }
     }
 
     & h2 {
       font-weight: 600;
+      font-size: 1em;
     }
 
     & p {
@@ -149,7 +154,7 @@
       margin-bottom: -5px;
     }
 
-    & span{
+    & span {
       font-size: 14px;
       color: #FE8813;
     }
@@ -158,7 +163,7 @@
       min-width: 80px;
       height: 80px;
       border-radius: 50%;
-      border: solid #FE8813 3px;
+      border: solid #fff 3px;
       object-fit: cover;
     }
 
@@ -176,7 +181,7 @@
     & div {
       text-align: center;
 
-      & .info-avaliacao{
+      & .info-avaliacao {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -186,23 +191,28 @@
   }
 }
 
-.categorias-perfil{
+.categorias-perfil {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  margin: 15px 0;
+  margin: 15px 20px;
   padding: 15px 0;
   border-radius: 15px;
-  box-shadow: #02041163 1px 2px 5px 1px;
+  position: relative;
+  bottom: 50px;
+  background-color: #fff;
+  z-index: 2;
+  // box-shadow: #02041163 1px 2px 5px 1px;
+  box-shadow: #5e5e5e70 2px 3px 6px 2px;
 
-  & .categorias{
+  & .categorias {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     font-size: 14px;
     font-weight: 600;
-    
-    & div{
+
+    & div {
       font-size: 30px;
       display: flex;
       width: 60px;
@@ -215,7 +225,7 @@
       color: white;
     }
 
-    & span{
+    & span {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -223,4 +233,214 @@
       height: 40%;
     }
   }
+}
+
+
+// Serviços prestados
+
+.servico-ativo, .servico-pendente
+ {
+  margin: 40px 20px;
+  padding: 10px;
+  background-color: #d1d1d13f;
+  border-radius: 10px;
+  box-shadow: #5e5e5e70 2px 3px 6px 2px;
+
+  & .cabecalho-servico {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+    margin: 10px;
+
+    & .icon-servico {
+      background-color: #020411;
+      border-radius: 10px;
+      width: 50px;
+      height: 50px;
+      padding: 0;
+
+      & img {
+        margin: 10px;
+        width: 30px;
+      }
+    }
+
+    & .tipo-servico {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      & h4 {
+        font-weight: 500;
+        font-size: 18px;
+      }
+
+      & p {
+        font-size: 15px;
+        color: grey;
+      }
+
+      & .valor-servico {
+        display: flex;
+        flex-direction: column;
+
+        p {
+          display: flex;
+          flex-direction: column;
+          font-weight: 600;
+          font-size: 16px;
+
+          & span {
+            font-size: 11px;
+            font-weight: 600;
+            color: gray;
+            margin-bottom: -4px;
+          }
+        }
+      }
+    }
+
+
+    & .status-servico {
+      display: flex;
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: capitalize;
+      padding: 5px 10px;
+      background-color: #0A8B803a;
+      color: #0A8B80;
+      height: fit-content;
+      border-radius: 10px;
+    }
+
+  }
+
+  & .info-servico {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+
+    & .descricao-servico {
+      text-indent: 15px;
+      text-align: justify;
+      padding: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #020411;
+      background-color: #7979791a;
+      margin: 10px;
+    }
+
+  }
+
+  & .prazo-servico {
+    display: flex;
+    margin-bottom: -10px;
+    justify-content: space-between;
+    padding: 0 20px;
+
+    & p {
+      display: flex;
+      flex-direction: column;
+      color: #020411;
+      font-weight: 600;
+      font-size: 14px;
+
+      & span {
+        color: gray;
+        font-size: 12px;
+        margin-bottom: -5px;
+      }
+    }
+  }
+
+  & .linha-tempo-servico {
+    display: flex;
+    align-items: center;
+    padding: 20px 10px;
+    margin: 0 30px;
+
+    & .checkpoint {
+      display: flex;
+      justify-content: center;
+      position: relative;
+
+      & .circulos {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        padding: 8px;
+      }
+
+      & span {
+        position: absolute;
+        top: 35px;
+        font-size: 13px;
+        font-weight: 700;
+        color: #020411;
+      }
+    }
+
+    & .linha {
+      flex: 1;
+      height: 3px;
+    }
+  }
+
+  & .local-servico {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    padding: 5px 0;
+    gap: 5px;
+    color: #332B23;
+
+    & p {
+      font-size: 15px;
+      font-weight: 600;
+
+    }
+  }
+
+  .botoes-servico {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 30px 10px;
+
+    & button {
+      margin: 0;
+      width: 150px;
+      // border-radius: 10px;
+
+    }
+
+
+    & .finalizar-servico, .aceitar-servico {
+      background-color: #FF8812;
+      border: none;
+      color: white;
+    }
+
+    & .contato-servico {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background-color: whitesmoke;
+      color: green;
+      padding: 5px 15px;
+
+      & span {
+        font-size: 14px;
+      }
+    }
+  }
+
+
 }

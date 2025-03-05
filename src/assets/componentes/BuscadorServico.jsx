@@ -8,17 +8,17 @@ const BuscardorServico = () => {
     const [loading, setLoading] = useState(true);
     const pedreiro_id = localStorage.getItem("pedreiro_id");
 
-    
+
     useEffect(() => {
-        
-        console.log("Id do pedreiro: ",pedreiro_id)
+
+        console.log("Id do pedreiro: ", pedreiro_id)
 
         if (!pedreiro_id) {
             console.error("ID do pedreiro não encontrado.");
             setLoading(false);
             return;
         }
-        
+
         // Carrega os serviços que correspondam ao id do pedreiro e serviços que ele cadastrou
         const fetchServicos = async () => {
             try {
@@ -37,7 +37,7 @@ const BuscardorServico = () => {
 
     // Mudar status para aceito
     const handleAceitarServico = async (servico_id) => {
-        if(!pedreiro_id){
+        if (!pedreiro_id) {
             console.error("ID do pedreiro não encontrado.");
             return;
         }
@@ -50,7 +50,7 @@ const BuscardorServico = () => {
             setServicos(servicos.filter(servico => servico.id !== servico_id));
 
             // Atualiza os serviços prestados chamando a função que busca eles
-            ServicosPrestados(); 
+            ServicosPrestados();
         } catch (error) {
             console.error("Erro ao aceitar o serviço: ", error);
             alert("Erro ao aceitar serviço.");
@@ -66,14 +66,25 @@ const BuscardorServico = () => {
                 {servicos.length > 0 ? (
                     <div>
                         {servicos.map(servico => (
-                            <div key={servico.id}>
-                                <p>Tipo de serviço: {servico.tipo_servico_id}</p>
+                            <div key={servico.id} className="servico-pendente">
+                                <div className="cabecalho-servico">
+                                    <div className="icon-servico"><img src={`/imgs-fixas/${servico.img_servico}`} alt={servico.nome_servico} /></div> {/* Exibe a imagem */}
+                                    {/* <p>Tipo de serviço: {servico.tipo_servico_id}</p> */}
+                                    <div className="tipo-servico">
+                                        <h4>{servico.nome_servico}</h4>
+                                        <p>Distancia de você: {servico.distancia_km}km</p>
+                                    </div>
+                                </div>
                                 <p>Descrição: {servico.descricao}</p>
                                 <p>Prazo: {servico.prazo}</p>
-                                <p>Distancia de você: {servico.distancia_km}km</p>
-                                <p>Distancia de você: {servico.bairro}</p>
-                                <button onClick={() => handleAceitarServico(servico.id)}>Aceitar</button>
+                                <p>Local: {servico.bairro}</p>
+                                <div className="botoes-servico">
+                                    <button onClick={() => handleAceitarServico(servico.id)} className="aceitar-servico">
+                                        Me candidatar
+                                    </button>
+                                </div>
                             </div>
+
                         ))}
 
                     </div>

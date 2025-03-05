@@ -1,8 +1,7 @@
 import axios from "axios";
 
-export const API_URL = "https://apiobra.vercel.app";
-// export const API_URL = "http://localhost:3000";
-// export const API_URL = "https://apiobra-git-develop-arthuragomes-projects.vercel.app";
+// export const API_URL = "https://apiobra.vercel.app";
+export const API_URL = "http://localhost:3000";
 
 // Configura o axios para incluir o token no cabeçalho das requisições
 axios.interceptors.request.use((config) => {
@@ -16,6 +15,18 @@ axios.interceptors.request.use((config) => {
 
 
 // FLUXO DO PEDREIRO
+
+export const verificarToken = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/user/validar-token`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao validar token ", error.response?.data || error.message);
+    return null
+  }
+}
+
+
 export const autenticarUsuario = async (identificador, senha) => {
   try {
     const response = await axios.post(`${API_URL}/user/login`, { identificador, senha });

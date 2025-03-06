@@ -27,7 +27,6 @@ const Avaliacoes = ({ pedreiro_id }) => {
 
 
     return (
-        <div className="info-especiais">
             <div>
                 <h5>Avaliação</h5>
                 <div className="info-avaliacao">
@@ -35,11 +34,6 @@ const Avaliacoes = ({ pedreiro_id }) => {
                     <FaStar style={{color: "yellow", fontSize: "16px"}} />
                 </div>
             </div>
-            <div>
-                <h5>Servicos concluídos</h5>
-                <span>45</span>
-            </div>
-        </div>
     )
 }
 

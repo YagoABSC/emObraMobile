@@ -16,6 +16,7 @@ body {
   min-height: 100vh;
   height: fit-content;
   margin: 0 auto;
+  background-color: #d1d1d13f;
 }
 
 header {
@@ -45,12 +46,12 @@ h2 {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.container-geral{
+.container-geral {
   width: 100%;
 }
 
 
-/* From Uiverse.io by Yaya12085 */ 
+/* From Uiverse.io by Yaya12085 */
 .radio-inputs {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -60,28 +61,28 @@ h2 {
   user-select: none;
 }
 
-.radio-inputs > * {
+.radio-inputs>* {
   margin: 6px;
 }
 
-.radio-input:checked + .radio-tile {
+.radio-input:checked+.radio-tile {
   box-shadow: 0 5px 10px rgba(219, 157, 64, 0.651);
   background-color: #FE8813;
 }
 
-.radio-input:checked + .radio-tile:before {
+.radio-input:checked+.radio-tile:before {
   transform: scale(1);
   opacity: 1;
   background-color: #fff;
 }
 
-.radio-input:checked + .radio-tile .radio-label {
+.radio-input:checked+.radio-tile .radio-label {
   transform: scale(1);
   font-weight: bold;
 }
 
 
-.radio-input:focus + .radio-tile:before {
+.radio-input:focus+.radio-tile:before {
   transform: scale(1);
   opacity: 1;
 }
@@ -127,7 +128,7 @@ h2 {
   transition: 0.375s ease;
   text-align: center;
   font-size: .6rem;
-  
+
 }
 
 .radio-input {
@@ -139,4 +140,26 @@ h2 {
   position: absolute;
   white-space: nowrap;
   width: 1px;
+}
+
+.modal-conteudo {
+
+  
+  p{
+    font-size: 16px;
+    margin: 10px 0;
+  }
+}
+
+.botoes-modal {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin: 10px;
+
+  .cancelar-btn {
+    gap: 10px;
+    background-color: whitesmoke;
+    color: #020411;
+  }
 }

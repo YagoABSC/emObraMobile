@@ -117,13 +117,8 @@
   display: flex;
   width: 100%;
   flex-direction: column;
-  // align-items: center;
   justify-content: center;
-  // background-color: #020411;
-  background: url(/public/imgs-fixas/background-perfil.jpg) center/cover;
-  // background-size: cover;
-  // background-position: center;
-  // border-radius: 0 0 10px 10px;
+  background: url(/imgs-fixas/background-perfil.jpg) center/cover;
   padding: 50px 10px;
   
 
@@ -175,7 +170,7 @@
     display: flex;
     width: 100%;
     justify-content: space-around;
-    margin-top: 20px;
+    margin-top: 10px;
 
 
     & div {
@@ -195,13 +190,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   margin: 15px 20px;
-  padding: 15px 0;
+  padding: 10px 0;
   border-radius: 15px;
   position: relative;
   bottom: 50px;
   background-color: #fff;
   z-index: 2;
-  // box-shadow: #02041163 1px 2px 5px 1px;
   box-shadow: #5e5e5e70 2px 3px 6px 2px;
 
   & .categorias {
@@ -215,8 +209,8 @@
     & div {
       font-size: 30px;
       display: flex;
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       justify-content: center;
       align-items: center;
       margin: 5px 0;
@@ -235,14 +229,18 @@
   }
 }
 
+.titulo-categorias{
+  font-size: 1em;
+  color: #020411;
+  margin: -25px 20px;
+}
 
-// Serviços prestados
+// Serviços prestados e buscador
 
-.servico-ativo, .servico-pendente
- {
+.servico-ativo, .servico-pendente, .historico-servico{
   margin: 40px 20px;
   padding: 10px;
-  background-color: #d1d1d13f;
+  background-color: #fff;
   border-radius: 10px;
   box-shadow: #5e5e5e70 2px 3px 6px 2px;
 
@@ -307,6 +305,7 @@
       font-size: 12px;
       font-weight: bold;
       text-transform: capitalize;
+      text-align: center;
       padding: 5px 10px;
       background-color: #0A8B803a;
       color: #0A8B80;
@@ -322,14 +321,23 @@
     margin-top: 10px;
 
     & .descricao-servico {
-      text-indent: 15px;
+      text-indent: 10px;
       text-align: justify;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
       padding: 20px;
       font-size: 14px;
       font-weight: 500;
       color: #020411;
       background-color: #7979791a;
       margin: 10px;
+
+      & span {
+        color: #666666;
+        font-size: 12px;
+        font-weight: 600;
+      }
     }
 
   }
@@ -345,7 +353,7 @@
       flex-direction: column;
       color: #020411;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 16px;
 
       & span {
         color: gray;
@@ -396,7 +404,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 10px;
+    margin: 10px;
     padding: 5px 0;
     gap: 5px;
     color: #332B23;
@@ -417,7 +425,6 @@
     & button {
       margin: 0;
       width: 150px;
-      // border-radius: 10px;
 
     }
 

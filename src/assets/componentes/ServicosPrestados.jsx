@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ModalConfirmacao from "./ModalConfirmacao"
 import { servicosPrestados, finalizarServico } from "../../service/api";
 import { TiLocation } from "react-icons/ti";
 import { IoLogoWhatsapp } from "react-icons/io";
@@ -9,7 +10,8 @@ import { MdLockOutline } from "react-icons/md";
 const ServicosPrestados = () => {
     const [servPrestados, setServPrestados] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [servicos, setServicos] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [servicoSelecionado, setServicoSelecionado] = useState(null);
     const pedreiro_id = localStorage.getItem("pedreiro_id");
 
     useEffect(() => {
@@ -34,35 +36,42 @@ const ServicosPrestados = () => {
     }, [pedreiro_id]);
 
 
-    const handleFinalizarServico = async (servico_id) => {
-        try {
-            const response = await finalizarServico(servico_id);
+    const handleFinalizarServico = (servico) => {
+        setServicoSelecionado(servico);
+        setIsModalOpen(true);
+    };
 
-            // Atualiza a lista apenas se a finalização for bem-sucedida
-            setServPrestados(prev =>
-                prev.map(servico =>
-                    servico.id === servico_id ? { ...servico, status: "Aguardando confirmação" } : servico
-                )
-            );
-        } catch (error) {
-            console.error("Erro ao finalizar serviço!", error);
-            alert(`Erro ao finalizar serviço: ${error.response?.data?.message || error.message}`);
+    const finalizarServicoConfirmado = async () => {
+        if (servicoSelecionado) {
+            try {
+                await finalizarServico(servicoSelecionado.id); // Chama a função de finalizar serviço
+                setServPrestados((prev) =>
+                    prev.map((servico) =>
+                        servico.id === servicoSelecionado.id
+                            ? { ...servico, status: "finalizado" }
+                            : servico
+                    )
+                );
+                setIsModalOpen(false); // Fecha o modal após a confirmação
+            } catch (error) {
+                console.error("Erro ao finalizar serviço!", error);
+            }
         }
     };
 
     if (loading) return <div>
-        <p style={{textAlign: "center", marginBottom: 10, color: "#020411", fontSize: 16, fontWeight: 600}}>Organizando seus serviços</p>
+        <p style={{ textAlign: "center", marginBottom: 10, color: "#020411", fontSize: 16, fontWeight: 600 }}>Organizando seus serviços</p>
         <div className="spinner"></div>
     </div>;
 
     const servicosEmAndamento = servPrestados.filter(
-        servico => servico.status === "aceito" || servico.status === "aguardando confirmacao"
+        servico => servico.status === "aceito" || servico.status === "aguardando confirmacao" || servico.status === "em andamento"
     );
 
     return (
         <div>
             {/* <hr style={{ margin: 10 }} /> */}
-            <h3 style={{ fontSize: "1em", color: "#020411", margin: "-25px 0", textAlign: "center" }}>Serviços em andamento</h3>
+            <h3 className="titulo-categorias">Serviços em andamento</h3>
             {servicosEmAndamento.length > 0 ? (
                 <div>
                     {servicosEmAndamento.map(servico => (
@@ -77,16 +86,10 @@ const ServicosPrestados = () => {
                                 </div>
                                 <div className="tipo-servico">
                                     <h4>{servico.nome_servico}</h4>
-
-                                    <div className="valor-servico">
-
-                                    </div>
                                 </div>
 
                                 <span className="status-servico">{servico.status}</span>
                             </div>
-
-
 
                             <div className="info-servico">
                                 <p className="descricao-servico">{servico.descricao}</p>
@@ -115,8 +118,8 @@ const ServicosPrestados = () => {
                                     let icon = <MdLockOutline />; // Ícone padrão (cadeado)
                                     let color = "#020411"; // Cor padrão
 
-                                    if (servico.status === "pendente") {
-                                        if (index === 0) icon = <CgSandClock />;
+                                    if (servico.status === "em andamento") {
+                                        if (index === 0) icon = <CgSandClock />; // Relógio no primeiro estágio
                                     } else if (servico.status === "aceito") {
                                         if (index === 0) {
                                             icon = <FaCheck />;
@@ -124,7 +127,7 @@ const ServicosPrestados = () => {
                                         } else if (index === 1) {
                                             icon = <CgSandClock />;
                                         }
-                                    } else if (servico.status === "aguardando confirmação") {
+                                    } else if (servico.status === "aguardando confirmacao") {
                                         if (index < 2) {
                                             icon = <FaCheck />;
                                             color = "#FF8812";
@@ -138,7 +141,7 @@ const ServicosPrestados = () => {
 
                                     return (
                                         <React.Fragment key={step.key}>
-                                            <div className="checkpoint" >
+                                            <div className="checkpoint">
                                                 <div className="circulos" style={{ backgroundColor: color }}>{icon}</div>
                                                 <span>{step.label}</span>
                                             </div>
@@ -146,15 +149,17 @@ const ServicosPrestados = () => {
                                         </React.Fragment>
                                     );
                                 })}
+
                             </div>
 
                             <div className="botoes-servico">
                                 <button className="botao-entrar contato-servico"><span>Falar com <br />Contratante</span><IoLogoWhatsapp style={{ fontSize: 25 }} /></button>
 
                                 <button
-                                    onClick={() => handleFinalizarServico(servico.id)}
+                                    onClick={() => handleFinalizarServico(servico)}
                                     disabled={servico.status !== "aceito"}
                                     className="finalizar-servico botao-entrar"
+                                    style={{ backgroundColor: (servico.status !== "aceito" ? "gray" : "")}}
                                 >
                                     {servico.status === "aguardando confirmacao" ? "Aguardando confirmação" : "Finalizar Serviço"}
                                 </button>
@@ -167,6 +172,13 @@ const ServicosPrestados = () => {
             ) : (
                 <p>Sem serviços em andamento</p>
             )}
+
+            {/* Modal de confirmação */}
+            <ModalConfirmacao
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onConfirm={finalizarServicoConfirmado}
+            />
         </div>
     );
 

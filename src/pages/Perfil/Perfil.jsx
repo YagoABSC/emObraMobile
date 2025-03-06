@@ -1,17 +1,28 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+// Componentes
 import Servicos from "../../assets/componentes/Servicos";
 import BuscardorServico from "../../assets/componentes/BuscadorServico.jsx";
 import Avaliacoes from "../../assets/componentes/Avaliacoes.jsx";
-import useAuth from '../../assets/hooks/UseAuth';
-import { servicosPedreiro, listarPedreiro } from "../../service/api.js";
-import { useNavigate } from "react-router-dom";
+import TotalServicos from "../../assets/componentes/TotalServicos.jsx"
 import ServicosPrestados from "../../assets/componentes/ServicosPrestados";
-import './Perfil.scss';
+import Historico from "../../assets/componentes/Historico.jsx";
+
+// Hooks
+import useAuth from '../../assets/hooks/UseAuth';
+
+// Requisições
+import { servicosPedreiro, listarPedreiro } from "../../service/api.js";
+
+//Icones
 import { IoMdSearch } from "react-icons/io";
 import { MdMapsHomeWork } from "react-icons/md";
 import { MdWorkHistory } from "react-icons/md";
 import { IoMdMore } from "react-icons/io";
-import { API_URL } from "../../service/api";
+
+//Estilo
+import './Perfil.scss';
 
 
 const Perfil = () => {
@@ -116,7 +127,10 @@ const Perfil = () => {
                                         {/* <span onClick={editar}>Editar perfil</span> */}
                                     </div>
                                 </div>
-                                <Avaliacoes pedreiro_id={pedreiro_id} />
+                                <div className="info-especiais">
+                                    <Avaliacoes pedreiro_id={pedreiro_id} />
+                                    <TotalServicos pedreiro_id={pedreiro_id} />
+                                </div>
                             </div>
 
                         </div>
@@ -159,7 +173,7 @@ const Perfil = () => {
                     <div className="conteudo-categoria">
                         {categoria === "minhaObra" && <ServicosPrestados />}
                         {categoria === "buscarObra" && <BuscardorServico />}
-                        {categoria === "historico" && <p>Histórico de serviços (em breve)</p>}
+                        {categoria === "historico" && <Historico />}
                         {categoria === "mais" && <p>Mais opções (em breve)</p>}
                     </div>
                 </div>

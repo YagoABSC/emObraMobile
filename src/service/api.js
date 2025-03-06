@@ -6,16 +6,15 @@ export const API_URL = "http://localhost:3000";
 // Configura o axios para incluir o token no cabeçalho das requisições
 axios.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
-  console.log("Token no interceptor:", token);
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
 });
 
+axios.defaults.withCredentials = true;
 
 // FLUXO DO PEDREIRO
-
 export const verificarToken = async () => {
   try {
     const response = await axios.get(`${API_URL}/user/validar-token`);
@@ -25,7 +24,6 @@ export const verificarToken = async () => {
     return null
   }
 }
-
 
 export const autenticarUsuario = async (identificador, senha) => {
   try {
@@ -49,8 +47,8 @@ export const cadastrarPedreiro = async (nome, telefone, cpf, email, senha, cep) 
   }
 }
 
-// MANIPUTALAÇÃO DE SERVIÇOS
 
+// MANIPUTALAÇÃO DE SERVIÇOS
 export const listarServicos = async () => {
   try {
     const response = await axios.get(`${API_URL}/tipos/servicos`);
@@ -133,7 +131,6 @@ export const finalizarServico = async (servico_id) => {
 }
 
 // REDEFINIÇÃO DE SENHA
-
 export const solicitarCodigo = async (identificador) => {
   try {
     const response = await axios.post(`${API_URL}/solicitar-codigo`, { identificador });
@@ -162,7 +159,6 @@ export const redefinirSenha = async (codigo, novaSenha) => {
 }
 
 // Perfil Pedreiro
-
 export const listarPedreiro = async (id) => {
   try {
     const response = await axios.get(`${API_URL}/pedreiro/${id}`);

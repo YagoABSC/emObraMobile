@@ -8,6 +8,7 @@ import Avaliacoes from "../../assets/componentes/Avaliacoes.jsx";
 import TotalServicos from "../../assets/componentes/TotalServicos.jsx"
 import ServicosPrestados from "../../assets/componentes/ServicosPrestados";
 import Historico from "../../assets/componentes/Historico.jsx";
+import Configuracoes from "../../assets/componentes/Configuracoes.jsx";
 
 // Hooks
 import useAuth from '../../assets/hooks/UseAuth';
@@ -20,6 +21,7 @@ import { IoMdSearch } from "react-icons/io";
 import { MdMapsHomeWork } from "react-icons/md";
 import { MdWorkHistory } from "react-icons/md";
 import { IoMdMore } from "react-icons/io";
+import { IoMdSettings } from "react-icons/io";
 
 //Estilo
 import './Perfil.scss';
@@ -107,26 +109,19 @@ const Perfil = () => {
                     {!loadingPedreiro && pedreiro && (
                         <div className="perfil-detalhes">
 
-                            {/* <div className="cabeçalho-logado">
-                                <a href="/perfil">
-                                    <img src="https://i.ibb.co/KVZRVhw/logov4-preto.png" alt="logo-em-obra"
-                                        className="logo-header" />
-                                </a>
-                                <button onClick={logout} style={{ color: "#FE8813", background: "none" }}>Sair</button>
-                            </div> */}
-
-
                             <div className="info-container">
+
                                 <div className="info-pessoais">
                                     <img
                                         src={pedreiro.img || "/img-perfil/avatar-pedreiro.png"}
                                         alt={pedreiro.nome}
+                                        onClick={editar}
                                     />
                                     <div>
                                         <h2>{pedreiro.nome}</h2>
-                                        {/* <span onClick={editar}>Editar perfil</span> */}
                                     </div>
                                 </div>
+
                                 <div className="info-especiais">
                                     <Avaliacoes pedreiro_id={pedreiro_id} />
                                     <TotalServicos pedreiro_id={pedreiro_id} />
@@ -142,7 +137,6 @@ const Perfil = () => {
                             <div style={{ backgroundColor: categoria === "minhaObra" ? "#FE8813" : "#020411" }}>
                                 <MdMapsHomeWork />
                             </div>
-                            {/* <span>Minhas<br />Obras</span> */}
                         </div>
 
                         <div className={`categorias ${categoria === "buscarObra" ? "ativa" : ""}`}
@@ -150,7 +144,6 @@ const Perfil = () => {
                             <div style={{ backgroundColor: categoria === "buscarObra" ? "#FE8813" : "#020411" }}>
                                 <IoMdSearch />
                             </div>
-                            {/* <span>Buscar<br />Obra</span> */}
                         </div>
 
                         <div className={`categorias ${categoria === "historico" ? "ativa" : ""}`}
@@ -158,15 +151,13 @@ const Perfil = () => {
                             <div style={{ backgroundColor: categoria === "historico" ? "#FE8813" : "#020411" }}>
                                 <MdWorkHistory />
                             </div>
-                            {/* <span>Histórico</span> */}
                         </div>
 
                         <div className={`categorias ${categoria === "mais" ? "ativa" : ""}`}
                             onClick={() => setCategoria("mais")}>
                             <div style={{ backgroundColor: categoria === "mais" ? "#FE8813" : "#020411" }}>
-                                <IoMdMore />
+                                <IoMdSettings />
                             </div>
-                            {/* <span>Mais</span> */}
                         </div>
                     </div>
 
@@ -174,7 +165,7 @@ const Perfil = () => {
                         {categoria === "minhaObra" && <ServicosPrestados />}
                         {categoria === "buscarObra" && <BuscardorServico />}
                         {categoria === "historico" && <Historico />}
-                        {categoria === "mais" && <p>Mais opções (em breve)</p>}
+                        {categoria === "mais" && <Configuracoes />}
                     </div>
                 </div>
             )}

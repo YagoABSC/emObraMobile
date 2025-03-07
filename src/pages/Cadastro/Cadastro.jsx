@@ -16,6 +16,7 @@ const Cadastro = () => {
     const [confirmarSenha, setConfirmarSenha] = useState('');
     const [cep, setCep] = useState('');
     const navigate = useNavigate('');
+    const [formPart, setFormPart] = useState('pt1')
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -53,7 +54,6 @@ const Cadastro = () => {
         }
     }
 
-    const [formPart, setFormPart] = useState('pt1')
 
     return (
         <>

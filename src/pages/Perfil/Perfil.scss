@@ -235,7 +235,7 @@
   margin: -25px 20px;
 }
 
-// Serviços prestados e buscador
+// Serviços prestados, buscador e historico
 
 .servico-ativo, .servico-pendente, .historico-servico{
   margin: 40px 20px;
@@ -451,3 +451,22 @@
 
 
 }
+
+// Configurações
+
+.container-configuracoes{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr ;
+  gap: 15px;
+  margin: 20px;
+
+  & .config-categorias{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+
+  }
+}
+

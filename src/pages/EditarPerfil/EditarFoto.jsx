@@ -50,7 +50,7 @@ const EditarFoto = ({ imgAtual, nome }) => {
                 // Exibir loading enquanto a foto estiver sendo enviada
                 <div className="spinner"></div>
             ) : (
-                <>
+                <>  
                     <img src={preview} alt={nome} />
                     <label htmlFor="upload-img" className="botao-overlay">Editar foto</label>
                     <input type="file" id="upload-img" accept="image/*" style={{ display: "none" }} onChange={handleFileChange} />

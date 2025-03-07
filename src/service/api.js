@@ -12,7 +12,7 @@ axios.interceptors.request.use((config) => {
   return config;
 });
 
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
 // FLUXO DO PEDREIRO
 export const verificarToken = async () => {
@@ -171,7 +171,7 @@ export const listarPedreiro = async (id) => {
 
 export const atualizarPedreiro = async (id, nome, telefone, email, cep, tipos_servicos) => {
   try {
-    console.log("Dados enviados para a API:", { nome, telefone, email, cep, tipos_servicos });
+    // console.log("Dados enviados para a API:", { nome, telefone, email, cep, tipos_servicos });
     const response = await axios.put(`${API_URL}/atualizarPedreiro/${id}`, { nome, telefone, email, cep, tipos_servicos });
     return response.data;
   } catch (error) {

@@ -1,10 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { listarPedreiro, atualizarPedreiro, listarServicos, servicosPedreiro, atualizarFotoPedreiro } from '../../service/api'
+
+// Hooks
 import useAuth from '../../assets/hooks/UseAuth';
-import './Editar.scss';
+
+// Componentes
 import InputControl from '../../assets/componentes/InputControl'
 import EditarFoto from './EditarFoto';
+
+// Requisições
+import { listarPedreiro, atualizarPedreiro, listarServicos, servicosPedreiro } from '../../service/api'
+
+// Icones
+import { IoIosArrowBack } from "react-icons/io";
+import { FaCheck } from "react-icons/fa";
+
+// CSS
+import './Editar.scss';
 
 
 const EditarPerfil = () => {
@@ -19,6 +31,8 @@ const EditarPerfil = () => {
   const [originalData, setOriginalData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [form, setForm] = useState("todos");
+  const formRef = useRef(null);
 
   useEffect(() => {
     const allServicos = async () => {
@@ -43,7 +57,6 @@ const EditarPerfil = () => {
         }
 
         const pedreiro = await listarPedreiro(pedreiro_id); // Passa o ID armazenado
-        console.log("Dados do pedreiro carregados:", pedreiro);
         setDados(pedreiro);
         setOriginalData(pedreiro);
         setLoading(false);
@@ -136,61 +149,103 @@ const EditarPerfil = () => {
 
   return (
     <div className="editar-perfil">
-      <h2>Editar Perfil</h2>
+      <div className='editar-acoes'>
+        <button type="button" onClick={handleCancel} className="cancelar"><IoIosArrowBack /> <span>Voltar</span></button>
+        <button type="button" className="editar-salvar" onClick={() => formRef.current.requestSubmit()}>Salvar  <FaCheck /></button>
+      </div>
 
-      <EditarFoto imgAtual={dados.img} nome={dados.nome} />
+      <div>
+        <h1>Editar Perfil</h1>
+      </div>
 
-      <form onSubmit={handleSubmit}>
+      <div className="container-opcao">
+        <div className="tabs">
+          <input type="radio" id="radio-1" name="tabs" checked="" value="todos" onChange={() => setForm("todos")} />
+          <label className="tab" htmlFor="radio-1">Todos</label>
 
-        <div>
-          <InputControl>
-            <label className="text">Nome:</label>
-            <input className="input" type="text" name="nome" value={dados.nome} onChange={handleChange} required />
-          </InputControl>
-          <InputControl>
-            <label className='text'>Telefone:</label>
-            <input className='input' type="text" name="telefone" value={dados.telefone} onChange={handleChange} required />
-          </InputControl>
-          <InputControl>
-            <label className='text'>Email:</label>
-            <input className='input' type="text" name="email" value={dados.email} onChange={handleChange} required />
-          </InputControl>
-          <InputControl>
-            <label className='text'>CEP:</label>
-            <input className='input' type="text" name="cep" value={dados.cep} onChange={handleChange} required />
-          </InputControl>
+          <input type="radio" id="radio-2" name="tabs" value="foto" onChange={() => setForm("foto")} />
+          <label className="tab" htmlFor="radio-2">Foto</label>
+
+          <input type="radio" id="radio-3" name="tabs" value="dados" onChange={() => setForm("dados")} />
+          <label className="tab" htmlFor="radio-3">Dados</label>
+
+          <input type="radio" id="radio-4" name="tabs" value="servicos" onChange={() => setForm("servicos")} />
+          <label className="tab" htmlFor="radio-4">Serviços</label>
+          <span className="glider"></span>
         </div>
+      </div>
 
-        <div className="radio-inputs">
-          {servicos.length > 0 ? (
-            servicos.map((servico) => (
-              <label key={servico.id}>
-                <input
-                  className="radio-input"
-                  type="checkbox"
-                  name="tipo_servicos"
-                  value={servico.id}
-                  onChange={handleCheckboxChange}
-                  checked={servicosSelecionados.includes(servico.id)}
-                  disabled={!servicosSelecionados.includes(servico.id) && servicosSelecionados.length >= 3}
-                />
-                <span className="radio-tile">
-                  <span className="radio-icon">
-                    <img src={`/imgs-fixas/${servico.img_servico}`} alt={servico.nome_servico} />
-                  </span>
-                  <span className="radio-label">{servico.nome_servico}</span>
-                </span>
-              </label>
-            ))
-          ) : (
-            <p>Carregando...</p>
+
+      <div style={{ backgroundColor: "white", padding: "15px" }}>
+        {(form === "foto" || form === "todos") && (
+          <div className='container-editar-foto'>
+            <div className='separador'>
+              <span>Foto</span>
+              <hr />
+            </div>
+            <EditarFoto imgAtual={dados.img} nome={dados.nome} />
+          </div>
+        )}
+        <form ref={formRef} onSubmit={handleSubmit}>
+          {(form === "dados" || form === "todos") && (
+            <div>
+              <div className='separador'>
+                <span>Dados Pessoais</span>
+                <hr />
+              </div>
+              <InputControl>
+                <label className="text">Nome:</label>
+                <input className="input" type="text" name="nome" value={dados.nome} onChange={handleChange} required />
+              </InputControl>
+              <InputControl>
+                <label className='text'>Telefone:</label>
+                <input className='input' type="text" name="telefone" value={dados.telefone} onChange={handleChange} required />
+              </InputControl>
+              <InputControl>
+                <label className='text'>Email:</label>
+                <input className='input' type="text" name="email" value={dados.email} onChange={handleChange} required />
+              </InputControl>
+              <InputControl>
+                <label className='text'>CEP:</label>
+                <input className='input' type="text" name="cep" value={dados.cep} onChange={handleChange} required />
+              </InputControl>
+            </div>
           )}
-        </div>
-
-
-        <button type="submit" className="avancar-cadastro-pedreiro botao-entrar">Salvar Alterações</button>
-        <button type="button" onClick={handleCancel} className="cancelar avancar-cadastro-pedreiro botao-entrar">Cancelar</button>
-      </form>
+          {(form === "servicos" || form === "todos") && (
+            <div>
+              <div className='separador'>
+                <span>Servicos</span>
+                <hr />
+              </div>
+              <div className="radio-inputs">
+                {servicos.length > 0 ? (
+                  servicos.map((servico) => (
+                    <label key={servico.id}>
+                      <input
+                        className="radio-input"
+                        type="checkbox"
+                        name="tipo_servicos"
+                        value={servico.id}
+                        onChange={handleCheckboxChange}
+                        checked={servicosSelecionados.includes(servico.id)}
+                        disabled={!servicosSelecionados.includes(servico.id) && servicosSelecionados.length >= 3}
+                      />
+                      <span className="radio-tile">
+                        <span className="radio-icon">
+                          <img src={`/imgs-fixas/${servico.img_servico}`} alt={servico.nome_servico} />
+                        </span>
+                        <span className="radio-label">{servico.nome_servico}</span>
+                      </span>
+                    </label>
+                  ))
+                ) : (
+                  <p>Carregando...</p>
+                )}
+              </div>
+            </div>
+          )}
+        </form>
+      </div>
     </div>
   );
 };

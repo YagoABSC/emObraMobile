@@ -4,12 +4,140 @@
     flex-direction: column;
     align-items: center;
 
+    h1 {
+        font-weight: 500;
+        color: #020411a1;
+    }
+
+    .editar-acoes {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        margin: 10px 0 20px 0;
+
+        & button {
+            width: fit-content;
+            background: none;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: #020411a1;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        & .cancelar {}
+
+        & .editar-salvar {
+            background-color: #FE8813;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 14px;
+            box-shadow: 1px 1px 4px 1px #0204113f;
+        }
+    }
+
+    & .container-editar-foto{
+        
+    }
+
+    & .separador {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        margin: 40px 0 10px 0;
+
+        & hr{
+            width: 100%;
+            height: 1px;
+            border: solid 1px #FE8813;
+            ;
+        }
+    }
+
 }
 
+.container-opcao {
+    margin: 20px 0;
+}
+
+/* From Uiverse.io by Pradeepsaranbishnoi */
+.tabs {
+    display: flex;
+    position: relative;
+    background-color: #fff;
+    box-shadow: 0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.15);
+    padding: 0.75rem;
+    border-radius: 99px;
+}
+
+.tabs * {
+    z-index: 2;
+}
+
+.container-opcao input[type="radio"] {
+    display: none;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 80px;
+    font-size: .8rem;
+    color: #FE8813;
+    font-weight: 600;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: color 0.15s ease-in;
+}
+
+
+.container-opcao input[type="radio"]:checked+label {
+    color: #FE8813;
+}
+
+.container-opcao input[id="radio-1"]:checked~.glider {
+    transform: translateX(0);
+}
+
+.container-opcao input[id="radio-2"]:checked~.glider {
+    transform: translateX(100%);
+}
+
+.container-opcao input[id="radio-3"]:checked~.glider {
+    transform: translateX(200%);
+}
+
+.container-opcao input[id="radio-4"]:checked~.glider {
+    transform: translateX(300%);
+}
+
+.glider {
+    position: absolute;
+    display: flex;
+    height: 30px;
+    width: 80px;
+    background-color: #fe89136c;
+    z-index: 1;
+    border-radius: 99px;
+    transition: 0.25s ease-out;
+}
+
+
+
+// Editar foto
 .editar-img {
     position: relative;
-    // display: inline-block;;
     display: flex;
+    width: fit-content;
+    margin: auto;
 
     & img {
         border-radius: 20px;
@@ -37,9 +165,6 @@
     }
 
 }
-
-
-// Editar foto
 
 .modal-overlay {
     position: fixed;

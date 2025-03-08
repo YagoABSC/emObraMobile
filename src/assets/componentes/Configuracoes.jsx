@@ -1,23 +1,36 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 
 const Configuracoes = () => {
 
+    const navigate = useNavigate();
+
+    const editar = () => {
+        navigate("/editar-perfil");
+    }
+    
+    const editarSenha = () => {
+        navigate("/editar-senha");
+    }
+
+    const excluir = () => {
+        navigate("/excluir-conta");
+    }
 
     return (
         <div className="container-configuracoes">
             
             <div className="config-categorias">
-                <span>Editar perfil</span>
+                <span onClick={editar}>Editar perfil</span>
             </div>
             <div className="config-categorias">
-                <span>Editar senha</span>
+                <span onClick={editarSenha}>Editar senha</span>
             </div>
             <div className="config-categorias">
-                <span>Termos e Condições</span>
+                <span >Termos e Condições</span>
             </div>
             <div className="config-categorias">
-                <span>Excluir conta</span>
+                <span onClick={excluir}>Excluir conta</span>
             </div>
         </div>
     )

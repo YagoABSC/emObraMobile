@@ -93,29 +93,34 @@ const EditarPerfil = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    // Verifica se houve mudanças nos dados ou nos serviços selecionados
+    if (JSON.stringify(dados) === JSON.stringify(originalData) &&
+        JSON.stringify(servicosSelecionados) === JSON.stringify(originalData?.tiposServicos?.map(s => s.id))) {
+      navigate("/perfil");
+      return;
+    }
+  
     if (!dados.nome || !dados.telefone || !dados.email || !dados.cep) {
       alert("Preencha todos os campos obrigatórios.");
       return;
     }
-
+  
     if (servicosSelecionados.length === 0) {
       alert("Por favor, selecione pelo menos um serviço.");
       return;
     }
-
-    // Verifique se o array está no formato correto antes do envio
-    console.log("Serviços enviados:", servicosSelecionados);
-
+  
     try {
       await atualizarPedreiro(pedreiro_id, dados.nome, dados.telefone, dados.email, dados.cep, servicosSelecionados);
-      alert("Perfil atualizado com sucesso!");
+      alert(response.mensagem);
       navigate("/perfil");
     } catch (error) {
       console.error("Erro ao atualizar os dados:", error);
-      alert("Erro ao atualizar os dados.");
+      alert(response.mensagem);
     }
   };
+  
 
   // Cancela o edição de perfil
   const handleCancel = () => {

@@ -20,7 +20,6 @@ import { servicosPedreiro, listarPedreiro } from "../../service/api.js";
 import { IoMdSearch } from "react-icons/io";
 import { MdMapsHomeWork } from "react-icons/md";
 import { MdWorkHistory } from "react-icons/md";
-import { IoMdMore } from "react-icons/io";
 import { IoMdSettings } from "react-icons/io";
 
 //Estilo
@@ -108,6 +107,8 @@ const Perfil = () => {
                     {/* Somente exibir as informações do pedreiro se ele já tiver serviços cadastrados */}
                     {!loadingPedreiro && pedreiro && (
                         <div className="perfil-detalhes">
+
+                            <button onClick={logout}>Sair</button>
 
                             <div className="info-container">
 

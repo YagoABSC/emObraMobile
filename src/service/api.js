@@ -195,6 +195,18 @@ export const atualizarFotoPedreiro = async (id, formData) => {
   }
 };
 
+export const excluirConta = async (id, senha) => {
+  try {
+    const response = await axios.delete(`${API_URL}/deletarPedreiro/${id}`, { senha }, {
+      headers: { "Content-Type": "application/json" },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Erro: ", error.response?.data || error.message);
+    throw error;
+  }
+};
+
 // Avaliação Pedreiro
 export const listarAvaliacoes = async (id) => {
   try {

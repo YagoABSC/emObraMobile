@@ -3,42 +3,77 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  position: static;
-  margin-bottom: 15px;
-}
-
-.input-control label.text {
-  font-size: .8rem;
-  color: #020411;
-  font-weight: 500;
   position: relative;
-  top: 0.7rem;
-  margin: 0 0 0 7px;
-  padding: 0 5px;
-  background: #ffffff;
-  width: fit-content;
+  // margin-bottom: 15px;
+  padding: 25px 0 0 0;
+  // max-width: 180px;
 }
 
-.input-control input[type=text].input,
-.input-control input[type=password].input,
-.modal-cards-input-control textarea.modal-cards-textarea,
-.modal-cards-input,
-.modal-cards-select {
+/* Input */
+.form-input {
+  font-family: inherit;
+  width: 100%;
   padding: 10px;
-  font-size: .9rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #636363;
   line-height: 25px;
-  border: 2px #636363 solid;
+  border: 2px solid #636363;
   border-radius: 5px;
   background: transparent;
   transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
 }
 
-.input-control input[type=text].input:focus,
-.input-control input[type=password].input:focus,
-.modal-cards-input-control textarea.modal-cards-textarea:focus,
-.modal-cards-input:focus,
-.modal-cards-select:focus {
-  outline: none;
-  border-color: #020411;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+/* Placeholder oculto para animação */
+.form-input::placeholder {
+  color: transparent;
+}
+
+/* Animação da label ao digitar */
+.form-input:placeholder-shown ~ .form-label {
+  font-size: .9rem;
+  cursor: text;
+  top: 40px;
+  margin-left: 15px;
+}
+
+/* Estilo da label */
+.form-label {
+  position: absolute;
+  top: 16px;
+  margin-left: 10px;
+  padding: 0 5px;
+  display: block;
+  font-size: 0.9rem;
+  color: #636363;
+  background-color: #FFFFFF;
+  font-weight: 500;
+  transition: 0.2s;
+  pointer-events: none;
+}
+
+/* Efeito ao focar no input */
+.form-input:focus {
+  border-color: #FE8813;
+  font-weight: 500;
+  color: #020411;
+}
+
+/* Efeito ao focar na label */
+.form-input:focus ~ .form-label {
+  color: #FE8813;
+  font-weight: 500;
+  font-size: 0.8rem;
+  top: 18px;
+  padding: 0 5px;
+  display: block;
+  background-color: #FFFFFF;
+  transition: 0.2s;
+}
+
+/* Reset no input */
+.form-input:required, 
+.form-input:invalid {
+  box-shadow: none;
 }

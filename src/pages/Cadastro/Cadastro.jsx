@@ -16,7 +16,7 @@ const Cadastro = () => {
     const [confirmarSenha, setConfirmarSenha] = useState('');
     const [cep, setCep] = useState('');
     const navigate = useNavigate('');
-    const [formPart, setFormPart] = useState('pt1')
+    const [formPart, setFormPart] = useState('pt1');
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -54,7 +54,6 @@ const Cadastro = () => {
         }
     }
 
-
     return (
         <>
             <div className="container-responsivo">
@@ -69,48 +68,86 @@ const Cadastro = () => {
                         <div id="cadastroInicio" className="avancar-cadastro-pedreiro">
                             {formPart === 'pt1' &&
                                 <div>
-                                    <InputControl>
-                                        <label htmlFor="nome" className="text">Nome:</label>
-                                        <input type="text" name="nome" required className="input" value={nome} onChange={(e) => setNome(e.target.value)} />
-                                    </InputControl>
+                                    <InputControl
+                                        label="Nome e sobrenome"
+                                        id="nome"
+                                        name="nome"
+                                        value={nome}
+                                        onChange={(e) => setNome(e.target.value)}
+                                        required={true}
+                                    />
+                                    
+                                    <InputControl
+                                        label="CPF"
+                                        id="cpf"
+                                        name="cpf"
+                                        value={cpf}
+                                        onChange={(e) => setCpf(e.target.value)}
+                                        required={true}
+                                    />
 
-                                    <InputControl>
-                                        <label htmlFor="cpf" className="text">CPF:</label>
-                                        <input type="text" name="cpf" required className="input" value={cpf} onChange={(e) => setCpf(e.target.value)} />
-                                    </InputControl>
-                                    <InputControl>
-                                        <label htmlFor="cep" className="text">CEP:</label>
-                                        <input type="text" name="cep" required className="input" value={cep} onChange={(e) => setCep(e.target.value)} />
-                                    </InputControl>
+                                    <InputControl
+                                        label="CEP"
+                                        id="cep"
+                                        name="cep"
+                                        value={cep}
+                                        onChange={(e) => setCep(e.target.value)}
+                                        required={true}
+                                    />
+
                                     <button className="avancar-cadastro-pedreiro botao-entrar" onClick={() => setFormPart('pt2')}> Avançar</button>
                                 </div>
                             }
+
                             {formPart === 'pt2' &&
                                 <div>
-                                    <InputControl>
-                                        <label htmlFor="telefone" className="text">Telefone:</label>
-                                        <input type="text" name="telefone" className="input" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
-                                    </InputControl>
-                                    <InputControl>
-                                        <label htmlFor="email" className="text">Email:</label>
-                                        <input type="text" name="email" required className="input" value={email} onChange={(e) => setEmail(e.target.value)} />
-                                    </InputControl>
-                                    <InputControl>
-                                        <label htmlFor="senha" className="text">Senha:</label>
-                                        <input type="password" name="senha" required className="input" value={senha} onChange={(e) => setSenha(e.target.value)} />
-                                    </InputControl>
-                                    <InputControl>
-                                        <label htmlFor="confirmarSenha" className="text">Confirmar senha:</label>
-                                        <input type="password" name="confirmarSenha" required className="input" value={confirmarSenha} onChange={(e) => setConfirmarSenha(e.target.value)} />
-                                    </InputControl>
+                                    <InputControl
+                                        label="Telefone"
+                                        id="telefone"
+                                        name="telefone"
+                                        value={telefone}
+                                        onChange={(e) => setTelefone(e.target.value)}
+                                    />
+
+                                    <InputControl
+                                        label="Email"
+                                        id="email"
+                                        name="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        required={true}
+                                    />
+
+                                    <InputControl
+                                        label="Senha"
+                                        id="senha"
+                                        name="senha"
+                                        value={senha}
+                                        onChange={(e) => setSenha(e.target.value)}
+                                        required={true}
+                                        type="password"
+                                    />
+
+                                    <InputControl
+                                        label="Confirmar senha"
+                                        id="confirmarSenha"
+                                        name="confirmarSenha"
+                                        value={confirmarSenha}
+                                        onChange={(e) => setConfirmarSenha(e.target.value)}
+                                        required={true}
+                                        type="password"
+                                    />
+                                    
                                     <div className="manter-conectado cadastro-tipo-servico">
                                         <div>
                                             <input type="checkbox" id="conectado" name="conectado" />
                                             <label htmlFor="conectado">Aceitar termos e condições de uso de dados </label>
                                         </div>
                                     </div>
+
                                     <div className="container-buttons">
-                                        <button type="submit" className="botao-entrar cadastro-tipo-servico" onClick={() => setFormPart('pt1')} style={{ backgroundColor: "white", color: "#FE8813", border: "2px solid #FE8813" }}>Voltar</button>
+                                        <button type="button" className="botao-entrar cadastro-tipo-servico" onClick={() => setFormPart('pt1')} style={{ backgroundColor: "white", color: "#FE8813", border: "2px solid #FE8813" }}>Voltar</button>
+                                        
                                         <button type="submit" className="botao-entrar cadastro-tipo-servico">Cadastrar</button>
                                     </div>
                                 </div>
@@ -120,7 +157,6 @@ const Cadastro = () => {
                     <Link to="/login" className="outras-acoes-login">Já tenho conta</Link>
                 </Containerform>
             </div>
-
         </>
     )
 }

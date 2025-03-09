@@ -8,7 +8,6 @@ const Containerform = ({ children }) => {
                 <div className="banner-logo">
                     <h1><a href="/"><img src="https://i.ibb.co/KVZRVhw/logov4-preto.png" alt="logo-em-obra"
                         className="logo-header" /></a></h1>
-                    <h3>Facilitando <span>conexões</span> construindo <span>sonhos</span></h3>
                 </div>
 
                 <div className="container">

@@ -69,39 +69,36 @@ const Servicos = ({ pedreiro_id }) => {
 
         <div>
             <h3>Agora, escolha os tipos de serviços que deseja oferecer</h3>
-            <form className="formServicos" onSubmit={handleSubmit}>
+            <form className="formServicos radio-inputs" onSubmit={handleSubmit}>
 
 
-                    {servicos.length > 0 ? (
-                        servicos.map((servico) => (
-                            <div className="cadastro-pedreiro-checkbox" key={servico.id}>
-                                <input
-                                    type="checkbox"
-                                    id={servico.nome_servico}
-                                    name="tipo_servicos"
-                                    value={servico.id}
-                                    onChange={handleCheckboxChange}
-                                    checked={servicosSelecionados.includes(servico.id)}
-                                    disabled={!servicosSelecionados.includes(servico.id) && servicosSelecionados.length >= 3}
-                                />
-                                <label htmlFor={servico.nome_servico}>
-                                    <div className="icone-servico">
-                                        <img src={`/imgs-fixas/${servico.img_servico}`} alt={servico.nome_servico} />
-                                    </div>
-                                    <div className="info-servicos-cadastro">
-                                        <span>{servico.nome_servico}</span>
-                                        <p>{servico.desc_servico}</p>
-                                    </div>
-                                </label>
-                            </div>
-                        ))
-                    ) : (
-                        <p>Carregando...</p>
-                    )}
+                {servicos.length > 0 ? (
+                    servicos.map((servico) => (
+                        <label key={servico.id}>
+                            <input
+                                className="radio-input"
+                                type="checkbox"
+                                name="tipo_servicos"
+                                value={servico.id}
+                                onChange={handleCheckboxChange}
+                                checked={servicosSelecionados.includes(servico.id)}
+                                disabled={!servicosSelecionados.includes(servico.id) && servicosSelecionados.length >= 3}
+                            />
+                            <span className="radio-tile">
+                                <span className="radio-icon">
+                                    <img src={`/imgs-fixas/${servico.img_servico}`} alt={servico.nome_servico} />
+                                </span>
+                                <span className="radio-label">{servico.nome_servico}</span>
+                            </span>
+                        </label>
+                    ))
+                ) : (
+                    <p>Carregando...</p>
+                )}
 
-                    <button disabled={!pedreiro_id} onClick={handleSubmit}>
-                        Cadastrar Serviços
-                    </button>
+                <button disabled={!pedreiro_id} onClick={handleSubmit}>
+                    Cadastrar Serviços
+                </button>
             </form>
         </div>
 

@@ -40,39 +40,40 @@ const Login = () => {
     return (
         <>
 
-            <Containerform>
-                <h2>Entrar</h2>
-                {/* <div id="message" className="alert alert-info" style="display: none;"></div> */}
-                <form onSubmit={handleLogin} id="loginForm">
-
-                    <InputControl>
-                        <label htmlFor="identifier" className="text">CPF ou Email</label>
-                        <input type="text" id="identifier" name="identifier" placeholder="Digite seu email ou CPF"
-                            required className="input" value={identificador} onChange={(e) => setIdentificador(e.target.value)} />
-                    </InputControl>
-
-                    <InputControl>
-                        <label htmlFor="senha" className="text">Senha</label>
-                        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required
-                            className="input" value={senha} onChange={(e) => setSenha(e.target.value)} />
-                    </InputControl>
-
-                    <div className="manter-conectado">
-                        <div>
-                            <input type="checkbox" id="conectado" name="conectado" />
-                            <label htmlFor="conectado">Manter-se conectado</label>
-                        </div>
-                    </div>
-
-                    <button type="submit" className="botao-entrar">Entrar</button>
-                    {message && <p>{message}</p>}
-
-                </form>
-                <div >
-                    <Link to="/cadastro" className="outras-acoes-login">Cadastre-se</Link>
-                    <Link to="/redefinir-senha" className="outras-acoes-login">Esqueceu sua senha?</Link>
+            <div className="container-responsivo">
+                <div className="login-image">
+                    <img src="/imgs-fixas/login-tablet.jpg" alt="Login para tablets e desktops" />
                 </div>
-            </Containerform>
+
+                <Containerform>
+                    <h2>Entrar</h2>
+                    {/* <div id="message" className="alert alert-info" style="display: none;"></div> */}
+                    <form onSubmit={handleLogin} id="loginForm">
+                        <InputControl>
+                            <label htmlFor="identifier" className="text">CPF ou Email</label>
+                            <input type="text" id="identifier" name="identifier" placeholder="Digite seu email ou CPF"
+                                required className="input" value={identificador} onChange={(e) => setIdentificador(e.target.value)} />
+                        </InputControl>
+                        <InputControl>
+                            <label htmlFor="senha" className="text">Senha</label>
+                            <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required
+                                className="input" value={senha} onChange={(e) => setSenha(e.target.value)} />
+                        </InputControl>
+                        <div className="manter-conectado">
+                            <div>
+                                <input type="checkbox" id="conectado" name="conectado" />
+                                <label htmlFor="conectado">Manter-se conectado</label>
+                            </div>
+                        </div>
+                        <button type="submit" className="botao-entrar">Entrar</button>
+                        {message && <p>{message}</p>}
+                    </form>
+                    <div >
+                        <Link to="/cadastro" className="outras-acoes-login">Cadastre-se</Link>
+                        <Link to="/redefinir-senha" className="outras-acoes-login">Esqueceu sua senha?</Link>
+                    </div>
+                </Containerform>
+            </div>
 
         </>
 

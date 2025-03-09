@@ -9,7 +9,7 @@ import { excluirConta } from "../../service/api";
 
 const ExcluirConta = () => {
 
-    // useAuth();
+    useAuth();
 
     const navigate = useNavigate();
     const pedreiro_id = localStorage.getItem('pedreiro_id');

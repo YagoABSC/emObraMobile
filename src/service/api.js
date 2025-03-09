@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export const API_URL = "https://apiobra.vercel.app";
-// export const API_URL = "http://localhost:3000";
+// export const API_URL = "https://apiobra.vercel.app";
+export const API_URL = "http://localhost:3000";
 
 // Configura o axios para incluir o token no cabeçalho das requisições
 axios.interceptors.request.use((config) => {
@@ -197,7 +197,7 @@ export const atualizarFotoPedreiro = async (id, formData) => {
 
 export const excluirConta = async (id, senha) => {
   try {
-    const response = await axios.delete(`${API_URL}/deletarPedreiro/${id}`, { senha }, {
+    const response = await axios.post(`${API_URL}/deletarPedreiro`, { id, senha }, {
       headers: { "Content-Type": "application/json" },
     });
     return response.data;
@@ -218,7 +218,7 @@ export const listarAvaliacoes = async (id) => {
   }
 }
 
-export const totalServicosFinalizados = async(id) => {
+export const totalServicosFinalizados = async (id) => {
   try {
     const response = await axios.get(`${API_URL}/total-servicos-finalizados/${id}`);
     return response.data;

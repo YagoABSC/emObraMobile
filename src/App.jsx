@@ -37,9 +37,9 @@ function App() {
             </a>
           </h1>
         </div>
-
-        <div className="loader" style={{ marginTop: "30px" }}>
-          <p>Construindo</p>
+        <div className="loader">
+        <p>Construindo</p>
+          
           <div className="words">
             <span className="word"></span>
             <span className="word">pontes</span>
@@ -67,11 +67,9 @@ function App() {
       </div>
 
       <div className="begin-btns">
-        <div className="banner-logo">
-          <h3 style={{ color: "white" }}>
+          <h3 style={{ color: "white", textAlign: "center" }}>
             Facilitando conexões, construindo sonhos.
           </h3>
-        </div>
         <Link to="/cadastro">
           <button className="botao-entrar">Criar uma conta</button>
         </Link>

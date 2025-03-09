@@ -8,11 +8,11 @@
 }
 
 .input-control label.text {
-  font-size: .9rem;
+  font-size: .8rem;
   color: #020411;
-  font-weight: 600;
+  font-weight: 500;
   position: relative;
-  top: 0.8rem;
+  top: 0.7rem;
   margin: 0 0 0 7px;
   padding: 0 5px;
   background: #ffffff;
@@ -25,10 +25,11 @@
 .modal-cards-input,
 .modal-cards-select {
   padding: 10px;
-  font-size: 1rem;
-  border: 2px #020411 solid;
+  font-size: .9rem;
+  line-height: 25px;
+  border: 2px #636363 solid;
   border-radius: 5px;
-  background: #ffffff;
+  background: transparent;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
@@ -39,5 +40,5 @@
 .modal-cards-select:focus {
   outline: none;
   border-color: #020411;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }

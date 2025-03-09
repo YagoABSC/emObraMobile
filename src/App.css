@@ -23,6 +23,8 @@
 .begin-btns {
     display: flex;
     flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 
@@ -78,19 +80,21 @@
     color: #5e5c5c;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
-    font-size: 25px;
+    font-size: 18px;
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
     height: 40px;
     padding: 10px 10px;
-    display: -webkit-box;
-    display: -ms-flexbox;
+    /* display: -webkit-box;
+    display: -ms-flexbox; */
     display: flex;
     border-radius: 8px;
+    width: fit-content;
 }
 
 .words {
     overflow: hidden;
+    /* text-align: center; */
 }
 
 .word {

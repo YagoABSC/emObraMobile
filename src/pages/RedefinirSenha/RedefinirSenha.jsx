@@ -59,53 +59,50 @@ const RedefinirSenha = () => {
 
     return (
         <>
-            <Containerform>
-                <h2>Redefinir sua senha</h2>
-
-                {formPart === 'pt1' && (
-
-                    <form style={{ width: '100%' }} onSubmit={handleEnviarCodigo}>
-                        <InputControl>
-                            <label htmlFor="identificador" className="text">CPF ou Email:</label>
-                            <input type="text" name="identificador" required className="input" placeholder="Informe seu email ou CPF" value={identificador} onChange={(e) => setIdentificador(e.target.value)} />
-                        </InputControl>
-
-                        <button type="submit" className="botao-entrar">Enviar</button>
-                        {erro && <p style={{ color: 'red' }}>{erro}</p>}
-                    </form>
-
-                )}
-
+            <div className="container-responsivo">
                 
-
-                {formPart === 'pt2' && (
-                    <form style={{ width: '100%' }} onSubmit={handleRedefinirSenha}>
-                        <InputControl>
-                            <label htmlFor="codigo" className="text">Codigo:</label>
-                            <input type="text" name="codigo" required className="input" placeholder="Código de recuperação" value={codigo} onChange={(e) => setCodigo(e.target.value)} />
-                        </InputControl>
-                        <InputControl>
-                            <label htmlFor="novaSenha" className="text">Nova senha:</label>
-                            <input type="password" name="novaSenha" required className="input" placeholder="Digite a nova senha" value={novaSenha} onChange={(e) => setNovaSenha(e.target.value)} />
-                        </InputControl>
-                        <InputControl>
-                            <label htmlFor="confirmarSenha" className="text">Confirmar nova senha:</label>
-                            <input type="password" name="confirmarSenha" required className="input" placeholder="Confirmar nova senha" value={confirmarSenha} onChange={(e) => setConfirmarSenha(e.target.value)} />
-                        </InputControl>
-
-                        <button type="submit" className="botao-entrar">Salvar nova senha</button>
-                        {erro && <p style={{ color: 'red' }}>{erro}</p>}
-                    </form>
-                    
-                )}
-
-                <div >
-                    <Link to="/login" className="outras-acoes-login">Entrar na conta</Link>
-                    <Link to="/cadastro" className="outras-acoes-login">Cadastre-se</Link>
-
+                <div className="login-image">
+                    <img src="/imgs-fixas/login-tablet.jpg" alt="Login para tablets e desktops" />
                 </div>
 
-            </Containerform>
+                <Containerform>
+                    <h2>Redefinir sua senha</h2>
+                    {formPart === 'pt1' && (
+                        <form style={{ width: '100%' }} onSubmit={handleEnviarCodigo}>
+                            <InputControl>
+                                <label htmlFor="identificador" className="text">CPF ou Email:</label>
+                                <input type="text" name="identificador" required className="input" placeholder="Informe seu email ou CPF" value={identificador} onChange={(e) => setIdentificador(e.target.value)} />
+                            </InputControl>
+                            <button type="submit" className="botao-entrar">Enviar</button>
+                            {erro && <p style={{ color: 'red' }}>{erro}</p>}
+                        </form>
+                    )}
+
+                    {formPart === 'pt2' && (
+                        <form style={{ width: '100%' }} onSubmit={handleRedefinirSenha}>
+                            <InputControl>
+                                <label htmlFor="codigo" className="text">Codigo:</label>
+                                <input type="text" name="codigo" required className="input" placeholder="Código de recuperação" value={codigo} onChange={(e) => setCodigo(e.target.value)} />
+                            </InputControl>
+                            <InputControl>
+                                <label htmlFor="novaSenha" className="text">Nova senha:</label>
+                                <input type="password" name="novaSenha" required className="input" placeholder="Digite a nova senha" value={novaSenha} onChange={(e) => setNovaSenha(e.target.value)} />
+                            </InputControl>
+                            <InputControl>
+                                <label htmlFor="confirmarSenha" className="text">Confirmar nova senha:</label>
+                                <input type="password" name="confirmarSenha" required className="input" placeholder="Confirmar nova senha" value={confirmarSenha} onChange={(e) => setConfirmarSenha(e.target.value)} />
+                            </InputControl>
+                            <button type="submit" className="botao-entrar">Salvar nova senha</button>
+                            {erro && <p style={{ color: 'red' }}>{erro}</p>}
+                        </form>
+
+                    )}
+                    <div >
+                        <Link to="/login" className="outras-acoes-login">Entrar na conta</Link>
+                        <Link to="/cadastro" className="outras-acoes-login">Cadastre-se</Link>
+                    </div>
+                </Containerform>
+            </div>
         </>
     )
 }

@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { cadastrarPedreiro } from "../../service/api.js";
 
+// CSS
 import './Cadastro.scss';
+
+// Componentes
 import Containerform from '../../assets/componentes/Containerform.jsx';
 import InputControl from '../../assets/componentes/InputControl';
 
@@ -60,7 +63,7 @@ const Cadastro = () => {
 
                 <div className="login-image">
                     <img src="/imgs-fixas/login-tablet.jpg" alt="Login para tablets e desktops" />
-                </div>  
+                </div>
 
                 <Containerform>
                     <h2>Criar conta</h2>
@@ -76,23 +79,34 @@ const Cadastro = () => {
                                         onChange={(e) => setNome(e.target.value)}
                                         required={true}
                                     />
-                                    
+
                                     <InputControl
                                         label="CPF"
                                         id="cpf"
                                         name="cpf"
-                                        value={cpf}
+                                        value={cpf || ""} // Garante que não seja undefined
                                         onChange={(e) => setCpf(e.target.value)}
                                         required={true}
+                                        mask={{
+                                            delimiters: [".", ".", "-"],
+                                            blocks: [3, 3, 3, 2],
+                                            numericOnly: true,
+                                        }}
                                     />
+
 
                                     <InputControl
                                         label="CEP"
                                         id="cep"
                                         name="cep"
-                                        value={cep}
+                                        value={cep || ""}
                                         onChange={(e) => setCep(e.target.value)}
                                         required={true}
+                                        mask={{
+                                            delimiters: ["-"],
+                                            blocks: [5, 3],
+                                            numericOnly: true,
+                                        }}
                                     />
 
                                     <button className="avancar-cadastro-pedreiro botao-entrar" onClick={() => setFormPart('pt2')}> Avançar</button>
@@ -101,12 +115,15 @@ const Cadastro = () => {
 
                             {formPart === 'pt2' &&
                                 <div>
+
                                     <InputControl
                                         label="Telefone"
                                         id="telefone"
                                         name="telefone"
                                         value={telefone}
-                                        onChange={(e) => setTelefone(e.target.value)}
+                                        onChange={(e) => setTelefone(e.target.value)} // Atualiza o estado com o valor
+                                        required={true}
+                                        isPhone={true} // Indica que este é um campo de telefone
                                     />
 
                                     <InputControl
@@ -137,7 +154,7 @@ const Cadastro = () => {
                                         required={true}
                                         type="password"
                                     />
-                                    
+
                                     <div className="manter-conectado cadastro-tipo-servico">
                                         <div>
                                             <input type="checkbox" id="conectado" name="conectado" />
@@ -147,7 +164,7 @@ const Cadastro = () => {
 
                                     <div className="container-buttons">
                                         <button type="button" className="botao-entrar cadastro-tipo-servico" onClick={() => setFormPart('pt1')} style={{ backgroundColor: "white", color: "#FE8813", border: "2px solid #FE8813" }}>Voltar</button>
-                                        
+
                                         <button type="submit" className="botao-entrar cadastro-tipo-servico">Cadastrar</button>
                                     </div>
                                 </div>

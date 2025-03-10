@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
+
+// Requisições
 import { cadastrarPedreiro } from "../../service/api.js";
 
 // CSS
@@ -8,7 +10,7 @@ import './Cadastro.scss';
 // Componentes
 import Containerform from '../../assets/componentes/Containerform.jsx';
 import InputControl from '../../assets/componentes/InputControl';
-import PhoneInput from '../../assets/componentes/PhoneInput'; // Ajuste o caminho conforme necessário
+import PhoneInput from '../../assets/componentes/PhoneInput'; 
 
 
 const Cadastro = () => {

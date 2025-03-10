@@ -6,6 +6,8 @@ import useAuth from '../../assets/hooks/UseAuth';
 
 // Componentes
 import InputControl from '../../assets/componentes/InputControl'
+import PhoneInput from '../../assets/componentes/PhoneInput';
+
 import EditarFoto from './EditarFoto';
 
 // Requisições
@@ -93,24 +95,24 @@ const EditarPerfil = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Verifica se houve mudanças nos dados ou nos serviços selecionados
     if (JSON.stringify(dados) === JSON.stringify(originalData) &&
-        JSON.stringify(servicosSelecionados) === JSON.stringify(originalData?.tiposServicos?.map(s => s.id))) {
+      JSON.stringify(servicosSelecionados) === JSON.stringify(originalData?.tiposServicos?.map(s => s.id))) {
       navigate("/perfil");
       return;
     }
-  
+
     if (!dados.nome || !dados.telefone || !dados.email || !dados.cep) {
       alert("Preencha todos os campos obrigatórios.");
       return;
     }
-  
+
     if (servicosSelecionados.length === 0) {
       alert("Por favor, selecione pelo menos um serviço.");
       return;
     }
-  
+
     try {
       await atualizarPedreiro(pedreiro_id, dados.nome, dados.telefone, dados.email, dados.cep, servicosSelecionados);
       alert(response.mensagem);
@@ -120,7 +122,6 @@ const EditarPerfil = () => {
       alert(response.mensagem);
     }
   };
-  
 
   // Cancela o edição de perfil
   const handleCancel = () => {
@@ -198,22 +199,38 @@ const EditarPerfil = () => {
                 <span>Dados Pessoais</span>
                 <hr />
               </div>
-              <InputControl>
-                <label className="text">Nome:</label>
-                <input className="input" type="text" name="nome" value={dados.nome} onChange={handleChange} required />
-              </InputControl>
-              <InputControl>
-                <label className='text'>Telefone:</label>
-                <input className='input' type="text" name="telefone" value={dados.telefone} onChange={handleChange} required />
-              </InputControl>
-              <InputControl>
-                <label className='text'>Email:</label>
-                <input className='input' type="text" name="email" value={dados.email} onChange={handleChange} required />
-              </InputControl>
-              <InputControl>
-                <label className='text'>CEP:</label>
-                <input className='input' type="text" name="cep" value={dados.cep} onChange={handleChange} required />
-              </InputControl>
+              <InputControl
+                label="Nome"
+                id="nome"
+                name="nome"
+                value={dados?.nome || ""}
+                onChange={handleChange}
+                required
+              />
+              
+              <PhoneInput
+                label="Telefone"
+                value={dados?.telefone || ""}
+                onChange={(value) => setDados((prev) => ({ ...prev, telefone: value }))}
+                required
+              />
+              <InputControl
+                label="E-mail"
+                id="email"
+                name="email"
+                type="email"
+                value={dados?.email || ""}
+                onChange={handleChange}
+                required
+              />
+              <InputControl
+                label="CEP"
+                id="cep"
+                name="cep"
+                value={dados?.cep || ""}
+                onChange={handleChange}
+                required
+              />
             </div>
           )}
           {(form === "servicos" || form === "todos") && (

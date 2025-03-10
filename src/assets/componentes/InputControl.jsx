@@ -15,13 +15,7 @@ const InputControl = ({
     labelClass = "",
     style = {},
     mask = null, // Adicionando máscara opcional
-    isPhone = false,
 }) => {
-
-    const phoneMask = {
-        phone: true,
-        phoneRegionCode: "BR", // Define o código da região (Brasil) para +55
-    };
 
     return (
 

@@ -8,6 +8,8 @@ import './Cadastro.scss';
 // Componentes
 import Containerform from '../../assets/componentes/Containerform.jsx';
 import InputControl from '../../assets/componentes/InputControl';
+import PhoneInput from '../../assets/componentes/PhoneInput'; // Ajuste o caminho conforme necessário
+
 
 const Cadastro = () => {
 
@@ -116,14 +118,11 @@ const Cadastro = () => {
                             {formPart === 'pt2' &&
                                 <div>
 
-                                    <InputControl
+                                    <PhoneInput
                                         label="Telefone"
-                                        id="telefone"
-                                        name="telefone"
                                         value={telefone}
-                                        onChange={(e) => setTelefone(e.target.value)} // Atualiza o estado com o valor
+                                        onChange={setTelefone}
                                         required={true}
-                                        isPhone={true} // Indica que este é um campo de telefone
                                     />
 
                                     <InputControl

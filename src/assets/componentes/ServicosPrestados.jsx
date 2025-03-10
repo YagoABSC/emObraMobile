@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
+
+// Modal
 import ModalConfirmacao from "./ModalConfirmacao"
+
+// Requisições
 import { servicosPrestados, finalizarServico } from "../../service/api";
+
+// Icones
 import { TiLocation } from "react-icons/ti";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { FaCheck } from "react-icons/fa";

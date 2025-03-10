@@ -84,15 +84,23 @@ const RedefinirSenha = () => {
 
                     {formPart === 'pt2' && (
                         <form style={{ width: '100%' }} onSubmit={handleRedefinirSenha}>
+                            
                             <InputControl
                                 label="Código:"
                                 id="codigo"
                                 name="codigo"
                                 value={codigo}
-                                onChange={(e) => setCodigo(e.target.value)}
+                                onChange={(e) => {
+                                    const onlyNumbers = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+                                    setCodigo(onlyNumbers.slice(0, 6)); // Limita a 6 caracteres
+                                }}
                                 required={true}
                                 placeholder="Código de recuperação"
+                                type="text"
+                                inputClass="codigo-input"
+                                style={{ textAlign: "center", letterSpacing: "3px" }} // Opcional, para melhorar a visibilidade
                             />
+
                             <InputControl
                                 label="Nova senha:"
                                 id="novaSenha"

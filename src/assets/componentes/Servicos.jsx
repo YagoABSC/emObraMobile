@@ -74,7 +74,7 @@ const Servicos = ({ pedreiro_id }) => {
 
         try {
             const response = await vincularServicos(pedreiro_id, servicosSelecionados);
-            alert(response.message); // Exibe mensagem de sucesso
+            // alert(response.message); 
             navigate('/perfil');
         } catch (error) {
             alert("Erro ao vincular serviços. " + (error.response?.data?.message || ""));

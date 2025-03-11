@@ -9,6 +9,7 @@ import Perfil from './pages/Perfil/Perfil.jsx'
 import RedefinirSenha from './pages/RedefinirSenha/RedefinirSenha.jsx'
 import EditarPerfil from './pages/EditarPerfil/EditarPerfil.jsx'
 import ExcluirConta from './pages/ExcluirConta/ExcluirConta.jsx'
+import Servicos from './assets/componentes/Servicos.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -21,6 +22,7 @@ createRoot(document.getElementById('root')).render(
         <Route path='redefinir-senha' element={<RedefinirSenha />}/>
         <Route path='editar-perfil' element={<EditarPerfil />}/>
         <Route path='excluir-conta' element={<ExcluirConta />}/>
+        <Route path='servicos' element={<Servicos />} />
       </Routes>
     </Router>
   </StrictMode>,

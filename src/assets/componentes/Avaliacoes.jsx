@@ -27,13 +27,19 @@ const Avaliacoes = ({ pedreiro_id }) => {
 
 
     return (
-            <div>
-                <h5>Avaliação</h5>
+        <div>
+            <h5>Avaliação</h5>
+            {loading ? (
+                <span>Carregando...</span>
+            ) : isNaN(avaliacao) || avaliacao === 0 ? (
+                <p>Nenhuma avaliação</p>
+            ) : (
                 <div className="info-avaliacao">
-                    <span>{loading ? "Carregando..." : `${avaliacao}/5.0`} </span>
-                    <FaStar style={{color: "yellow", fontSize: "16px"}} />
+                    <span>{`${avaliacao}/5.0`}</span>
+                    <FaStar style={{ color: "yellow", fontSize: "16px" }} />
                 </div>
-            </div>
+            )}
+        </div>
     )
 }
 

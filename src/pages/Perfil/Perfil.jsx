@@ -70,7 +70,7 @@ const Perfil = () => {
         };
 
         fetchServicos();
-    }, [pedreiro_id]);
+    }, [pedreiro_id, servicos]);
 
     // Informações do Pedreiro
     useEffect(() => {

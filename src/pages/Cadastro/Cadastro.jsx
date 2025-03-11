@@ -11,6 +11,7 @@ import './Cadastro.scss';
 import Containerform from '../../assets/componentes/Containerform.jsx';
 import InputControl from '../../assets/componentes/InputControl';
 import PhoneInput from '../../assets/componentes/PhoneInput';
+import Loading from "../../assets/componentes/Loading.jsx";
 
 // Modal
 import ModalTermo from "../../assets/componentes/ModalTermo.jsx"; // Importando o modal
@@ -155,9 +156,7 @@ const Cadastro = () => {
             />
 
             {isLoading && (
-                <div className="loading-overlay" style={{position: "fixed", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0, 0, 0, 0.5)", display: "flex", justifyContent: "center", alignItems: "center", zIndex: "9999"}}>
-                    <div className="spinner"></div>
-                </div>
+                <Loading />
             )}
 
 

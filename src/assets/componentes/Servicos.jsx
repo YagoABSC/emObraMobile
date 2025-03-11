@@ -1,10 +1,23 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+// Requisições
 import { listarServicos, vincularServicos } from "../../service/api";
+
+// Hooks
+import useAuth from "../hooks/UseAuth";
+
+// Componentes
+import Loading from "./Loading"
 
 const Servicos = ({ pedreiro_id }) => {
 
+    useAuth();
+
+    const navigate = useNavigate();
     const [servicos, setServicos] = useState([]);
     const [servicosSelecionados, setServicosSelecionados] = useState([]);
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         const allServicos = async () => {
@@ -38,14 +51,17 @@ const Servicos = ({ pedreiro_id }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setIsLoading(true);
 
         if (!pedreiro_id) {
             alert("Erro: ID do pedreiro não encontrado.");
+            setIsLoading(false);
             return;
         }
 
         if (servicosSelecionados.length === 0) {
             alert("Selecione pelo menos um serviço!");
+            setIsLoading(false);
             return;
         }
 
@@ -59,17 +75,27 @@ const Servicos = ({ pedreiro_id }) => {
         try {
             const response = await vincularServicos(pedreiro_id, servicosSelecionados);
             alert(response.message); // Exibe mensagem de sucesso
+            navigate('/perfil');
         } catch (error) {
             alert("Erro ao vincular serviços. " + (error.response?.data?.message || ""));
+        } finally {
+            setIsLoading(false);
         }
     };
 
     return (
 
+        <div >
 
-        <div>
-            <h3>Agora, escolha os tipos de serviços que deseja oferecer</h3>
+            <div className="banner-logo" style={{ marginTop: 20 }}>
+                <h1><a href="/"><img src="https://i.ibb.co/KVZRVhw/logov4-preto.png" alt="logo-em-obra"
+                    className="logo-header" /></a></h1>
+            </div>
             <form className="formServicos radio-inputs" onSubmit={handleSubmit}>
+                <div className="escolher-servico">
+                    <h3 >Agora, escolha os tipos de serviços que deseja oferecer</h3>
+                    <p>Só é permitido escolher <strong>3 tipos de serviços</strong></p>
+                </div>
 
 
                 {servicos.length > 0 ? (
@@ -96,13 +122,20 @@ const Servicos = ({ pedreiro_id }) => {
                     <p>Carregando...</p>
                 )}
 
-                <button disabled={!pedreiro_id} onClick={handleSubmit}>
-                    Cadastrar Serviços
-                </button>
+                {servicosSelecionados.length === 3 && (<div className="botoes-selecionar-servicos">
+                    <button type="button" disabled={!pedreiro_id} onClick={handleSubmit} className="botao-entrar">
+                        Cadastrar Serviços
+                    </button>
+                </div>)}
             </form>
+            {isLoading && (
+                <Loading />
+            )}
         </div>
 
-    )
+
+
+    );
 }
 
 export default Servicos;

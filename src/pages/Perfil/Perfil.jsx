@@ -114,7 +114,7 @@ const Perfil = () => {
 
                                 <div className="info-pessoais">
                                     <img
-                                        src={pedreiro.img || "/img-perfil/avatar-pedreiro.png"}
+                                        src={pedreiro.img || "/img-perfil/avatar-pedreiro.jpg"}
                                         alt={pedreiro.nome}
                                         onClick={editar}
                                     />

@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
+
+// Requisições
 import { autenticarUsuario } from '../../service/api.js';
 
-import './Login.scss';
+// Componentes
 import Containerform from '../../assets/componentes/Containerform';
 import InputControl from "../../assets/componentes/InputControl";
+
+
+// CSS
+import './Login.scss';
+
 
 const Login = () => {
     const [identificador, setIdentificador] = useState('');
@@ -64,13 +71,6 @@ const Login = () => {
                         value={senha}
                         onChange={(e) => setSenha(e.target.value)}
                     />
-
-                    <div className="manter-conectado">
-                        <div>
-                            <input type="checkbox" id="conectado" name="conectado" />
-                            <label htmlFor="conectado">Manter-se conectado</label>
-                        </div>
-                    </div>
 
                     <button type="submit" className="botao-entrar">Entrar</button>
                     {message && <p>{message}</p>}

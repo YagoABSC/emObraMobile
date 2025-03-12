@@ -51,17 +51,22 @@ const Perfil = () => {
 
     // Mostrar serviços caso não tenha cadastrado
     useEffect(() => {
-
         if (!pedreiro_id) {
             console.error("ID do pedreiro não encontrado.");
             return;
         }
 
-        // Buscar tipos deserviços caso não tenha
         const fetchServicos = async () => {
             try {
                 const response = await servicosPedreiro(pedreiro_id);
-                setServicos(response.tiposServicos || []);
+                const servicosCadastrados = response.tiposServicos || [];
+
+                setServicos(servicosCadastrados);
+
+                // Redireciona para a página de serviços caso não tenha nenhum cadastrado
+                if (servicosCadastrados.length === 0) {
+                    navigate('/pedreiro-servicos');
+                }
             } catch (error) {
                 console.error("Erro ao buscar serviços:", error);
             } finally {
@@ -70,7 +75,8 @@ const Perfil = () => {
         };
 
         fetchServicos();
-    }, [pedreiro_id, servicos]);
+    }, [pedreiro_id]); // Removi `servicos` da lista de dependências
+
 
     // Informações do Pedreiro
     useEffect(() => {
@@ -96,12 +102,7 @@ const Perfil = () => {
 
     return (
         <div className="container-geral">
-
-            {servicos.length === 0 ? (
-                <Servicos pedreiro_id={pedreiro_id} />
-            ) : (
-
-
+            
                 <div>
 
                     {/* Somente exibir as informações do pedreiro se ele já tiver serviços cadastrados */}
@@ -169,8 +170,7 @@ const Perfil = () => {
                         {categoria === "mais" && <Configuracoes />}
                     </div>
                 </div>
-            )}
-        </div>
+               </div>
     );
 };
 

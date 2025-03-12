@@ -22,7 +22,7 @@ createRoot(document.getElementById('root')).render(
         <Route path='redefinir-senha' element={<RedefinirSenha />}/>
         <Route path='editar-perfil' element={<EditarPerfil />}/>
         <Route path='excluir-conta' element={<ExcluirConta />}/>
-        <Route path='servicos' element={<Servicos />} />
+        <Route path='pedreiro-servicos' element={<Servicos />} />
       </Routes>
     </Router>
   </StrictMode>,

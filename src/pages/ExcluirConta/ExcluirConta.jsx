@@ -55,7 +55,7 @@ const ExcluirConta = () => {
                     {erro && <p style={{ color: "red" }}>{erro}</p>}
 
                     <button onClick={handleExcluir}>Confirmar Exclusão</button>
-                    <button onClick={() => navigate("/")}>Cancelar</button>
+                    <button onClick={() => navigate("/perfil")}>Cancelar</button>
                 </>
             ) : (
                 <p>Sua conta foi excluída com sucesso! Redirecionando...</p>

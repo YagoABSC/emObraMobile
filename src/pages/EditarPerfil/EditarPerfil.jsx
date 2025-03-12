@@ -7,6 +7,7 @@ import useAuth from '../../assets/hooks/UseAuth';
 // Componentes
 import InputControl from '../../assets/componentes/InputControl'
 import PhoneInput from '../../assets/componentes/PhoneInput';
+import Loading from '../../assets/componentes/Loading'
 
 import EditarFoto from './EditarFoto';
 
@@ -95,31 +96,38 @@ const EditarPerfil = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     // Verifica se houve mudanças nos dados ou nos serviços selecionados
     if (JSON.stringify(dados) === JSON.stringify(originalData) &&
       JSON.stringify(servicosSelecionados) === JSON.stringify(originalData?.tiposServicos?.map(s => s.id))) {
+      setLoading(false)
       navigate("/perfil");
       return;
     }
 
     if (!dados.nome || !dados.telefone || !dados.email || !dados.cep) {
       alert("Preencha todos os campos obrigatórios.");
+      setLoading(false)
       return;
     }
 
     if (servicosSelecionados.length === 0) {
       alert("Por favor, selecione pelo menos um serviço.");
+      setLoading(false)
       return;
     }
 
     try {
-      await atualizarPedreiro(pedreiro_id, dados.nome, dados.telefone, dados.email, dados.cep, servicosSelecionados);
-      alert(response.mensagem);
+      const response = await atualizarPedreiro(pedreiro_id, dados.nome, dados.telefone, dados.email, dados.cep, servicosSelecionados);
+      // alert(response.mensagem);
+      setLoading(false)
       navigate("/perfil");
     } catch (error) {
       console.error("Erro ao atualizar os dados:", error);
       alert(response.mensagem);
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -150,7 +158,7 @@ const EditarPerfil = () => {
     setServicosSelecionados(novosSelecionados);
   };
 
-  if (loading) return <p>Carregando...</p>;
+  if (loading) return <Loading />;
   if (error) return <p>{error}</p>;
 
   return (
@@ -207,7 +215,7 @@ const EditarPerfil = () => {
                 onChange={handleChange}
                 required
               />
-              
+
               <PhoneInput
                 label="Telefone"
                 value={dados?.telefone || ""}

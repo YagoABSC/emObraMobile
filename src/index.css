@@ -47,6 +47,19 @@ h2 {
 
 }
 
+.botao-sair{
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: none;
+  background: none;
+  color: #FFFFFF;
+  font-size: .9rem;
+}
+
 .container-geral {
   width: 100%;
 }

@@ -9,6 +9,7 @@ import TotalServicos from "../../assets/componentes/TotalServicos.jsx"
 import ServicosPrestados from "../../assets/componentes/ServicosPrestados";
 import Historico from "../../assets/componentes/Historico.jsx";
 import Configuracoes from "../../assets/componentes/Configuracoes.jsx";
+import Loading from "../../assets/componentes/Loading.jsx";
 
 // Hooks
 import useAuth from '../../assets/hooks/UseAuth';
@@ -21,6 +22,8 @@ import { IoMdSearch } from "react-icons/io";
 import { MdMapsHomeWork } from "react-icons/md";
 import { MdWorkHistory } from "react-icons/md";
 import { IoMdSettings } from "react-icons/io";
+import { IoExitOutline } from "react-icons/io5";
+
 
 //Estilo
 import './Perfil.scss';
@@ -98,7 +101,7 @@ const Perfil = () => {
         fetchPedreiro();
     }, [pedreiro_id]);
 
-    if (loadingServicos) return <p>Carregando...</p>;
+    if (loadingServicos) return <Loading />;
 
     return (
         <div className="container-geral">
@@ -109,7 +112,8 @@ const Perfil = () => {
                     {!loadingPedreiro && pedreiro && (
                         <div className="perfil-detalhes">
 
-                            <button onClick={logout}>Sair</button>
+                            <button onClick={logout} className="botao-sair">Sair <IoExitOutline />
+                            </button>
 
                             <div className="info-container">
 

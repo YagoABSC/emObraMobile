@@ -1,20 +1,27 @@
 import React, { useState } from "react";
+
+// Requisições
 import { atualizarFotoPedreiro } from "../../service/api";
+
+// CSS
 import "./Editar.scss";
 
 const EditarFoto = ({ imgAtual, nome }) => {
+    const imagemPadrao = "/img-perfil/avatar-pedreiro.jpg"; // Caminho da imagem padrão
     const [file, setFile] = useState(null);
-    const [preview, setPreview] = useState(imgAtual || "");
+    const [preview, setPreview] = useState(localStorage.getItem("pedreiro_img") || imgAtual || imagemPadrao);
+    const [tempPreview, setTempPreview] = useState(null); // Estado para pré-visualização temporária
     const [modalAberto, setModalAberto] = useState(false);
-    const [loading, setLoading] = useState(false); // Estado para exibir o loading
+    const [loading, setLoading] = useState(false);
     const pedreiroId = localStorage.getItem("pedreiro_id");
+    
 
     const handleFileChange = (event) => {
         const arquivoSelecionado = event.target.files[0];
 
         if (arquivoSelecionado) {
             setFile(arquivoSelecionado);
-            setPreview(URL.createObjectURL(arquivoSelecionado));
+            setTempPreview(URL.createObjectURL(arquivoSelecionado)); // Armazena preview temporário
             setModalAberto(true);
         }
     };
@@ -25,7 +32,6 @@ const EditarFoto = ({ imgAtual, nome }) => {
             return;
         }
 
-        console.log("📂 Enviando arquivo:", file);
         setLoading(true); // Ativar loading
 
         const formData = new FormData();
@@ -35,8 +41,11 @@ const EditarFoto = ({ imgAtual, nome }) => {
             const resposta = await atualizarFotoPedreiro(pedreiroId, formData);
             console.log("✅ Foto atualizada com sucesso:", resposta);
 
-            setPreview(resposta.img_perfil); // Atualiza a foto no perfil
-            setModalAberto(false); // Fecha o modal após sucesso
+            localStorage.setItem("pedreiro_img", resposta.img_perfil || imagemPadrao);
+
+            setPreview(resposta.img_perfil || imagemPadrao); // Atualiza o preview final
+            setModalAberto(false);
+            setTempPreview(null); // Limpa o preview temporário após salvar
         } catch (erro) {
             console.error("❌ Erro ao salvar a foto:", erro);
         } finally {
@@ -44,11 +53,15 @@ const EditarFoto = ({ imgAtual, nome }) => {
         }
     };
 
+    const handleCancelar = () => {
+        setTempPreview(null); // Descarta a pré-visualização temporária
+        setModalAberto(false);
+    };
+
     return (
         <div className="editar-img">
             {loading ? (
-                // Exibir loading enquanto a foto estiver sendo enviada
-                <div className="spinner"></div>
+                <div className="spinner"></div> // Exibe loading enquanto estiver processando
             ) : (
                 <>  
                     <img src={preview} alt={nome} />
@@ -59,9 +72,9 @@ const EditarFoto = ({ imgAtual, nome }) => {
                         <div className="modal-overlay">
                             <div className="modal">
                                 <h3>Pré-visualização</h3>
-                                <img src={preview} alt="Pré-visualização" className="modal-img" />
+                                <img src={tempPreview || preview} alt="Pré-visualização" className="modal-img" />
                                 <div className="modal-botoes">
-                                    <button className="btn cancelar botao-entrar" onClick={() => setModalAberto(false)}>Cancelar</button>
+                                    <button className="btn cancelar botao-entrar" onClick={handleCancelar}>Cancelar</button>
                                     <button className="btn salvar botao-entrar" onClick={handleUpload}>Salvar Foto</button>
                                 </div>
                             </div>

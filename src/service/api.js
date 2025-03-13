@@ -206,6 +206,16 @@ export const excluirConta = async (id, senha) => {
   }
 };
 
+export const atualizarSenha = async (id, novaSenha) => {
+  try {
+    const response = await axios.put(`${API_URL}/atualizarSenha/${id}`, {novaSenha});
+    return response.data;
+  } catch (error) {
+    console.error("Erro: ", error.response?.data || error.message);
+    throw error;
+  }
+}
+
 // Avaliação Pedreiro
 export const listarAvaliacoes = async (id) => {
   try {

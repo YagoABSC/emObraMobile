@@ -10,6 +10,7 @@ import RedefinirSenha from './pages/RedefinirSenha/RedefinirSenha.jsx'
 import EditarPerfil from './pages/EditarPerfil/EditarPerfil.jsx'
 import ExcluirConta from './pages/ExcluirConta/ExcluirConta.jsx'
 import Servicos from './assets/componentes/Servicos.jsx'
+import TrocarSenha from './pages/TrocarSenha/TrocarSenha.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -23,6 +24,7 @@ createRoot(document.getElementById('root')).render(
         <Route path='editar-perfil' element={<EditarPerfil />}/>
         <Route path='excluir-conta' element={<ExcluirConta />}/>
         <Route path='pedreiro-servicos' element={<Servicos />} />
+        <Route path='editar-senha' element={<TrocarSenha/>} />
       </Routes>
     </Router>
   </StrictMode>,

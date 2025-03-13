@@ -7,6 +7,12 @@ import useAuth from '../../assets/hooks/UseAuth';
 // Requisições
 import { excluirConta } from "../../service/api";
 
+// Componentes
+import InputControl from "../../assets/componentes/InputControl";
+
+// CSS
+import './Excluir.scss';
+
 const ExcluirConta = () => {
 
     useAuth();
@@ -17,48 +23,75 @@ const ExcluirConta = () => {
     const [erro, setErro] = useState("");
     const [confirmacao, setConfirmacao] = useState(false);
 
-    const handleExcluir = async () => {
+    const handleExcluir = async (e) => {
+        e.preventDefault();
+        
         try {
             if (!senha) {
                 setErro("Por favor, insira sua senha para continuar.");
                 return;
             }
-            
 
             await excluirConta(pedreiro_id, senha);
-            localStorage.clear();   
+            
             setConfirmacao(true);
 
             setTimeout(() => {
+                localStorage.clear();
                 navigate("/"); // Redireciona para a página inicial após 3s
-            }, 3000);
+            }, 8000);
         } catch (error) {
             setErro(error.response?.data?.mensagem || "Erro ao excluir a conta. Tente novamente mais tarde.");
         }
     };
 
     return (
-        <div>
-            <h2>Excluir Conta</h2>
+        <div className="container-excluir">
 
             {!confirmacao ? (
                 <>
-                    <p>Tem certeza que deseja excluir sua conta? Essa ação é irreversível.</p>
+                    <div className="confirmar-excluir">
+                        {/* <h2>Excluir Conta</h2> */}
+                        <div>
+                            <img src="/imgs-fixas/excluir-conta.png" alt="Icone de excluir conta" />
+                            <h3>Olá, Fulano. <br /> Que triste te ver por aqui.</h3>
+                        </div>
+                        <p>Tem certeza que deseja <strong>excluir</strong> sua conta? </p>
+                        <ul>
+                            <h4>O que será excluído:</h4>
+                            <li>Seus dados pessoais na plataforma </li>
+                            <li>Seu histórico de serviços</li>
+                            <li>Seu acesso a serviços ativos ou em espera</li>
+                        </ul>
 
-                    <input
-                        type="password"
-                        placeholder="Digite sua senha"
-                        value={senha}
-                        onChange={(e) => setSenha(e.target.value)}
-                    />
+                    </div>
 
-                    {erro && <p style={{ color: "red" }}>{erro}</p>}
+                    <div className="senha-excluir">
+                        <h3>Se deseja continuar, insira sua senha no campo abaixo e clique em <strong>"Excluir minha conta"</strong></h3>
+                        <span>Atenção! Esta ação é irreversível!</span>
 
-                    <button onClick={handleExcluir}>Confirmar Exclusão</button>
-                    <button onClick={() => navigate("/perfil")}>Cancelar</button>
+                        <form onSubmit={handleExcluir}>
+                            <InputControl
+                                type="password"
+                                label="Digite sua senha"
+                                name="senha"
+                                value={senha}
+                                onChange={(e) => setSenha(e.target.value)}
+                            />
+                            {erro && <p style={{ color: "red" }}>{erro}</p>}
+                            <div className="botoes-excluir">
+                                <button onClick={() => navigate("/perfil")} className="botao-entrar cancelar-btn">Cancelar</button>
+                                <button type="submit" className="botao-entrar" style={{backgroundColor: "#020411"}}>Excluir minha conta</button>
+                            </div>
+                        </form>
+                        
+                    </div>
                 </>
             ) : (
-                <p>Sua conta foi excluída com sucesso! Redirecionando...</p>
+                <div>
+                    <p>Sua conta foi excluída com sucesso! Esperamos te ver de volta um dia, nos vemos em uma próxima obra. Redirecionando...</p>
+                    <div className="spinner"></div>
+                </div>
             )}
         </div>
     );

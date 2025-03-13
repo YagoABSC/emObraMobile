@@ -190,7 +190,7 @@ h2 {
   }
 }
 
-.botoes-modal, .botoes-modal-termo {
+.botoes-modal, .botoes-modal-termo, .botoes-excluir {
   display: flex;
   justify-content: center;
   gap: 25px;

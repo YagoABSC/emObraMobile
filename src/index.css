@@ -10,13 +10,11 @@
 body {
   font-family: 'Poppins';
   height: 100vh;
-  /* max-width: 450px; */
   overflow-x: hidden;
   align-items: center;
   min-height: 100vh;
   height: fit-content;
   margin: 0 auto;
-  /* background-color: #d1d1d13f; */
 }
 
 header {
@@ -100,6 +98,11 @@ h2 {
 .radio-input:checked+.radio-tile {
   box-shadow: 0 5px 10px rgba(219, 157, 64, 0.651);
   background-color: #FE8813;
+
+  img{
+    filter: invert(0);
+  }
+  
 }
 
 .radio-input:checked+.radio-tile:before {
@@ -111,6 +114,7 @@ h2 {
 .radio-input:checked+.radio-tile .radio-label {
   transform: scale(1);
   font-weight: bold;
+  color: #FFFFFF;
 }
 
 
@@ -127,12 +131,16 @@ h2 {
   width: 90px;
   min-height: 90px;
   border-radius: 0.5rem;
-  background-color: #020411;
+  background-color: #FFFFFF;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   transition: 0.15s ease;
   cursor: pointer;
   position: relative;
   padding: 0 5px;
+
+  img{
+    filter: invert(1);
+  }
 }
 
 .radio-tile:before {
@@ -156,7 +164,7 @@ h2 {
 }
 
 .radio-label {
-  color: #fff;
+  color: #020411;
   transition: 0.375s ease;
   text-align: center;
   font-size: .6rem;

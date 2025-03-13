@@ -18,12 +18,15 @@ const Servicos = ({ pedreiro_id }) => {
     const [servicos, setServicos] = useState([]);
     const [servicosSelecionados, setServicosSelecionados] = useState([]);
     const [isLoading, setIsLoading] = useState(false)
+    const pedreiro = localStorage.getItem('pedreiro_id');
+
 
     useEffect(() => {
         const allServicos = async () => {
             try {
                 const data = await listarServicos();
                 setServicos(data);
+                console.log(pedreiro)
             } catch (error) {
                 console.error("Erro ao carregar serviços")
             }
@@ -52,36 +55,33 @@ const Servicos = ({ pedreiro_id }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setIsLoading(true);
-
-        if (!pedreiro_id) {
+    
+        if (!pedreiro) {
             alert("Erro: ID do pedreiro não encontrado.");
             setIsLoading(false);
             return;
         }
-
+    
         if (servicosSelecionados.length === 0) {
             alert("Selecione pelo menos um serviço!");
             setIsLoading(false);
             return;
         }
-
-        const payload = {
-            pedreiro_id,
-            tipo_servicos: servicosSelecionados
-        };
-
-        console.log("Enviando para API:", payload);
-
+    
         try {
-            const response = await vincularServicos(pedreiro_id, servicosSelecionados);
+            const response = await vincularServicos(pedreiro, servicosSelecionados);
             alert(response.message); 
-            window.location.reload();
+            
+            // Chamar a função passada via props para atualizar o perfil
+            navigate("/perfil") 
+            
         } catch (error) {
             alert("Erro ao vincular serviços. " + (error.response?.data?.message || ""));
         } finally {
             setIsLoading(false);
         }
     };
+    
 
     return (
 
@@ -123,7 +123,7 @@ const Servicos = ({ pedreiro_id }) => {
                 )}
 
                 {servicosSelecionados.length === 3 && (<div className="botoes-selecionar-servicos">
-                    <button type="button" disabled={!pedreiro_id} onClick={handleSubmit} className="botao-entrar">
+                    <button type="button" disabled={!pedreiro} onClick={handleSubmit} className="botao-entrar">
                         Cadastrar Serviços
                     </button>
                 </div>)}

@@ -190,7 +190,7 @@ const EditarPerfil = () => {
       </div>
 
 
-      <div style={{ backgroundColor: "white", padding: "15px" }}>
+      <div style={{ backgroundColor: "white", padding: "15px", width: "90%" }}>
         {(form === "foto" || form === "todos") && (
           <div className='container-editar-foto'>
             <div className='separador'>
@@ -238,6 +238,7 @@ const EditarPerfil = () => {
                 value={dados?.cep || ""}
                 onChange={handleChange}
                 required
+                mask={{ delimiters: ["-"], blocks: [5, 3], numericOnly: true }}
               />
             </div>
           )}
@@ -269,7 +270,7 @@ const EditarPerfil = () => {
                     </label>
                   ))
                 ) : (
-                  <p>Carregando...</p>
+                  <div className="spinnerContainer"></div>
                 )}
               </div>
             </div>

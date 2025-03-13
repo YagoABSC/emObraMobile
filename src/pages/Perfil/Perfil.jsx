@@ -78,7 +78,7 @@ const Perfil = () => {
         };
 
         fetchServicos();
-    }, [pedreiro_id]); // Removi `servicos` da lista de dependências
+    }, [pedreiro_id, servicos]); // Removi `servicos` da lista de dependências
 
 
     // Informações do Pedreiro
@@ -101,80 +101,83 @@ const Perfil = () => {
         fetchPedreiro();
     }, [pedreiro_id]);
 
+
     if (loadingServicos) return <Loading />;
 
     return (
         <div className="container-geral">
-            
-                <div>
 
-                    {/* Somente exibir as informações do pedreiro se ele já tiver serviços cadastrados */}
-                    {!loadingPedreiro && pedreiro && (
-                        <div className="perfil-detalhes">
 
-                            <button onClick={logout} className="botao-sair">Sair <IoExitOutline />
-                            </button>
 
-                            <div className="info-container">
+            <div>
 
-                                <div className="info-pessoais">
-                                    <img
-                                        src={pedreiro.img || "/img-perfil/avatar-pedreiro.jpg"}
-                                        alt={pedreiro.nome}
-                                        onClick={editar}
-                                    />
-                                    <div>
-                                        <h2>{pedreiro.nome}</h2>
-                                    </div>
-                                </div>
+                {/* Somente exibir as informações do pedreiro se ele já tiver serviços cadastrados */}
+                {!loadingPedreiro && pedreiro && (
+                    <div className="perfil-detalhes">
 
-                                <div className="info-especiais">
-                                    <Avaliacoes pedreiro_id={pedreiro_id} />
-                                    <TotalServicos pedreiro_id={pedreiro_id} />
+                        <button onClick={logout} className="botao-sair">Sair <IoExitOutline />
+                        </button>
+
+                        <div className="info-container">
+
+                            <div className="info-pessoais">
+                                <img
+                                    src={pedreiro.img || "/img-perfil/avatar-pedreiro.jpg"}
+                                    alt={pedreiro.nome}
+                                    onClick={editar}
+                                />
+                                <div>
+                                    <h2>{pedreiro.nome}</h2>
                                 </div>
                             </div>
 
-                        </div>
-                    )}
-                    <div className="categorias-perfil">
-
-                        <div className={`categorias ${categoria === "minhaObra" ? "ativa" : ""}`}
-                            onClick={() => setCategoria("minhaObra")}>
-                            <div style={{ backgroundColor: categoria === "minhaObra" ? "#FE8813" : "#020411" }}>
-                                <MdMapsHomeWork />
+                            <div className="info-especiais">
+                                <Avaliacoes pedreiro_id={pedreiro_id} />
+                                <TotalServicos pedreiro_id={pedreiro_id} />
                             </div>
                         </div>
 
-                        <div className={`categorias ${categoria === "buscarObra" ? "ativa" : ""}`}
-                            onClick={() => setCategoria("buscarObra")}>
-                            <div style={{ backgroundColor: categoria === "buscarObra" ? "#FE8813" : "#020411" }}>
-                                <IoMdSearch />
-                            </div>
-                        </div>
+                    </div>
+                )}
+                <div className="categorias-perfil">
 
-                        <div className={`categorias ${categoria === "historico" ? "ativa" : ""}`}
-                            onClick={() => setCategoria("historico")}>
-                            <div style={{ backgroundColor: categoria === "historico" ? "#FE8813" : "#020411" }}>
-                                <MdWorkHistory />
-                            </div>
-                        </div>
-
-                        <div className={`categorias ${categoria === "mais" ? "ativa" : ""}`}
-                            onClick={() => setCategoria("mais")}>
-                            <div style={{ backgroundColor: categoria === "mais" ? "#FE8813" : "#020411" }}>
-                                <IoMdSettings />
-                            </div>
+                    <div className={`categorias ${categoria === "minhaObra" ? "ativa" : ""}`}
+                        onClick={() => setCategoria("minhaObra")}>
+                        <div style={{ backgroundColor: categoria === "minhaObra" ? "#FE8813" : "#020411" }}>
+                            <MdMapsHomeWork />
                         </div>
                     </div>
 
-                    <div className="conteudo-categoria">
-                        {categoria === "minhaObra" && <ServicosPrestados />}
-                        {categoria === "buscarObra" && <BuscardorServico />}
-                        {categoria === "historico" && <Historico />}
-                        {categoria === "mais" && <Configuracoes />}
+                    <div className={`categorias ${categoria === "buscarObra" ? "ativa" : ""}`}
+                        onClick={() => setCategoria("buscarObra")}>
+                        <div style={{ backgroundColor: categoria === "buscarObra" ? "#FE8813" : "#020411" }}>
+                            <IoMdSearch />
+                        </div>
+                    </div>
+
+                    <div className={`categorias ${categoria === "historico" ? "ativa" : ""}`}
+                        onClick={() => setCategoria("historico")}>
+                        <div style={{ backgroundColor: categoria === "historico" ? "#FE8813" : "#020411" }}>
+                            <MdWorkHistory />
+                        </div>
+                    </div>
+
+                    <div className={`categorias ${categoria === "mais" ? "ativa" : ""}`}
+                        onClick={() => setCategoria("mais")}>
+                        <div style={{ backgroundColor: categoria === "mais" ? "#FE8813" : "#020411" }}>
+                            <IoMdSettings />
+                        </div>
                     </div>
                 </div>
-               </div>
+
+                <div className="conteudo-categoria">
+                    {categoria === "minhaObra" && <ServicosPrestados />}
+                    {categoria === "buscarObra" && <BuscardorServico />}
+                    {categoria === "historico" && <Historico />}
+                    {categoria === "mais" && <Configuracoes />}
+                </div>
+            </div>
+        </div>
     );
 };
 

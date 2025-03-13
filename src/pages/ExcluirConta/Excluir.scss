@@ -25,8 +25,12 @@
             }
         }
 
+        & h4{
+            hyphens: auto;
+            text-align: justify;
+        }
+
         & ul {
-            hyphens: manual;
             padding-left: 20px;
             margin: 15px 15px;
             // color: #727171;

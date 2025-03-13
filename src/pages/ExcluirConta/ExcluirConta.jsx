@@ -56,6 +56,11 @@ const ExcluirConta = () => {
                             <img src="/imgs-fixas/excluir-conta.png" alt="Icone de excluir conta" />
                             <h3>Olá, Fulano. <br /> Que triste te ver por aqui.</h3>
                         </div>
+
+                        <h4>Se deseja continuar, insira sua senha no campo abaixo e clique em <strong>"Excluir minha conta"</strong></h4>
+                    </div>
+
+                    <div className="senha-excluir">
                         <p>Tem certeza que deseja <strong>excluir</strong> sua conta? </p>
                         <ul>
                             <h4>O que será excluído:</h4>
@@ -63,11 +68,6 @@ const ExcluirConta = () => {
                             <li>Seu histórico de serviços</li>
                             <li>Seu acesso a serviços ativos ou em espera</li>
                         </ul>
-
-                    </div>
-
-                    <div className="senha-excluir">
-                        <h3>Se deseja continuar, insira sua senha no campo abaixo e clique em <strong>"Excluir minha conta"</strong></h3>
                         <span>Atenção! Esta ação é irreversível!</span>
 
                         <form onSubmit={handleExcluir}>

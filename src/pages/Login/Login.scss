@@ -15,7 +15,8 @@
 
   img {
       width: 100%;
-      height: 100vh;
+      min-width: 55dvw;
+      height: 100dvh;
       object-fit: cover;
   }
 }

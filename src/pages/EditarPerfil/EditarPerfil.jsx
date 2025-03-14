@@ -193,7 +193,7 @@ const EditarPerfil = () => {
       <div style={{ backgroundColor: "white", padding: "15px", width: "90%" }}>
         {(form === "foto" || form === "todos") && (
           <div className='container-editar-foto'>
-            <div className='separador'>
+            <div className='separador' style={{marginTop: 0}}>
               <span>Foto</span>
               <hr />
             </div>

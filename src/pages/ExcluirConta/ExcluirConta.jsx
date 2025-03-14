@@ -51,9 +51,9 @@ const ExcluirConta = () => {
             {!confirmacao ? (
                 <>
                     <div className="confirmar-excluir">
-                        {/* <h2>Excluir Conta</h2> */}
+                        <h2>Excluir Conta</h2>
                         <div>
-                            <img src="/imgs-fixas/excluir-conta.png" alt="Icone de excluir conta" />
+                            <img src="/imgs-fixas/excluir-conta-icon.png" alt="Icone de excluir conta" />
                             <h3>Olá, Fulano. Que triste te ver por aqui.</h3>
                         </div>
 
@@ -66,8 +66,12 @@ const ExcluirConta = () => {
                         </ul>
                     </div>
 
+                    <div>
+                    </div>
+
                     <div className="senha-excluir">
                         <h2>Se deseja continuar, insira sua senha no campo abaixo e clique em <strong>"Excluir minha conta"</strong></h2>
+                        <img src="/imgs-fixas/excluir-conta2.png" alt="até mais" />
                         <span>Atenção! Esta ação é irreversível!</span>
 
                         <form onSubmit={handleExcluir}>
@@ -87,9 +91,6 @@ const ExcluirConta = () => {
                         
                     </div>
 
-                    <div>
-                        <img src="/imgs-fixas/excluir-conta.svg" alt="até mais" />
-                    </div>
                 </>
             ) : (
                 <div>

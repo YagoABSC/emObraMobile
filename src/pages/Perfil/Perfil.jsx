@@ -78,7 +78,7 @@ const Perfil = () => {
         };
 
         fetchServicos();
-    }, [pedreiro_id, servicos]); // Removi `servicos` da lista de dependências
+    }, [pedreiro_id]); // Removi `servicos` da lista de dependências
 
 
     // Informações do Pedreiro

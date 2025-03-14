@@ -77,7 +77,7 @@ const BuscardorServico = () => {
 
                             <div className="local-servico">
                                 <TiLocation style={{ fontSize: 25, color: "#FF3512" }} />
-                                <p>{servico.bairro}, a <strong style={{ fontSize: 15, color: "#FF3512" }}>{servico.distancia_km}km</strong> de você.</p>
+                                <p>{servico.bairro}, a <strong style={{ fontSize: 15, color: "#FF3512" }}>{servico.distancia_km}km</strong> de você. - {servico.cidade}</p>
                             </div>
 
                             <hr style={{ margin: "20px auto", border: "solid 1px #FF3512", width: "90%" }} />

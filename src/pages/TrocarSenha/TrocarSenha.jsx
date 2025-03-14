@@ -20,29 +20,27 @@ const TrocarSenha = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMensagem("");
-
+    
         if (novaSenha !== confirmarSenha) {
             setMensagem("As senhas não coincidem!");
             return;
         }
-
-        console.log(pedreiro_id)
-
+    
         setLoading(true);
-
+    
         try {
-
-            await atualizarSenha(pedreiro_id, novaSenha);
-            setMensagem("Senha alterada com sucesso");
-            setTimeout(() => navigate("/perfil"), 2000);
-
+            // Envia apenas a senha
+            const response = await atualizarSenha(novaSenha);
+            setMensagem(response.message || "Senha alterada com sucesso!");
+            setTimeout(() => navigate("/perfil"), 3000);
         } catch (error) {
             console.error("Erro ao alterar senha:", error);
-            setMensagem("Não foi possível alterar senha")
+            setMensagem("Não foi possível alterar senha");
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
-    }
+    };
+    
 
     const handleCancel = () => {
         navigate("/perfil")

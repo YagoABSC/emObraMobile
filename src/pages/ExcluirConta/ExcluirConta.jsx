@@ -54,20 +54,20 @@ const ExcluirConta = () => {
                         {/* <h2>Excluir Conta</h2> */}
                         <div>
                             <img src="/imgs-fixas/excluir-conta.png" alt="Icone de excluir conta" />
-                            <h3>Olá, Fulano. <br /> Que triste te ver por aqui.</h3>
+                            <h3>Olá, Fulano. Que triste te ver por aqui.</h3>
                         </div>
 
-                        <h4>Se deseja continuar, insira sua senha no campo abaixo e clique em <strong>"Excluir minha conta"</strong></h4>
-                    </div>
-
-                    <div className="senha-excluir">
-                        <p>Tem certeza que deseja <strong>excluir</strong> sua conta? </p>
+                        <h2>Tem certeza que deseja <strong>excluir</strong> sua conta? </h2>
                         <ul>
                             <h4>O que será excluído:</h4>
                             <li>Seus dados pessoais na plataforma </li>
                             <li>Seu histórico de serviços</li>
                             <li>Seu acesso a serviços ativos ou em espera</li>
                         </ul>
+                    </div>
+
+                    <div className="senha-excluir">
+                        <h2>Se deseja continuar, insira sua senha no campo abaixo e clique em <strong>"Excluir minha conta"</strong></h2>
                         <span>Atenção! Esta ação é irreversível!</span>
 
                         <form onSubmit={handleExcluir}>
@@ -85,6 +85,10 @@ const ExcluirConta = () => {
                             </div>
                         </form>
                         
+                    </div>
+
+                    <div>
+                        <img src="/imgs-fixas/excluir-conta.svg" alt="até mais" />
                     </div>
                 </>
             ) : (

@@ -1,7 +1,8 @@
 .container-excluir {
     font-size: 1rem;
     height: 100vh;
-    // overflow: hidden;
+    display: flex;
+    flex-direction: column;
 
     .confirmar-excluir {
         display: flex;
@@ -16,16 +17,16 @@
         & div {
             display: flex;
             gap: 10px;
-            margin: 25px 0;
+            margin: 45px 0;
 
-            & img{
+            & img {
                 width: 3rem;
                 height: 3rem;
                 filter: invert(1);
             }
         }
 
-        & h4{
+        & h4 {
             hyphens: auto;
             text-align: justify;
         }
@@ -44,22 +45,23 @@
     .senha-excluir {
         padding: 20px;
         // height: 100%;
-        max-width: 400px;
-        margin: auto;
+        max-width: 500px;
+        width: 100%;
+        margin: 20px auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
         font-size: .8rem;
 
-        & .botoes-excluir{
+        & .botoes-excluir {
             font-size: .8rem;
 
-            & button{
+            & button {
                 margin: 0;
             }
         }
 
-        & span{
+        & span {
             color: #020411;
             display: flex;
             font-weight: 600;

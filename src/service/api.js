@@ -130,6 +130,7 @@ export const finalizarServico = async (servico_id) => {
   }
 }
 
+
 // REDEFINIÇÃO DE SENHA
 export const solicitarCodigo = async (identificador) => {
   try {
@@ -157,6 +158,7 @@ export const redefinirSenha = async (codigo, novaSenha) => {
     throw error;
   }
 }
+
 
 // Perfil Pedreiro
 export const listarPedreiro = async (id) => {
@@ -206,15 +208,20 @@ export const excluirConta = async (id, senha) => {
   }
 };
 
-export const atualizarSenha = async (id, novaSenha) => {
+export const atualizarSenha = async (novaSenha) => {
   try {
-    const response = await axios.put(`${API_URL}/atualizarSenha/${id}`, {novaSenha});
+    const response = await axios.put(`${API_URL}/atualizarSenha`, { novaSenha }, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}` // Envia o token de autenticação
+      }
+    });
     return response.data;
   } catch (error) {
     console.error("Erro: ", error.response?.data || error.message);
     throw error;
   }
-}
+};
+
 
 // Avaliação Pedreiro
 export const listarAvaliacoes = async (id) => {

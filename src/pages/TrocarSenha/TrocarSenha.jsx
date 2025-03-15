@@ -56,15 +56,19 @@ const TrocarSenha = () => {
         <>
             <div className="trocar-senha">
 
-
-                <div className='editar-acoes'>
-                    <button type="button" onClick={handleCancel} className="cancelar"><IoIosArrowBack /> <span>Voltar</span></button>
-                    <button type="button" className="editar-salvar" onClick={() => formRef.current.requestSubmit()}>Salvar  <FaCheck /></button>
+                <div className="header-edicao">
+                    <div className='editar-acoes'>
+                        <button type="button" onClick={handleCancel} className="cancelar"><IoIosArrowBack /> <span>Voltar</span></button>
+                        <button type="button" className="editar-salvar" onClick={() => formRef.current.requestSubmit()}>Salvar  <FaCheck /></button>
+                    </div>
+                    <h1>Trocar Senha</h1>
+                    <p>O emObra preza pela segurança dos seus dados. Lembre-se de não compartilhar sua senha com ninguém!</p>
                 </div>
-
-                <h3>Trocar Senha</h3>
-                <p>O emObra preza pela segurança dos seus dados. Lembre-se de não compartilhar sua senha com ninguém!</p>
-                <img style={{width: "100%", maxWidth: "450px", margin: "0 auto"}} src="/imgs-fixas/trocar-senha.png" alt="" />
+                <div className="editar-ilustracao">
+                    <span>Atenção: Evite usar seus dados pessoais como senha.</span>
+                    <span> Por exemplo: data de nascimento, aniverario e seu próprio nome</span>
+                    <img style={{width: "100%", }} src="/imgs-fixas/trocar-senha.png" alt="" />
+                </div>
 
                 <div style={{ backgroundColor: "white", padding: "15px", width: "90%", maxWidth: "450px", margin: "0 auto" }}>
                     <form ref={formRef} onSubmit={handleSubmit}>

@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
+// Hooks
+import useAuth from "../../assets/hooks/UseAuth";
+
 // Componentes
 import InputControl from "../../assets/componentes/InputControl";
 import Loading from '../../assets/componentes/Loading'
@@ -13,6 +16,8 @@ import { IoIosArrowBack } from "react-icons/io";
 import { FaCheck } from "react-icons/fa";
 
 const TrocarSenha = () => {
+
+    useAuth();
 
     const navigate = useNavigate();
     const [novaSenha, setNovaSenha] = useState("");

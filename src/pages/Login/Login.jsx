@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 
 // Requisições
-import { autenticarUsuario } from '../../service/api.js';
+import { autenticarUsuario, verificarToken } from '../../service/api.js';
 
 // Componentes
 import Containerform from '../../assets/componentes/Containerform';
@@ -18,6 +18,18 @@ const Login = () => {
     const [senha, setSenha] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const verificarAutenticacao = async () => {
+          const tokenValido = await verificarToken(); // Verifica se o token ainda é válido
+    
+            if (tokenValido) {
+              navigate("/perfil"); 
+            }
+        };
+    
+        verificarAutenticacao();
+      }, [navigate]);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -37,7 +49,7 @@ const Login = () => {
             navigate('/perfil');
         } catch (error) {
             console.error("Erro no login:", error);
-            setMessage(error.response?.data?.message || 'Erro ao fazer login');
+            setMessage(error.response?.data?.message || 'Erro ao fazer login. Verifique seus dados.');
         }
     };
 

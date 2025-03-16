@@ -1,27 +1,27 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { historicoServicos } from "../../service/api";
 
 
 const Historico = () => {
 
     const [historico, setHistorico] = useState([]);
-    const [loading, setLoading] = useState (true);
+    const [loading, setLoading] = useState(true);
     const pedreiro_id = localStorage.getItem("pedreiro_id")
 
-    useEffect(() =>{
-    
-            const fetchHistorico = async () =>{
-                try {
-                    const response = await historicoServicos(pedreiro_id);
-                    setHistorico(response.historico || []);
-                } catch (error) {
-                    console.error("Erro ao buscar histórico: ", error);
-                } finally{
-                    setLoading(false);
-                }
-            };
+    useEffect(() => {
 
-            fetchHistorico();  
+        const fetchHistorico = async () => {
+            try {
+                const response = await historicoServicos(pedreiro_id);
+                setHistorico(response.historico || []);
+            } catch (error) {
+                console.error("Erro ao buscar histórico: ", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchHistorico();
     }, [pedreiro_id]);
 
     if (loading) return <div>
@@ -36,48 +36,56 @@ const Historico = () => {
             <div>
                 {historico.length > 0 ? (
                     <div>
-                        {historico.map(history =>(
+                        {historico.map(history => (
                             <div key={history.id} className="historico-servico" >
 
-                                    <div className="cabecalho-servico">
-                                        <div className="tipo-servico">
-                                            <p>{history.nome_servico}</p>
-                                        </div>
-                                        
-                                        <span className="status-servico">Valor {history.valor}</span>
-
+                                <div className="cabecalho-servico">
+                                    <div className="tipo-servico">
+                                        <p>{history.nome_servico}</p>
                                     </div>
 
-                                    <div className="info-servico">
-                                        <p className="descricao-servico">{history.descricao}</p>
-                                    </div>
+                                    <span className="status-servico">Valor {history.valor}</span>
 
-                                    <div className="local-servico">
-                                        <p>{history.endereco} - {history.bairro}</p>
-                                    </div>
+                                </div>
 
-                                    <hr style={{ margin: "20px auto", border: "solid 1px orange", width: "90%" }}/>
+                                <div className="info-servico">
+                                    <p className="descricao-servico">{history.descricao}</p>
+                                </div>
 
-                                    <div className="prazo-servico">
-                                        <span>Prazo</span>
-                                        <p>{history.prazo}</p>
-                                    </div>
+                                <div className="local-servico">
+                                    <p>{history.endereco} - {history.bairro}</p>
+                                </div>
 
-                                    <div className="prazo-servico">
-                                        <span>Finalizado em</span>
-                                        <p>{history.data_final}</p>
+                                <hr style={{ margin: "20px auto", border: "solid 1px orange", width: "90%" }} />
 
-                                    </div>
+                                <div className="prazo-servico">
+                                    <span>Prazo</span>
+                                    <p>{history.prazo}</p>
+                                </div>
 
-                                    <div className="linha-tempo-servico">
+                                <div className="prazo-servico">
+                                    <span>Finalizado em</span>
+                                    <p>{history.data_final}</p>
 
-                                    </div>
+                                </div>
+
+                                <div className="linha-tempo-servico">
+
+                                </div>
 
                             </div>
                         ))}
                     </div>
                 ) : (
-                    <p>Nenhum serviço concluído</p>
+                    <div className="container-ilustracoes">
+                        <div className="ilustracoes">
+                            <img src="/imgs-fixas/nada_encontrado.png" alt="Nada encontrado" className="ilustracao" />
+                        </div>
+
+                        <div className="info-ilustracoes" >
+                            <p>Você ainda não possui serviços concluídos. Mas temos certeza que isso acontecerá em breve!</p>
+                        </div>
+                    </div>
                 )}
             </div>
         </div>

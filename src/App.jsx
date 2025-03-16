@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./App.css";
+
+// Requisições
 import { verificarToken } from "./service/api";
 
 function App() {
@@ -17,7 +19,7 @@ function App() {
         if (tokenValido) {
           navigate("/perfil"); // Se o token for válido, redireciona para o perfil
         }
-      }, 8000); // Tempo da animação
+      }, 6000); // Tempo da animação
     };
 
     verificarAutenticacao();

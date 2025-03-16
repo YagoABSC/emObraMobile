@@ -45,7 +45,7 @@ h2 {
 
 }
 
-.botao-sair{
+.botao-sair {
   position: absolute;
   top: 20px;
   right: 30px;
@@ -88,7 +88,7 @@ h2 {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;  
+  user-select: none;
 }
 
 .radio-inputs>* {
@@ -99,10 +99,10 @@ h2 {
   box-shadow: 0 5px 10px rgba(219, 157, 64, 0.651);
   background-color: #FE8813;
 
-  img{
+  img {
     filter: invert(0);
   }
-  
+
 }
 
 .radio-input:checked+.radio-tile:before {
@@ -138,7 +138,7 @@ h2 {
   position: relative;
   padding: 0 5px;
 
-  img{
+  img {
     filter: invert(1);
   }
 }
@@ -190,7 +190,9 @@ h2 {
   }
 }
 
-.botoes-modal, .botoes-modal-termo, .botoes-excluir {
+.botoes-modal,
+.botoes-modal-termo,
+.botoes-excluir {
   display: flex;
   justify-content: center;
   gap: 25px;
@@ -285,24 +287,27 @@ h2 {
   gap: 10px;
 }
 
-.botoes-modal-termo button{
+.botoes-modal-termo button {
   margin: 10px 0;
 }
 
 
-/* From Uiverse.io by msadakousema */ 
+/* From Uiverse.io by msadakousema */
 .checkbox-container {
   display: flex;
   align-items: center;
   cursor: pointer;
 }
+
 .checkbox-container label {
   cursor: pointer;
 }
 
 .checkbox input[type="checkbox"] {
-  display: none; /* Hide the default checkbox */
+  display: none;
+  /* Hide the default checkbox */
 }
+
 .checkbox {
   width: 14px;
   height: 14px;
@@ -322,20 +327,25 @@ h2 {
 .checkbox::before {
   content: "";
   position: absolute;
-  top: 232%; /* Starts outside `.background` */
+  top: 232%;
+  /* Starts outside `.background` */
   left: 50%;
-  transform: translate(-50%, -100%) scale(0.75); /* Scaled down initially */
+  transform: translate(-50%, -100%) scale(0.75);
+  /* Scaled down initially */
   border-radius: 50% 20% / 30% 70%;
   width: 115%;
   height: 115%;
   filter: blur(4px);
   background: #FE8813;
-  z-index: 1; /* Places the pseudo-element behind `.download` */
+  z-index: 1;
+  /* Places the pseudo-element behind `.download` */
   transition:
     transform 0.56s cubic-bezier(0.5, 0.26, 0.7, 1.8),
     top 0.38s ease,
-    filter 0.48s ease; /* Smooth position and scaling transitions */
+    filter 0.48s ease;
+  /* Smooth position and scaling transitions */
 }
+
 .checkbox::after {
   content: "";
   position: absolute;
@@ -344,70 +354,69 @@ h2 {
   transform: translate(-50%, -50%);
   width: 75%;
   height: 75%;
-  clip-path: polygon(
-    41% 52%,
-    26% 35%,
-    10% 51%,
-    37% 88%,
-    37% 88%,
-    37% 88%,
-    37% 88%,
-    91% 33%,
-    78% 18%
-  );
+  clip-path: polygon(41% 52%,
+      26% 35%,
+      10% 51%,
+      37% 88%,
+      37% 88%,
+      37% 88%,
+      37% 88%,
+      91% 33%,
+      78% 18%);
   background: white;
   z-index: 1;
-  opacity: 0; /* Initially hidden */
+  opacity: 0;
+  /* Initially hidden */
   transition: all 0.3s cubic-bezier(0.93, 0.17, 0.43, 1.07);
 }
 
 /* Use :has selector to target the checkbox when it's checked */
-.checkbox-container:has(.checkbox input[type="checkbox"]:checked)
-  .checkbox::before {
-  top: 50%; /* Moves to the center of `` */
-  transform: translate(-50%, -50%) scale(1); /* Fully fills the `.download` */
+.checkbox-container:has(.checkbox input[type="checkbox"]:checked) .checkbox::before {
+  top: 50%;
+  /* Moves to the center of `` */
+  transform: translate(-50%, -50%) scale(1);
+  /* Fully fills the `.download` */
   filter: blur(0px);
 }
 
 /* Ensure the pseudo-element reacts to the checkbox state */
-.checkbox-container:has(.checkbox input[type="checkbox"]:checked)
-  .checkbox::after {
+.checkbox-container:has(.checkbox input[type="checkbox"]:checked) .checkbox::after {
   opacity: 1;
   transform: translate(-50%, -50%) perspective(70px) scale(1);
   animation: checkmarkAnimation 0.5s ease-in-out forwards;
 }
 
 .checkbox:has(input[type="checkbox"]:checked) {
-  border: 0px solid; /* Border disappears when checked */
+  border: 0px solid;
+  /* Border disappears when checked */
 }
 
 @keyframes checkmarkAnimation {
   0% {
     opacity: 0;
-    transform: perspective(70px) translate(10%, -20%) rotate(43deg)
-      rotateY(100deg) scale(0);
+    transform: perspective(70px) translate(10%, -20%) rotate(43deg) rotateY(100deg) scale(0);
   }
+
   50% {
     opacity: 1;
-    transform: perspective(70px) translate(-57%, -42%) rotate(32deg)
-      rotateY(55deg) scale(1.32);
+    transform: perspective(70px) translate(-57%, -42%) rotate(32deg) rotateY(55deg) scale(1.32);
   }
+
   100% {
     opacity: 1;
-    transform: perspective(70px) translate(-50%, -50%) rotate(0deg)
-      rotateY(0deg) scale(1);
+    transform: perspective(70px) translate(-50%, -50%) rotate(0deg) rotateY(0deg) scale(1);
   }
 }
 
 /* Estilo para a classe 'erro' nos checkboxes */
 .checkbox-container.erro input {
-    border: 2px solid red;
+  border: 2px solid red;
 }
 
 .erro-texto {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
 }
 
 .error-message {
@@ -416,8 +425,8 @@ h2 {
   margin-top: 10px;
 }
 
-.aceitar-termos{
-  margin-top: 15px; 
+.aceitar-termos {
+  margin-top: 15px;
   padding: 5px;
   background-color: #020411dc;
   color: #fff;
@@ -426,3 +435,77 @@ h2 {
   box-shadow: 1px 1px 4px #0204116c;
 }
 
+/* Ilustrações */
+
+.container-ilustracoes {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.ilustracoes {
+  /* height: 100%; */
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding-top: 20px;
+  color: #FE8813;
+}
+
+.ilustracoes::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("/imgs-fixas/background-perfil.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: invert();
+  box-shadow: 0px 2px 8px 0 #FFFFFF96 inset;
+  /* box-shadow: inset 0px 12px 8px 5px #000000; */
+  z-index: -1;
+}
+
+.ilustracao {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.info-ilustracoes{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center ;
+  margin: 15px 10px;
+  gap: 10px;
+
+  button{
+    max-width: 300px;
+  }
+  
+  p{
+    font-size: .8rem;
+    font-weight: 500;
+    color: #020411;
+  }
+}
+
+.separador {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin: 40px 0 10px 0;
+
+  & hr{
+      width: 100%;
+      height: 1px;
+      border: solid 1px #FE8813;
+      ;
+  }
+}

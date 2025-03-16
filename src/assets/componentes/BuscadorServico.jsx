@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import { buscarServicos, aceitarServico } from "../../service/api.js";
 import ServicosPrestados from "./ServicosPrestados.jsx";
 import { TiLocation } from "react-icons/ti";
+import Modal from "react-modal"; // Importação do modal
 
 const BuscardorServico = () => {
     const [servicos, setServicos] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [erroMensagem, setErroMensagem] = useState({}); // Estado para armazenar erros por serviço
+    const [erroMensagem, setErroMensagem] = useState({}); 
+    const [modalIsOpen, setModalIsOpen] = useState(false); // Estado do modal
+    const [servicoSelecionado, setServicoSelecionado] = useState(null); // Serviço atual selecionado
     const pedreiro_id = localStorage.getItem("pedreiro_id");
 
     useEffect(() => {
@@ -30,26 +33,34 @@ const BuscardorServico = () => {
         fetchServicos();
     }, []);
 
-    const handleAceitarServico = async (servico_id) => {
-        if (!pedreiro_id) {
-            console.error("ID do pedreiro não encontrado.");
+    const handleAbrirModal = (servico) => {
+        setServicoSelecionado(servico); // Armazena o serviço selecionado
+        setModalIsOpen(true); // Abre o modal
+    };
+
+    const handleAceitarServico = async () => {
+        if (!pedreiro_id || !servicoSelecionado) {
+            console.error("ID do pedreiro ou serviço não encontrado.");
             return;
         }
 
         try {
-            const response = await aceitarServico(servico_id, pedreiro_id);
-            setServicos(servicos.filter(servico => servico.id !== servico_id));
+            const response = await aceitarServico(servicoSelecionado.id, pedreiro_id);
+            setServicos(servicos.filter(servico => servico.id !== servicoSelecionado.id));
             ServicosPrestados();
+            setModalIsOpen(false); // Fecha o modal após aceitar
         } catch (error) {
             const mensagemErro = error.response?.data?.message || "Erro ao aceitar serviço.";
-            setErroMensagem(prev => ({ ...prev, [servico_id]: mensagemErro }));
+            setErroMensagem(prev => ({ ...prev, [servicoSelecionado.id]: mensagemErro }));
         }
-    }
+    };
 
-    if (loading) return <div>
-        <p style={{ textAlign: "center", marginBottom: 10, color: "#020411", fontSize: 16, fontWeight: 600 }}>Buscando serviços para você</p>
-        <div className="spinner"></div>
-    </div>;
+    if (loading) return (
+        <div>
+            <p style={{ textAlign: "center", marginBottom: 10, color: "#020411", fontSize: 16, fontWeight: 600 }}>Buscando serviços para você</p>
+            <div className="spinner"></div>
+        </div>
+    );
 
     return (
         <div>
@@ -86,9 +97,8 @@ const BuscardorServico = () => {
                                 <p><span>Prazo</span> {servico.prazo}</p>
                             </div>
 
-
                             <div className="botoes-servico">
-                                <button onClick={() => handleAceitarServico(servico.id)} className="aceitar-servico botao-entrar">
+                                <button onClick={() => handleAbrirModal(servico)} className="aceitar-servico botao-entrar">
                                     Me candidatar
                                 </button>
                             </div>
@@ -97,13 +107,38 @@ const BuscardorServico = () => {
                                     {erroMensagem[servico.id]}
                                 </p>
                             )}
-
                         </div>
                     ))}
                 </div>
             ) : (
                 <p>Nenhum serviço encontrado.</p>
             )}
+
+            {/* Modal para confirmação */}
+            <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={() => setModalIsOpen(false)}
+                contentLabel="Confirmação de Candidatura"
+                ariaHideApp={false}
+                style={{
+                    content: {
+                        top: '50%',
+                        left: '50%',
+                        right: 'auto',
+                        bottom: 'auto',
+                        marginRight: '-50%',
+                        transform: 'translate(-50%, -50%)',
+                        padding: '20px',
+                        width: '400px'
+                    }
+                }}
+            >
+                <h2>Confirmar candidatura</h2>
+                <p>Você pode aceitar no máximo 2 serviços ao mesmo tempo. O serviço ficará em espera até o contratante aceitar sua candidatura.</p>
+                <p>Se estiver de acordo, clique em "Me candidatar" para confirmar.</p>
+                <button onClick={handleAceitarServico} className="botao-entrar">Me candidatar</button>
+                <button onClick={() => setModalIsOpen(false)} className="botao-cancelar">Cancelar</button>
+            </Modal>
         </div>
     );
 }

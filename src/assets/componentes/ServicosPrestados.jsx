@@ -23,8 +23,8 @@ const ServicosPrestados = () => {
     useEffect(() => {
         const carregarDados = async () => {
             setLoading(true);
+            console.log(pedreiro_id)
             try {
-                // Busca os serviços prestados pelo pedreiro (já inclui nome e imagem)
                 const servicosPrestadosResp = await servicosPrestados(pedreiro_id);
                 const servicosPrestadosData = servicosPrestadosResp?.servicos || [];
 
@@ -176,7 +176,18 @@ const ServicosPrestados = () => {
                     ))}
                 </div>
             ) : (
-                <p>Sem serviços em andamento</p>
+                <div className="container-ilustracoes">
+                    <div className="ilustracoes">
+                        {/* <h3>Você não possui nenhum serviço em andamento</h3> */}
+                        <img src="/imgs-fixas/nada_encontrado.png" alt="Nada encontrado" className="ilustracao" />
+                    </div>
+
+                    <div className="info-ilustracoes" >
+                        {/* <h3>Nenhum resultado!</h3> */}
+                        <p>Visite a aba de <strong>"BUSCAR"</strong> para encontrar novos serviços e aceitá-los</p>
+                        <button type="button" className="botao-entrar">Buscar serviços</button>
+                    </div>
+                </div>
             )}
 
             {/* Modal de confirmação */}

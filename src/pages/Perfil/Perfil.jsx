@@ -78,7 +78,7 @@ const Perfil = () => {
         };
 
         fetchServicos();
-    }, [pedreiro_id]); // Removi `servicos` da lista de dependências
+    }, [pedreiro_id]); 
 
 
     // Informações do Pedreiro
@@ -115,7 +115,7 @@ const Perfil = () => {
                 {!loadingPedreiro && pedreiro && (
                     <div className="perfil-detalhes">
 
-                        <button onClick={logout} className="botao-sair">Sair <IoExitOutline />
+                        <button onClick={logout} className="botao-sair">Sair <IoExitOutline style={{fontSize: 25}}/>
                         </button>
 
                         <div className="info-container">
@@ -171,13 +171,16 @@ const Perfil = () => {
                 </div>
 
                 <div className="conteudo-categoria">
-                    {categoria === "minhaObra" && <ServicosPrestados />}
+                    {categoria === "minhaObra" && <ServicosPrestados setCategoria={setCategoria} />}
                     {categoria === "buscarObra" && <BuscardorServico />}
                     {categoria === "historico" && <Historico />}
                     {categoria === "mais" && <Configuracoes />}
                 </div>
             </div>
+
+           
         </div>
+        
     );
 };
 

@@ -8,12 +8,13 @@ import { servicosPrestados, finalizarServico } from "../../service/api";
 
 // Icones
 import { TiLocation } from "react-icons/ti";
-import { IoLogoWhatsapp } from "react-icons/io";
+import { IoLogoWhatsapp, IoMdSearch } from "react-icons/io";
 import { FaCheck } from "react-icons/fa";
 import { CgSandClock } from "react-icons/cg";
 import { MdLockOutline } from "react-icons/md";
 
-const ServicosPrestados = () => {
+
+const ServicosPrestados = ({ setCategoria }) => {
     const [servPrestados, setServPrestados] = useState([]);
     const [loading, setLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -41,6 +42,9 @@ const ServicosPrestados = () => {
         }
     }, [pedreiro_id]);
 
+    const handleBuscarObra = () => {
+        setCategoria('buscarObra');
+    };
 
     const handleFinalizarServico = (servico) => {
         setServicoSelecionado(servico);
@@ -77,6 +81,7 @@ const ServicosPrestados = () => {
     return (
         <div>
             {/* <hr style={{ margin: 10 }} /> */}
+
             <h3 className="titulo-categorias">Serviços em andamento</h3>
             {servicosEmAndamento.length > 0 ? (
                 <div>
@@ -165,7 +170,7 @@ const ServicosPrestados = () => {
                                     onClick={() => handleFinalizarServico(servico)}
                                     disabled={servico.status !== "aceito"}
                                     className="finalizar-servico botao-entrar"
-                                    style={{ backgroundColor: (servico.status !== "aceito" ? "gray" : "")}}
+                                    style={{ backgroundColor: (servico.status !== "aceito" ? "gray" : "") }}
                                 >
                                     {servico.status === "aguardando confirmacao" ? "Aguardando confirmação" : "Finalizar Serviço"}
                                 </button>
@@ -177,6 +182,7 @@ const ServicosPrestados = () => {
                 </div>
             ) : (
                 <div className="container-ilustracoes">
+
                     <div className="ilustracoes">
                         {/* <h3>Você não possui nenhum serviço em andamento</h3> */}
                         <img src="/imgs-fixas/nada_encontrado.png" alt="Nada encontrado" className="ilustracao" />
@@ -185,7 +191,7 @@ const ServicosPrestados = () => {
                     <div className="info-ilustracoes" >
                         {/* <h3>Nenhum resultado!</h3> */}
                         <p>Visite a aba de <strong>"BUSCAR"</strong> para encontrar novos serviços e aceitá-los</p>
-                        <button type="button" className="botao-entrar">Buscar serviços</button>
+                        <button type="button" className="botao-entrar" onClick={handleBuscarObra}>Buscar </button>
                     </div>
                 </div>
             )}

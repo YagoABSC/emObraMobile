@@ -163,13 +163,17 @@ const EditarPerfil = () => {
 
   return (
     <div className="editar-perfil">
-      <div className='editar-acoes'>
-        <button type="button" onClick={handleCancel} className="cancelar"><IoIosArrowBack /> <span>Voltar</span></button>
-        <button type="button" className="editar-salvar" onClick={() => formRef.current.requestSubmit()}>Salvar  <FaCheck /></button>
-      </div>
-
-      <div>
-        <h1>Editar Perfil</h1>
+      
+      <div className='header-edicao'>
+        <div className='editar-acoes'>
+          <button type="button" onClick={handleCancel} className="cancelar"><IoIosArrowBack /> <span>Voltar</span></button>
+          <button type="button" className="editar-salvar" onClick={() => formRef.current.requestSubmit()}>Salvar  <FaCheck /></button>
+        </div>
+        <div>
+          <h1>Editar Perfil</h1>
+        </div>
+          <p>Manter seu perfil atualizado aumenta suas chances de contratantes entrarem em contato com você. </p>
+          <p>Aqui você pode alterar sua foto de perfil, seus dados e também os tipos de serviços que você oferece.</p>
       </div>
 
       <div className="container-opcao">
@@ -191,9 +195,9 @@ const EditarPerfil = () => {
 
 
       <div style={{ backgroundColor: "white", padding: "15px", width: "90%" }}>
-        {(form === "foto" || form === "todos") && (
-          <div className='container-editar-foto'>
-            <div className='separador' style={{marginTop: 0}}>
+        {(form === ("foto") || form === "todos") && (
+          <div className='container-editar-foto' style={{marginBottom: "40px"}}>
+            <div className='separador'>
               <span>Foto</span>
               <hr />
             </div>
@@ -202,7 +206,7 @@ const EditarPerfil = () => {
         )}
         <form ref={formRef} onSubmit={handleSubmit}>
           {(form === "dados" || form === "todos") && (
-            <div>
+            <div style={{marginBottom: "40px"}}>
               <div className='separador'>
                 <span>Dados Pessoais</span>
                 <hr />
@@ -243,7 +247,7 @@ const EditarPerfil = () => {
             </div>
           )}
           {(form === "servicos" || form === "todos") && (
-            <div>
+            <div style={{marginBottom: "40px"}}>
               <div className='separador'>
                 <span>Servicos</span>
                 <hr />

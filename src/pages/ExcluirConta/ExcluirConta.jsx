@@ -70,8 +70,8 @@ const ExcluirConta = () => {
                     </div>
 
                     <div className="senha-excluir">
-                        <h2>Se deseja continuar, insira sua senha no campo abaixo e clique em <strong>"Excluir minha conta"</strong></h2>
-                        <img src="/imgs-fixas/excluir-conta2.png" alt="até mais" />
+                        <p>Se deseja continuar, insira sua senha no campo abaixo e clique em <strong>"Excluir minha conta"</strong></p>
+                        <img src="/imgs-fixas/excluir-conta.png" alt="até mais" />
                         <span>Atenção! Esta ação é irreversível!</span>
 
                         <form onSubmit={handleExcluir}>

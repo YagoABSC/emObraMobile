@@ -7,7 +7,7 @@ import Modal from "react-modal"; // Importação do modal
 const BuscardorServico = () => {
     const [servicos, setServicos] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [erroMensagem, setErroMensagem] = useState({}); 
+    const [erroMensagem, setErroMensagem] = useState({});
     const [modalIsOpen, setModalIsOpen] = useState(false); // Estado do modal
     const [servicoSelecionado, setServicoSelecionado] = useState(null); // Serviço atual selecionado
     const pedreiro_id = localStorage.getItem("pedreiro_id");
@@ -76,6 +76,9 @@ const BuscardorServico = () => {
                                 </div>
                                 <div className="tipo-servico">
                                     <h4>{servico.nome_servico}</h4>
+                                    <div className="prazo-servico">
+                                    <p><span>Prazo</span> {servico.prazo}</p>
+                                    </div>
                                 </div>
                                 <span className="status-servico" style={{ flexDirection: "column" }}>
                                     <span>Valor</span>{servico.valor}
@@ -88,14 +91,11 @@ const BuscardorServico = () => {
 
                             <div className="local-servico">
                                 <TiLocation style={{ fontSize: 25, color: "#FF3512" }} />
-                                <p>{servico.bairro}, a <strong style={{ fontSize: 15, color: "#FF3512" }}>{servico.distancia_km}km</strong> de você. - {servico.cidade}</p>
+                                <p>{servico.bairro} - {servico.cidade}</p>
                             </div>
 
                             <hr style={{ margin: "20px auto", border: "solid 1px #FF3512", width: "90%" }} />
-                            
-                            <div className="prazo-servico">
-                                <p><span>Prazo</span> {servico.prazo}</p>
-                            </div>
+
 
                             <div className="botoes-servico">
                                 <button onClick={() => handleAbrirModal(servico)} className="aceitar-servico botao-entrar">
@@ -129,15 +129,21 @@ const BuscardorServico = () => {
                         marginRight: '-50%',
                         transform: 'translate(-50%, -50%)',
                         padding: '20px',
-                        width: '400px'
+                        width: '90%',
+                        maxWidth: "600px"
                     }
                 }}
             >
-                <h2>Confirmar candidatura</h2>
-                <p>Você pode aceitar no máximo 2 serviços ao mesmo tempo. O serviço ficará em espera até o contratante aceitar sua candidatura.</p>
-                <p>Se estiver de acordo, clique em "Me candidatar" para confirmar.</p>
-                <button onClick={handleAceitarServico} className="botao-entrar">Me candidatar</button>
-                <button onClick={() => setModalIsOpen(false)} className="botao-cancelar">Cancelar</button>
+                <div className="modal-conteudo">
+                    <h2>Confirmar candidatura</h2>
+                    <p style={{ color: "#FE8813", fontWeight: 600 }}>Você pode aceitar no máximo 2 serviços ao mesmo tempo. </p>
+                    <p>O serviço ficará em espera até o contratante aceitar sua candidatura.</p>
+                    <span style={{ fontSize: ".9rem" }}>Se estiver de acordo, clique em <strong>"Me candidatar"</strong> para confirmar.</span>
+                </div>
+                <div className="botoes-excluir">
+                    <button type="button" onClick={() => setModalIsOpen(false)} className="cancelar-btn cancelar botao-entrar">Cancelar</button>
+                    <button type="button" onClick={handleAceitarServico} className="botao-entrar">Me candidatar</button>
+                </div>
             </Modal>
         </div>
     );

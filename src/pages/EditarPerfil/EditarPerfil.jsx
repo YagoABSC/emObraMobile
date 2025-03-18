@@ -138,6 +138,10 @@ const EditarPerfil = () => {
     navigate("/perfil");
   };
 
+  const voltar = () => {
+      navigate("/perfil"); 
+  }
+
   // Deixa selecionado os serviços já vinculados
   const handleCheckboxChange = (event) => {
     const { value, checked } = event.target;
@@ -161,17 +165,16 @@ const EditarPerfil = () => {
 
   return (
     <div className="editar-perfil">
-      
+
       <div className='header-edicao'>
         <div className='editar-acoes'>
-          <button type="button" onClick={handleCancel} className="cancelar"><IoIosArrowBack /> <span>Voltar</span></button>
-          <button type="button" className="editar-salvar" onClick={() => formRef.current.requestSubmit()}>Salvar  <FaCheck /></button>
+          <button onClick={voltar} style={{ background: "none", border: "none" }}><IoIosArrowBack style={{ fontSize: 25, color: "#FFFFFF" }} /></button>
+
         </div>
         <div>
           <h1>Editar Perfil</h1>
         </div>
-          <p>Manter seu perfil atualizado aumenta suas chances de contratantes entrarem em contato com você. </p>
-          <p>Aqui você pode alterar sua foto de perfil, seus dados e também os tipos de serviços que você oferece.</p>
+        <p>Manter seu perfil atualizado aumenta suas chances de contratantes entrarem em contato com você. </p>
       </div>
 
       <div className="container-opcao">
@@ -192,9 +195,9 @@ const EditarPerfil = () => {
       </div>
 
 
-      <div style={{ backgroundColor: "white", padding: "15px", width: "90%" }}>
+      <div style={{ backgroundColor: "white", padding: "15px", width: "90%", boxShadow: "0 0 1px 0 rgba(2, 4, 17, 0.6), 0 3px 5px 0 rgba(2, 4, 17, 0.6)", borderRadius: "10px" }}>
         {(form === ("foto") || form === "todos") && (
-          <div className='container-editar-foto' style={{marginBottom: "40px"}}>
+          <div className='container-editar-foto' style={{ marginBottom: "40px" }}>
             <div className='separador'>
               <span>Foto</span>
               <hr />
@@ -204,7 +207,7 @@ const EditarPerfil = () => {
         )}
         <form ref={formRef} onSubmit={handleSubmit}>
           {(form === "dados" || form === "todos") && (
-            <div style={{marginBottom: "40px"}}>
+            <div style={{ marginBottom: "40px" }}>
               <div className='separador'>
                 <span>Dados Pessoais</span>
                 <hr />
@@ -245,7 +248,7 @@ const EditarPerfil = () => {
             </div>
           )}
           {(form === "servicos" || form === "todos") && (
-            <div style={{marginBottom: "40px"}}>
+            <div style={{ marginBottom: "40px" }}>
               <div className='separador'>
                 <span>Servicos</span>
                 <hr />
@@ -278,6 +281,10 @@ const EditarPerfil = () => {
             </div>
           )}
         </form>
+        <div className="botoes-editar">
+          <button type="button" onClick={handleCancel} className="cancelar botao-entrar cancelar-btn">Cancelar</button>
+          <button type="button" className="editar-salvar botao-entrar" onClick={() => formRef.current.requestSubmit()} style={{ backgroundColor: "#020411" }}>Salvar  <FaCheck /></button>
+        </div>
       </div>
     </div>
   );

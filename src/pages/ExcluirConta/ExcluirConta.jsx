@@ -13,6 +13,9 @@ import InputControl from "../../assets/componentes/InputControl";
 // CSS
 import './Excluir.scss';
 
+// Icones
+import { IoIosArrowBack } from "react-icons/io";
+
 const ExcluirConta = () => {
 
     useAuth();
@@ -45,19 +48,29 @@ const ExcluirConta = () => {
         }
     };
 
+    const voltar = () =>{
+            navigate("/perfil");  // Caso não haja histórico, redireciona para a página inicial
+    }
+
     return (
         <div className="container-excluir">
 
             {!confirmacao ? (
                 <>
                     <div className="confirmar-excluir">
-                        <h2>Excluir Conta</h2>
+                        <button onClick={voltar} style={{background: "none", border: "none", width: "100%", textAlign: "left"}}><IoIosArrowBack style={{fontSize: 25, color: "#FFFFFF"}}/></button>
+                        {/* <h2>Excluir Conta</h2> */}
                         <div>
                             <img src="/imgs-fixas/excluir-conta-icon.png" alt="Icone de excluir conta" />
-                            <h3>Olá, Fulano. Que triste te ver por aqui.</h3>
+                            <h1>Excluir Conta</h1>
                         </div>
+                            <p>Que triste te ver por aqui! Confira abaixo se é isso mesmo que deseja fazer e os passos que deve seguir</p>
 
-                        <h2>Tem certeza que deseja <strong>excluir</strong> sua conta? </h2>
+                    </div>
+
+
+                    <div className="info-excluir">
+                        <h2>Tem certeza que deseja <strong style={{color: "red"}}>EXCLUIR</strong> sua conta? </h2>
                         <ul>
                             <h4>O que será excluído:</h4>
                             <li>Seus dados pessoais na plataforma </li>
@@ -66,15 +79,12 @@ const ExcluirConta = () => {
                         </ul>
                     </div>
 
-                    <div>
-                    </div>
-
                     <div className="senha-excluir">
                         <p>Se deseja continuar, insira sua senha no campo abaixo e clique em <strong>"Excluir minha conta"</strong></p>
                         <img src="/imgs-fixas/excluir-conta.png" alt="até mais" />
-                        <span>Atenção! Esta ação é irreversível!</span>
 
                         <form onSubmit={handleExcluir}>
+                        <span style={{color: "red", fontSize: ".9rem"}}>Atenção! Esta ação é irreversível!</span>
                             <InputControl
                                 type="password"
                                 label="Digite sua senha"

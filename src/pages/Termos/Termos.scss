@@ -1,0 +1,48 @@
+.header-termos{
+    margin-bottom: 15px;
+    padding: 15px;
+    font-size: .9rem;
+    background: url(/imgs-fixas/background-perfil.jpg);
+    background-size: contain;
+    color: #FFFFFF;
+    box-shadow: 0px 3px 10px 5px #0204119a;
+}
+
+.termos-texto{
+    padding: 15px;
+    margin: 20px;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 1px 0 rgba(2, 4, 17, 0.6), 0 3px 5px 0 rgba(2, 4, 17, 0.6);
+    border-radius: 10px;
+    
+    & h3{
+        margin-top: 40px;
+    }
+
+    & p{
+        margin: 10px 0;
+        padding: 0 10px;
+        border-left: 3px solid #020411;
+        text-align: justify;
+        hyphens: auto;
+    }
+
+    & ul{
+        padding: 0 30px;
+        list-style-type: square;
+        text-align: justify;
+        hyphens: auto;
+        font-size: .9rem;
+
+        & li{
+            margin-bottom: 15px;
+        }
+    }
+}
+
+.botoes-editar{
+
+    & button{
+        margin: 0;
+    }
+}

@@ -30,7 +30,7 @@ const ModalTermo = ({ isOpen, onClose, onConfirm, formData }) => {
         >
             <div className="modal-conteudo-termo">
                 <h2>Termos e Condições</h2>
-                <div className="termos-texto">
+                <div className="termos-texto-modal">
 
                     <h3>1. Introdução</h3>
                     <p>Bem-vindo ao Em Obra.com. Este aplicativo foi desenvolvido para conectar pedreiros a contratantes, permitindo que profissionais possam ser encontrados para serviços ou encontrem oportunidades de trabalho dentro da plataforma. Ao se cadastrar, você concorda com os termos e condições descritos abaixo, incluindo o uso e proteção de seus dados pessoais, conforme estabelecido pela Lei Geral de Proteção de Dados Pessoais (LGPD - Lei 13.709/2018).</p>

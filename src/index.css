@@ -28,6 +28,31 @@ h2 {
   font-size: 1.2em;
 }
 
+.editar-perfil,
+.trocar-senha, .container-geral, .container-termos, .container-excluir, .senha-excluir
+{
+  background: url("/imgs-fixas/background.png");
+    background-size: contain;
+}
+
+.header-edicao, .header-termos, .confirmar-excluir{
+  & h1 {
+    font-weight: 500;
+    color: #dcdcdc;
+    font-size: 1.6rem;
+}
+
+& p {
+    padding: 10px;
+    text-indent: 10px;
+    margin: 5px 0;
+    font-size: .9rem;
+    color: #dcdcdc;
+    font-weight: 500;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8));
+}
+}
+
 .botao-entrar,
 .modal-cards-btn {
   width: 100%;
@@ -194,7 +219,7 @@ h2 {
 
 .botoes-modal,
 .botoes-modal-termo,
-.botoes-excluir {
+.botoes-excluir, .botoes-editar, .editar-acoes {
   display: flex;
   justify-content: center;
   gap: 25px;
@@ -245,7 +270,7 @@ h2 {
   justify-content: center;
 }
 
-.termos-texto {
+.termos-texto-modal {
   max-height: 50vh;
   overflow-y: auto;
   padding: 10px;
@@ -254,24 +279,24 @@ h2 {
   border-radius: 10px;
 }
 
-.termos-texto h3 {
+.termos-texto-modal h3 {
   margin: 20px 0 5px 0;
   font-size: 1rem;
 }
 
-.termos-texto ul {
+.termos-texto-modal ul {
   list-style-type: disc;
   /* ou circle/square */
   margin: 20px 0px 20px 20px;
 }
 
-.termos-texto p {
+.termos-texto-modal p {
   text-indent: 10px;
   text-align: justify;
   hyphens: auto;
 }
 
-.termos-texto ul li {
+.termos-texto-modal ul li {
   margin-bottom: 10px;
 }
 

@@ -164,7 +164,19 @@ const ServicosPrestados = ({ setCategoria }) => {
                             </div>
 
                             <div className="botoes-servico">
-                                <button className="botao-entrar contato-servico"><span>Falar com <br />Contratante</span><IoLogoWhatsapp style={{ fontSize: 25 }} /></button>
+                                <button
+                                    className="botao-entrar contato-servico"
+                                    disabled={servico.status === "em andamento"}
+                                    style={{ backgroundColor: (servico.status === "em andamento" ? "gray" : ""), color: (servico.status === "em andamento" ? "#FFFFFF" : "") }}
+                                    onClick={() => {
+                                        const numeroWhatsApp = `+55${servico.telefone.replace(/\D/g, "")}`; // Remove caracteres não numéricos
+                                        const mensagem = encodeURIComponent(`Olá, ${servico.nome}! Gostaria de falar sobre o serviço: ${servico.nome_servico} - ${servico.descricao}`);
+                                        const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+                                        window.open(linkWhatsApp, "_blank"); // Abre em uma nova aba
+                                    }}
+                                >
+                                    <span>Falar com <br />Contratante</span><IoLogoWhatsapp style={{ fontSize: 25 }} />
+                                </button>
 
                                 <button
                                     onClick={() => handleFinalizarServico(servico)}

@@ -483,9 +483,9 @@
 // Configurações
 
 .container-configuracoes{
-  background: url("/imgs-fixas/background-config.png");
-  background-size: contain;
-  height: 50dvh;
+  // background: url("/imgs-fixas/background-config.png");
+  // background-size: contain;
+  // height: 50dvh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -498,7 +498,7 @@
     align-items: center;
     max-width: 200px;
     justify-content: center;
-    color: #FFFFFF;
+    // color: #FFFFFF;
   }
 }
 

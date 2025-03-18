@@ -8,7 +8,6 @@ import useAuth from '../../assets/hooks/UseAuth';
 import InputControl from '../../assets/componentes/InputControl'
 import PhoneInput from '../../assets/componentes/PhoneInput';
 import Loading from '../../assets/componentes/Loading'
-
 import EditarFoto from './EditarFoto';
 
 // Requisições
@@ -20,7 +19,6 @@ import { FaCheck } from "react-icons/fa";
 
 // CSS
 import './Editar.scss';
-
 
 const EditarPerfil = () => {
 

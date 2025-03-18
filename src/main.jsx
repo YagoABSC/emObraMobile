@@ -11,6 +11,7 @@ import EditarPerfil from './pages/EditarPerfil/EditarPerfil.jsx'
 import ExcluirConta from './pages/ExcluirConta/ExcluirConta.jsx'
 import Servicos from './assets/componentes/Servicos.jsx'
 import TrocarSenha from './pages/TrocarSenha/TrocarSenha.jsx'
+import Termos from './pages/Termos/Termos.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -25,6 +26,7 @@ createRoot(document.getElementById('root')).render(
         <Route path='excluir-conta' element={<ExcluirConta />}/>
         <Route path='pedreiro-servicos' element={<Servicos />} />
         <Route path='editar-senha' element={<TrocarSenha/>} />
+        <Route path='termos' element={<Termos />} />
       </Routes>
     </Router>
   </StrictMode>,

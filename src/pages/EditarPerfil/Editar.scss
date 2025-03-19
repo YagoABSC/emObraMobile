@@ -22,7 +22,7 @@
             width: 100%;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
+            padding: 0 10px;
             margin: 10px 0 20px 0;
     
             & button {
@@ -105,7 +105,7 @@
     background-color: #fff;
     box-shadow: 0 0 1px 0 rgb(2 4 17 / 60%), 0 3px 5px 0 rgb(2 4 17 / 60%);
     padding: 0.75rem;
-    border-radius: 99px;
+    border-radius: 10px;
 }
 
 
@@ -155,7 +155,7 @@
     width: 4rem;
     background-color: #fe89136c;
     z-index: 1;
-    border-radius: 99px;
+    border-radius: 10px;
     transition: 0.25s ease-out;
 }
 

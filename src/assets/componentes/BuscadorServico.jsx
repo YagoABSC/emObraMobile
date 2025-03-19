@@ -43,17 +43,21 @@ const BuscardorServico = () => {
             console.error("ID do pedreiro ou serviço não encontrado.");
             return;
         }
-
+    
+        setModalIsOpen(false); // Fecha o modal
+        setLoading(true); // Exibe o loading
+    
         try {
-            const response = await aceitarServico(servicoSelecionado.id, pedreiro_id);
-            setServicos(servicos.filter(servico => servico.id !== servicoSelecionado.id));
-            ServicosPrestados();
-            setModalIsOpen(false); // Fecha o modal após aceitar
+            await aceitarServico(servicoSelecionado.id, pedreiro_id);
+            window.location.reload();
         } catch (error) {
             const mensagemErro = error.response?.data?.message || "Erro ao aceitar serviço.";
             setErroMensagem(prev => ({ ...prev, [servicoSelecionado.id]: mensagemErro }));
+        } finally {
+            setLoading(false);
         }
     };
+    
 
     if (loading) return (
         <div>

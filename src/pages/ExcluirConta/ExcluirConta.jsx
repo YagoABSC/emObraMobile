@@ -58,8 +58,9 @@ const ExcluirConta = () => {
             {!confirmacao ? (
                 <>
                     <div className="confirmar-excluir">
-                        <button onClick={voltar} style={{background: "none", border: "none", width: "100%", textAlign: "left"}}><IoIosArrowBack style={{fontSize: 25, color: "#FFFFFF"}}/></button>
-                        {/* <h2>Excluir Conta</h2> */}
+                        <div style={{display: "flex", width: "100%", margin: "10px 0 20px 0", justifyContent: "left", padding: "0 10px"}}>
+                            <button onClick={voltar} style={{background: "none", border: "none",}}><IoIosArrowBack style={{fontSize: 25, color: "#FFFFFF"}}/></button>
+                            </div>
                         <div>
                             <img src="/imgs-fixas/excluir-conta-icon.png" alt="Icone de excluir conta" />
                             <h1>Excluir Conta</h1>

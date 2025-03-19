@@ -65,7 +65,9 @@ const TrocarSenha = () => {
             <div className="trocar-senha">
 
                 <div className="header-edicao">
-                    <button onClick={voltar} style={{ background: "none", border: "none" }}><IoIosArrowBack style={{ fontSize: 25, color: "#FFFFFF" }} /></button>
+                    <div style={{display: "flex", width: "100%", margin: "10px 0 20px 0", justifyContent: "left", padding: "0 10px"}}>
+                        <button onClick={voltar} style={{ background: "none", border: "none" }}><IoIosArrowBack style={{ fontSize: 25, color: "#FFFFFF" }} /></button>
+                    </div>
 
                     <h1>Trocar Senha</h1>
                     <p>O emObra preza pela segurança dos seus dados. Lembre-se de não compartilhar sua senha com ninguém!</p>

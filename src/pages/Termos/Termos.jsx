@@ -23,10 +23,10 @@ const Termos = () => {
         <>
             <div className="container-termos">
                 <div className="header-termos">
-                    <button onClick={voltar} style={{background: "none", border: "none"}}><IoIosArrowBack style={{fontSize: 25, color: "#FFFFFF"}}/></button>
+                    <div style={{display: "flex", width: "100%", margin: "10px 0 20px 0", justifyContent: "left", padding: "0 10px"}}><button onClick={voltar} style={{background: "none", border: "none"}}><IoIosArrowBack style={{fontSize: 25, color: "#FFFFFF"}}/></button></div>
 
                     <div>
-                        <h1>Termos de uso de dados e Politicas de privacidade</h1>
+                        <h1>Termos de uso e Politicas de privacidade</h1>
                         <p>Entenda como seus dados são usados na plataforma</p>
                     </div>
                 </div>

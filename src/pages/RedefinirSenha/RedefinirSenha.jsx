@@ -67,7 +67,7 @@ const RedefinirSenha = () => {
                 <Containerform>
                     <h2>Redefinir sua senha</h2>
                     {formPart === 'pt1' && (
-                        <form style={{ width: '100%' }} onSubmit={handleEnviarCodigo}>
+                        <form style={{ width: '100%', backgroundColor: '#ffffff9e' }} onSubmit={handleEnviarCodigo}>
                             <InputControl
                                 label="CPF ou Email:"
                                 id="identificador"
@@ -83,7 +83,7 @@ const RedefinirSenha = () => {
                     )}
 
                     {formPart === 'pt2' && (
-                        <form style={{ width: '100%' }} onSubmit={handleRedefinirSenha}>
+                        <form style={{ width: '100%', backgroundColor: '#ffffff9e' }} onSubmit={handleRedefinirSenha}>
                             
                             <InputControl
                                 label="Código:"

@@ -4,7 +4,7 @@
   scrollbar-color: #020411 #fff;
 }
 
-.escolher-servico{
+.escolher-servico {
   font-size: 1rem;
   width: 100%;
   // margin: 20px 20px;
@@ -23,7 +23,7 @@
   margin: 0 auto;
 }
 
-.botoes-selecionar-servicos{
+.botoes-selecionar-servicos {
   position: fixed;
   bottom: 0;
   margin: 25px;
@@ -144,7 +144,7 @@
   justify-content: center;
   background: url(/imgs-fixas/background-perfil.jpg) center/cover;
   padding: 50px 10px;
-  
+
 
   & .info-pessoais {
     color: white;
@@ -217,7 +217,7 @@
   width: 90%;
   max-width: 450px;
   padding: 10px 0;
-  border-radius: 15px;
+  border-radius: 10px;
   position: relative;
   bottom: 50px;
   background-color: #fff;
@@ -255,7 +255,7 @@
   }
 }
 
-.titulo-categorias{
+.titulo-categorias {
   font-size: 1em;
   color: #020411;
   margin: -25px 20px 0 20px;
@@ -264,7 +264,8 @@
 
 // Serviços prestados, buscador e historico
 
-.servico-ativo, .servico-pendente, .historico-servico{
+.servico-ativo,
+.servico-pendente {
   margin: 40px 20px;
   padding: 10px;
   background-color: #fff;
@@ -279,15 +280,18 @@
     margin: 10px;
 
     & .icon-servico {
-      background-color: #020411;
-      border-radius: 10px;
-      width: 50px;
-      height: 50px;
-      padding: 0;
+      // background-color: #020411;
+      border: 2px #020411 solid;
+      border-radius: 50%;
+      display: flex;
+      height: fit-content;
+      min-width: fit-content; 
 
       & img {
-        margin: 10px;
-        width: 30px;
+        margin: 15px;
+        width: 100%;
+        max-width: 30px;
+        filter: invert(1);
       }
     }
 
@@ -334,8 +338,8 @@
       text-transform: capitalize;
       text-align: center;
       padding: 5px 10px;
-      background-color: #0A8B803a;
-      color: #0A8B80;
+      background-color: #FE88133a;
+      color: #FE8813;
       height: fit-content;
       border-radius: 10px;
     }
@@ -456,7 +460,8 @@
     }
 
 
-    & .finalizar-servico, .aceitar-servico {
+    & .finalizar-servico,
+    .aceitar-servico {
       background-color: #FF8812;
       border: none;
       color: white;
@@ -479,25 +484,103 @@
 
 }
 
-// Configurações
-
-.container-configuracoes{
-  // background: url("/imgs-fixas/background-config.png");
-  // background-size: contain;
-  // height: 50dvh;
+.historico-servico {
+  background-color: #ffffff;
+  border-radius: 10px;
+  width: 90%;
+  margin: 15px auto;
+  padding: 20px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 15px;
-  margin-bottom: 20px;
+  gap: 20px;
+  box-shadow: 0 0 1px 0 rgba(2, 4, 17, 0.6), 0 3px 5px 0 rgba(2, 4, 17, 0.6);
 
-  & .config-categorias{
+  & .img-historico {
+    border: 2px #020411 solid;
+    border-radius: 50%;
     display: flex;
-    align-items: center;
-    max-width: 200px;
+    height: fit-content;
+    min-width: fit-content;
+
+    & img {
+      margin: 15px;
+      width: 100%;
+      max-width: 30px;
+      filter: invert(1);
+    }
+  }
+
+  & .info-historico {
+    width: 100%;
+    font-size: .9rem;
+    font-weight: 500;
+    color: #4e4e4e;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    // color: #FFFFFF;
+    gap: 5px;
+
+    & .icone-historico {
+      font-size: 1.2rem;
+    }
+
+    & .header-info-historico {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+
+
+      & span {
+        font-weight: 600;
+      }
+
+    }
+
+    & p {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    & .sobre-servico-historico {
+
+      & span {
+        margin-left: 22px;
+        padding: 0 5px;
+        font-size: .8rem;
+        border-left: #4e4e4e 3px solid;
+      }
+    }
   }
 }
 
+// Configurações
+
+.container-configuracoes {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 20px;
+  padding: 0 20px;
+
+  & .config-categorias {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 350px;
+    height: 60px;
+    justify-content: center;
+    padding: 15px;
+    text-align: center;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 0 1px 0 rgba(2, 4, 17, 0.6), 0 3px 5px 0 rgba(2, 4, 17, 0.6);
+
+    & span {
+      font-size: .9rem;
+      font-weight: 600;
+    }
+  }
+}

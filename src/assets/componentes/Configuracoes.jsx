@@ -1,6 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+//Icones
+import { IoExitOutline } from "react-icons/io5";
+
 const Configuracoes = () => {
 
     const navigate = useNavigate();
@@ -21,19 +24,27 @@ const Configuracoes = () => {
         navigate("/excluir-conta");
     }
 
+    const logout = () => {
+        localStorage.removeItem("token");
+        navigate("/login"); // Redireciona sem recarregar a página
+    };
+
     return (
         <div className="container-configuracoes">
-            <div className="config-categorias">
-                <span onClick={editar}>Editar perfil</span>
+            <div className="config-categorias" onClick={editar}>
+                <span>Editar perfil</span>
             </div>
-            <div className="config-categorias">
-                <span onClick={editarSenha}>Editar senha</span>
+            <div className="config-categorias" onClick={editarSenha}>
+                <span >Editar senha</span>
             </div>
-            <div className="config-categorias">
-                <span onClick={termos}>Termos e Condições</span>
+            <div className="config-categorias" onClick={termos}>
+                <span >Termos e Condições</span>
             </div>
-            <div className="config-categorias">
-                <span onClick={excluir} style={{ color: "red" }}>Excluir conta</span>
+            <div className="config-categorias" onClick={excluir}>
+                <span>Excluir conta</span>
+            </div>
+            <div className="config-categorias" onClick={logout}>
+                <span>Sair da conta </span>
             </div>
         </div>
     )

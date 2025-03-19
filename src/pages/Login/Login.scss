@@ -2,10 +2,11 @@
 
 #loginForm {
   width: 100%;
+  background-color: #ffffff9e;
 }
 
 .login-image {
-  display: none; // Esconde no mobile
+  display: none; 
 
   @media (min-width: 750px) {
       display: block;

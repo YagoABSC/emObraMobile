@@ -15,7 +15,6 @@ import { listarPedreiro, atualizarPedreiro, listarServicos, servicosPedreiro } f
 
 // Icones
 import { IoIosArrowBack } from "react-icons/io";
-import { FaCheck } from "react-icons/fa";
 
 // CSS
 import './Editar.scss';
@@ -283,7 +282,7 @@ const EditarPerfil = () => {
         </form>
         <div className="botoes-editar">
           <button type="button" onClick={handleCancel} className="cancelar botao-entrar cancelar-btn">Cancelar</button>
-          <button type="button" className="editar-salvar botao-entrar" onClick={() => formRef.current.requestSubmit()} style={{ backgroundColor: "#020411" }}>Salvar  <FaCheck /></button>
+          <button type="button" className="editar-salvar botao-entrar" onClick={() => formRef.current.requestSubmit()} style={{ backgroundColor: "#020411" }}>Salvar</button>
         </div>
       </div>
     </div>

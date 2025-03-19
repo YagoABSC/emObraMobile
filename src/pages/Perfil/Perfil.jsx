@@ -115,8 +115,8 @@ const Perfil = () => {
                 {!loadingPedreiro && pedreiro && (
                     <div className="perfil-detalhes">
 
-                        <button onClick={logout} className="botao-sair">Sair <IoExitOutline style={{fontSize: 25}}/>
-                        </button>
+                        {/* <button onClick={logout} className="botao-sair">Sair <IoExitOutline style={{fontSize: 25}}/>
+                        </button> */}
 
                         <div className="info-container">
 

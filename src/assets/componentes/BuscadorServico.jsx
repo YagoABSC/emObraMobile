@@ -46,7 +46,7 @@ const BuscardorServico = () => {
     
         setModalIsOpen(false); // Fecha o modal
         setLoading(true); // Exibe o loading
-    
+     
         try {
             await aceitarServico(servicoSelecionado.id, pedreiro_id);
             window.location.reload();

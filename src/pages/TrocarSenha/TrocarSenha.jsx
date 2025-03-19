@@ -74,7 +74,7 @@ const TrocarSenha = () => {
                 </div>
                 <div className="editar-ilustracao">
                     <span>Atenção: Evite usar seus dados pessoais como senha.</span>
-                    <span> Por exemplo: data de nascimento, aniverario e seu próprio nome</span>
+                    <span> Por exemplo: data de nascimento, aniverario ou seu próprio nome.</span>
                     <img style={{ width: "100%", }} src="/imgs-fixas/trocar-senha.png" alt="" />
                 </div>
 
@@ -97,15 +97,11 @@ const TrocarSenha = () => {
                             onChange={(e) => setConfirmarSenha(e.target.value)}
                             required
                         />
-                        {/* <button type="submit" disabled={loading}>
-                            {loading ? "Salvando" : "Atualizar Senha"}
-                        </button>
-                        <button type="button" onClick={handleCancel}>Cancelar</button> */}
                         {mensagem && <p>{mensagem}</p>}
                     </form>
                 <div className='editar-acoes'>
-                    <button type="button" onClick={handleCancel} className="cancelar botao-entrar cancelar-btn"><IoIosArrowBack /> <span>Voltar</span></button>
-                    <button type="button" className="editar-salvar botao-entrar" onClick={() => formRef.current.requestSubmit() } style={{ backgroundColor: "#020411" }}>Salvar  <FaCheck /></button>
+                    <button type="button" onClick={handleCancel} className="cancelar botao-entrar cancelar-btn">Voltar</button>
+                    <button type="button" className="editar-salvar botao-entrar" onClick={() => formRef.current.requestSubmit() } style={{ backgroundColor: "#020411" }}>Salvar</button>
                 </div>
                 </div>
             </div>

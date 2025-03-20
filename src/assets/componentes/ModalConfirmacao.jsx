@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Modal from "react-modal"; // Biblioteca react-modal
-import { FaCheck } from "react-icons/fa";
 
 Modal.setAppElement("#root");
 
@@ -26,11 +25,10 @@ const ModalConfirmacao = ({ isOpen, onClose, onConfirm }) => {
                 <p>
                     {statusFinalizado
                         ? "Parabéns por mais um serviço finalizado. Enviamos o seu pedido de finalização para o Contratante. Aguarde a confirmação."
-                        : "Ao finalizar, o serviço será encerrado e não poderá ser reaberto. O serviço ficará em aguardo até o contratante confirmar a finalização."}
+                        : "Ao finalizar, o serviço será encerrado e não poderá ser reaberto. O serviço ficará em aguardo até o contratante confirmar ou recusar a finalização."}
                 </p>
 
                 <div className="botoes-modal">
-                    {!statusFinalizado ? (
                         <>
                                 <button onClick={onClose} className="cancelar-btn botao-entrar contato-servico">
                                     Cancelar
@@ -40,11 +38,6 @@ const ModalConfirmacao = ({ isOpen, onClose, onConfirm }) => {
                                     Confirmar
                                 </button>
                         </>
-                    ) : (
-                        <button onClick={onClose} className="fechar-btn">
-                            Fechar
-                        </button>
-                    )}
                 </div>
             </div>
         </Modal>

@@ -70,7 +70,7 @@ const Cadastro = () => {
                 setErrorMessage(""); // Limpa mensagens de erro
                 setSuccessMessage(""); // Garante que não exiba no estado
                 
-                alert("Cadastro realizado com sucesso!"); // Mostra o alert antes do redirecionamento
+                alert("Cadastro realizado com sucesso! Verifique seu email para ativar sua conta"); // Mostra o alert antes do redirecionamento
                 navigate("/login"); // Redireciona após fechar o alert
             }
         } catch (error) {

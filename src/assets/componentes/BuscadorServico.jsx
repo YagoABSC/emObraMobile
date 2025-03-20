@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from "react";
+import Modal from "react-modal";
+
+// Requisições
 import { buscarServicos, aceitarServico } from "../../service/api.js";
-import ServicosPrestados from "./ServicosPrestados.jsx";
+
+// Componentes
+import Loading from "./Loading.jsx";
+
+// Icones
 import { TiLocation } from "react-icons/ti";
-import Modal from "react-modal"; // Importação do modal
+
 
 const BuscardorServico = () => {
     const [servicos, setServicos] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [superLoading, setSuperLoading] = useState(false)
     const [erroMensagem, setErroMensagem] = useState({});
     const [modalIsOpen, setModalIsOpen] = useState(false); // Estado do modal
     const [servicoSelecionado, setServicoSelecionado] = useState(null); // Serviço atual selecionado
@@ -44,8 +52,8 @@ const BuscardorServico = () => {
             return;
         }
     
-        setModalIsOpen(false); // Fecha o modal
-        setLoading(true); // Exibe o loading
+        setModalIsOpen(false);
+        setSuperLoading(true); 
      
         try {
             await aceitarServico(servicoSelecionado.id, pedreiro_id);
@@ -54,7 +62,8 @@ const BuscardorServico = () => {
             const mensagemErro = error.response?.data?.message || "Erro ao aceitar serviço.";
             setErroMensagem(prev => ({ ...prev, [servicoSelecionado.id]: mensagemErro }));
         } finally {
-            setLoading(false);
+            // setLoading(false);
+            setSuperLoading(false); 
         }
     };
     
@@ -64,6 +73,10 @@ const BuscardorServico = () => {
             <p style={{ textAlign: "center", marginBottom: 10, color: "#020411", fontSize: 16, fontWeight: 600 }}>Buscando serviços para você</p>
             <div className="spinner"></div>
         </div>
+    );
+
+    if (superLoading) return (
+        <Loading />
     );
 
     return (
@@ -80,11 +93,11 @@ const BuscardorServico = () => {
                                 </div>
                                 <div className="tipo-servico">
                                     <h4>{servico.nome_servico}</h4>
-                                    <div className="prazo-servico">
-                                    <p><span>Prazo</span> {servico.prazo}</p>
+                                    <div>
+                                    <p>Prazo: {servico.prazo}</p>
                                     </div>
                                 </div>
-                                <span className="status-servico" style={{ flexDirection: "column" }}>
+                                <span className="status-servico" style={{ flexDirection: "column", fontSize: ".6rem" }}>
                                     <span>Valor</span>{servico.valor}
                                 </span>
                             </div>
@@ -142,7 +155,7 @@ const BuscardorServico = () => {
                     <h2>Confirmar candidatura</h2>
                     <p style={{ color: "#FE8813", fontWeight: 600 }}>Você pode aceitar no máximo 2 serviços ao mesmo tempo. </p>
                     <p>O serviço ficará em espera até o contratante aceitar sua candidatura.</p>
-                    <span style={{ fontSize: ".9rem" }}>Se estiver de acordo, clique em <strong>"Me candidatar"</strong> para confirmar.</span>
+                    <p style={{ fontSize: ".9rem" }}>Se estiver de acordo, clique em <strong>"Me candidatar"</strong> para confirmar.</p>
                 </div>
                 <div className="botoes-excluir">
                     <button type="button" onClick={() => setModalIsOpen(false)} className="cancelar-btn cancelar botao-entrar">Cancelar</button>

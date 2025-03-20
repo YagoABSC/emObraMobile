@@ -6,6 +6,9 @@ import ModalConfirmacao from "./ModalConfirmacao"
 // Requisições
 import { servicosPrestados, finalizarServico } from "../../service/api";
 
+// Components
+import Loading from "./Loading.jsx";
+
 // Icones
 import { TiLocation } from "react-icons/ti";
 import { IoLogoWhatsapp, IoMdSearch } from "react-icons/io";
@@ -17,6 +20,7 @@ import { MdLockOutline } from "react-icons/md";
 const ServicosPrestados = ({ setCategoria }) => {
     const [servPrestados, setServPrestados] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [superLoading, setSuperLoading] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [servicoSelecionado, setServicoSelecionado] = useState(null);
     const pedreiro_id = localStorage.getItem("pedreiro_id");
@@ -53,6 +57,9 @@ const ServicosPrestados = ({ setCategoria }) => {
 
     const finalizarServicoConfirmado = async () => {
         if (servicoSelecionado) {
+            setIsModalOpen(false);
+            setSuperLoading(true); 
+
             try {
                 await finalizarServico(servicoSelecionado.id); // Chama a função de finalizar serviço
                 setServPrestados((prev) =>
@@ -62,9 +69,12 @@ const ServicosPrestados = ({ setCategoria }) => {
                             : servico
                     )
                 );
-                setIsModalOpen(false); // Fecha o modal após a confirmação
+                window.location.reload();
+
             } catch (error) {
                 console.error("Erro ao finalizar serviço!", error);
+            } finally {
+                setSuperLoading(false); 
             }
         }
     };
@@ -78,9 +88,12 @@ const ServicosPrestados = ({ setCategoria }) => {
         servico => servico.status === "aceito" || servico.status === "aguardando confirmacao" || servico.status === "em andamento"
     );
 
+    if (superLoading) return (
+        <Loading />
+    );
+
     return (
         <div>
-            {/* <hr style={{ margin: 10 }} /> */}
 
             <h3 className="titulo-categorias">Serviços em andamento</h3>
             {servicosEmAndamento.length > 0 ? (

@@ -104,11 +104,15 @@ const ExcluirConta = () => {
 
                 </>
             ) : (
-                <div>
-                    <p>Sua conta foi excluída com sucesso! Esperamos te ver de volta um dia, nos vemos em uma próxima obra. Redirecionando...</p>
-                    <div className="spinner"></div>
+                <div style={{width: "80%", margin: "auto"}}>
+                    <h1 style={{fontWeight: "bolder", hyphens: "auto", textAlign: "center"}}>Sua conta foi excluída com sucesso!</h1>
+                    <img src="/imgs-fixas/excluir-conta-adeus.png" alt="" />
+                    <div style={{display: "flex", flexDirection: "column", alignItems: "center", margin: "20px"}}>
+                        <p style={{fontWeight: "bolder", hyphens: "auto", textAlign: "center", backgroundColor: "#ffffff8f"}}>Esperamos te ver de volta um dia, nos vemos em uma próxima obra. </p>
+                        <div className="spinner"></div>
+                    </div>
                 </div>
-            )}
+             )}
         </div>
     );
 }
